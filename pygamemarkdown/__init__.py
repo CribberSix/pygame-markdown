@@ -3,7 +3,7 @@ import pygame
 
 class MarkdownBlitter():
 
-    def __init__(self, screen, text, x, y, width=-1, height=-1 ):
+    def __init__(self, screen, text, x, y, width=-1, height=-1):
         # dimensions of the area in which the text is being blitted
         self.x = x
         self.y = y
@@ -18,9 +18,11 @@ class MarkdownBlitter():
         self.myfont = pygame.font.SysFont('Comic Sans MS', 30)  # TEMP
         self.line_gap = 20
 
-        # split in whitespaces, add whitespaces back to everyone but the last one (if the list is not empty))
-        self.text_cut = [x + " " if i < len(self.text.split()) - 1 else x for i, x in enumerate(self.text.split()) if x]
-        self.text_surfaces = [self.myfont.render(text, False, (0, 0, 0)) for text in self.text_cut]
+        # split in whitespaces, add whitespaces back to every element
+        # except the last one
+        split = text.split()
+        self.text_cut = [substr + " " for substr in split[:-1]] + [split[-1]]
+        self.text_surfaces = [self.myfont.render(t, False, (0, 0, 0)) for t in self.text_cut]
 
         print(self.text_cut)
 
@@ -42,4 +44,3 @@ class MarkdownBlitter():
                 self.screen.blit(text_surface, (x, y))
                 x = x + text_surface.get_width()
                 prev_text_height = text_surface.get_height()
-

@@ -15,11 +15,13 @@ offset_X = 100  # offset from the left border of the pygame window
 offset_Y = 100  # offset from the top border of the pygame window
 textAreaHeight = 500
 textAreaWidth = 800
-text = "Lorem Ipsum, or how I would say: why the fuck not if this is what it takes?" \
-       " Lorem Ipsum, or how I would say: why the fuck not?"
+text = "Lorem Ipsum, or how I would say: why the fuck not if "\
+        " this is what it takes?" \
+        " Lorem Ipsum, or how I would say: why the fuck not?"
 
 # instantiation
-md_blitter = MarkdownBlitter(screen, text, offset_X, offset_Y, textAreaWidth, textAreaHeight)
+md_blitter = MarkdownBlitter(screen, text, offset_X, offset_Y,
+                             textAreaWidth, textAreaHeight)
 
 # TextEditor in the pygame-loop
 while True:
