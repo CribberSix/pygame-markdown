@@ -2,12 +2,17 @@
 
 A simple python function to blit Markdown text on a python surface.
 
+## Second header for internal tests.
+This is another text
 
+### Third header for internal tests.
 
+This is a text beneath the third text header. A bit longer: The lstrip() method will remove leading whitespaces, newline and tab characters on a string beginning:
 
- # Contributing
+     
+# Contributing
 I welcome pull requests from the community. 
-Please take a look at the TODO for opportunities to help this project. 
+Please take a look at the [TODO](https://github.com/CribberSix/pygame-markdown/blob/master/TODO.txt) file for opportunities to help this project. 
 
 Please ensure it fulfills the following requirements:
 

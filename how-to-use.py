@@ -19,8 +19,11 @@ text = "Lorem Ipsum, or how I would say: why the fuck not if "\
         " this is what it takes?" \
         " Lorem Ipsum, or how I would say: why the fuck not?"
 
+with open("README.md", "r") as f:
+    text_list = list(f)
+
 # instantiation
-md_blitter = MarkdownBlitter(screen, text, offset_X, offset_Y,
+md_blitter = MarkdownBlitter(screen, text_list, offset_X, offset_Y,
                              textAreaWidth, textAreaHeight)
 
 # TextEditor in the pygame-loop
