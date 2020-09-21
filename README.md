@@ -30,3 +30,13 @@ Please ensure it fulfills the following requirements:
     - Enhancement concerning performance, code readability, or usage. 
 - The README is updated accordingly.
 
+
+
+Markdown Table
+
+| Element       | Markdown Syntax     |
+| :------------- | :----------: | 
+|  Heading | # h1 <br/># h2 <br/># h3   |
+| Block of code   | \``` <br/>print("Hello World!") <br/> \``` |
+| Unordered List | - First item <br/>- Second item <br/>-Third Item | 
+

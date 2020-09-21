@@ -3,9 +3,9 @@ import pygame
 
 def display(self) -> None:
     y = self.y
-    for block in self.text_blocks:
+    for block in self.text_blocks_dicts:
         y = self.render_block(block['chars'], block['type'], y)
-        y += self.gap_paragraph
+        y = y + self.gap_paragraph
 
 
 def render_block(self, text: str, t_type: str, y: int) -> int:
@@ -18,19 +18,18 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
 
     Returns
     """
-
-    for line in text.split('\n'):
-
-        # Split on whitespaces and add whitespaces back to the individual words.
-        text_sp = line.split()
-        if len(text_sp) == 0:
-            textblock = [""]
+    text_split = text.split('\n')
+    for i, line in enumerate(text_split):
+        # Split on whitespaces and add whitespaces back to the individual words (all but the last)
+        word_split = line.split()
+        if len(word_split) == 0:
+            wordblock = [""]
         else:
-            textblock = [substr + " " for substr in text_sp[:-1]] + [text_sp[-1]]
+            wordblock = [substr + " " for substr in word_split[:-1]] + [word_split[-1]]
 
         # iterate over the words to determine when a new line is needed.
         x = self.x
-        for word in textblock:
+        for word in wordblock:
             surface = self.get_surface(word, t_type)
 
             if x + surface.get_width() < self.x + self.w:
@@ -44,8 +43,9 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
                 self.screen.blit(surface, (x, y))
                 x = x + surface.get_width()
                 prev_text_height = surface.get_height()
-        y += prev_text_height + self.gap_line
 
+        if i < len(text_split) - 1:  # between the lines of one block, we add a gap
+            y += prev_text_height + self.gap_line
     return y
 
 

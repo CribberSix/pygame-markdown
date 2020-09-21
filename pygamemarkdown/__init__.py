@@ -32,10 +32,9 @@ class MarkdownBlitter():
         self.font_text = pygame.font.SysFont(self.font, self.font_text_size)
 
         self.gap_line = 5
-        self.gap_paragraph = 20
+        self.gap_paragraph = 30
 
         lines = [i.replace('\n', '') for i in text]  # replace newline characters (for now)
         lines = [i.lstrip() for i in lines]  # remove leading whitespaces
-        cleaned_lines = self.parse_into_text_blocks(lines)  # parse physical lines into logical lines
-
-        self.text_blocks = self.interpret_text_blocks(cleaned_lines)
+        text_blocks_logical = self.parse_into_text_blocks(lines)  # parse physical lines into logical lines
+        self.text_blocks_dicts = self.interpret_text_blocks(text_blocks_logical)
