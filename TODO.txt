@@ -1,12 +1,18 @@
 
+- Ordered Lists
+    - Identify with regex !
+
+- Unordered Lists
+    - Identify with regex
+    - Identify second level with regex by identation
+
+- Coding blocks
+    - Background - Color
+    - Font: couriernew
+
+- single line code
 
 - Link Binding
     - Syntax: [here](www.link.org)
     - Implementation as button?
-- Lists
-    - Syntax: line starts with a round bullet point
-- Coding area
-    - Coding blocks
-    - single line code
-    - Background - Color
-    - Font: couriernew
+

@@ -30,9 +30,13 @@ class MarkdownBlitter():
         self.font_header3 = pygame.font.SysFont(self.font, self.font_header3_size, bold=True)
         self.font_text_size = 15
         self.font_text = pygame.font.SysFont(self.font, self.font_text_size)
+        self.font_code_size = 15
+        self.font_code = pygame.font.SysFont('CourierNew', self.font_text_size)
 
         self.gap_line = 5
         self.gap_paragraph = 30
+
+        self.coding_bg_color = (255, 255, 255)
 
         lines = [i.replace('\n', '') for i in text]  # replace newline characters (for now)
         lines = [i.lstrip() for i in lines]  # remove leading whitespaces

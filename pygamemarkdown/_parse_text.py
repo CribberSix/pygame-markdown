@@ -79,14 +79,26 @@ def interpret_text_blocks(self, text_cut: List) -> List[Dict]:
     - chars : String
     - type: String
     """
+
     text_blocks = []
+    code = False
+    language = ''
     for line in text_cut:
-        if line[:2] == '# ':  # h1
+
+        # ___ Headers ___
+        if line[:2] == '# ':
             text_blocks.append({'chars': line[2:].lstrip(), 'type': 'h1'})
         elif line[:3] == '## ':
             text_blocks.append({'chars': line[3:].lstrip(), 'type': 'h2'})
         elif line[:4] == '### ':
             text_blocks.append({'chars': line[4:].lstrip(), 'type': 'h3'})
+
+        # ___ Coding blocks ___
+        elif line[:3] == '```':
+             text_blocks.append({'chars': line, 'type': 'code'})
+
+        # ___ Normal text, unordered list, etc.
         else:
             text_blocks.append({'chars': line, 'type': 'text'})
+
     return text_blocks

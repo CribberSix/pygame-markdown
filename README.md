@@ -11,7 +11,7 @@ Text
 
 This is a text beneath the third text header. A bit longer: 
 The lstrip() method will remove leading whitespaces, 
-newline and tab characters on a string beginning:
+newline and tab characters on a string beginning. Lorem Ipsum whoop. 
 
 ```Python
 a = 500
@@ -32,7 +32,7 @@ Please ensure it fulfills the following requirements:
 
 
 
-Markdown Table
+### Special markdown element implementations
 
 | Element       | Markdown Syntax     |
 | :------------- | :----------: | 

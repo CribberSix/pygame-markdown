@@ -23,6 +23,7 @@ with open("README.md", "r") as f:
 md_blitter = MarkdownBlitter(screen, text_list, offset_X, offset_Y,
                              textAreaWidth, textAreaHeight)
 
+f = True
 # TextEditor in the pygame-loop
 while True:
     # INPUT - Mouse + Keyboard
@@ -30,7 +31,8 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-
-    md_blitter.display()  # Logic
+    if f:
+        md_blitter.display()  # Logic
+        f = False
 
     pygame.display.flip()  # updates pygame window
