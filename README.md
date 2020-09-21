@@ -3,14 +3,19 @@
 A simple python function to blit Markdown text on a python surface.
 
 ## Second header for internal tests.
-This is another text
-
+- This is another text
+- This is another text
+- This is another text
+Text
 ### Third header for internal tests.
 
-This is a text beneath the third text header. A bit longer: The lstrip() method will remove leading whitespaces, newline and tab characters on a string beginning:
+This is a text beneath the third text header. A bit longer: 
+The lstrip() method will remove leading whitespaces, 
+newline and tab characters on a string beginning:
 
 ```Python
-print("Hello World!")
+a = 500
+print("Hello World:" + str(500))
 ```
      
 # Contributing
@@ -18,10 +23,9 @@ I welcome pull requests from the community.
 Please take a look at the [TODO](https://github.com/CribberSix/pygame-markdown/blob/master/TODO.txt) file for opportunities to help this project. 
 
 Please ensure it fulfills the following requirements:
-
 - It must pass [PEP8](https://www.python.org/dev/peps/pep-0008/). You can check your code's PEP8 compliance [here](http://pep8online.com/checkresult).
 - Pull Request's must be adequately formatted, described and fulfill at least one of the following purposes:
-    - Bugfixing
+    - Bugfixing    
     - New functionality (extending the existing functionalities)
     - Enhancement concerning performance, code readability, or usage. 
 - The README is updated accordingly.

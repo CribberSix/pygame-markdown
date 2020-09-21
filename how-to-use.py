@@ -1,5 +1,5 @@
 import pygame
-from pygamemarkdown import MarkdownBlitter
+from pygamemarkdown import *
 
 # minimal pygame setup
 pygame.init()
@@ -11,13 +11,10 @@ pygame.display.get_surface().fill((200, 200, 200))  # background coloring
 
 # parameters
 screen = pygame.display.get_surface()  # get existing pygame window/screen
-offset_X = 100  # offset from the left border of the pygame window
+offset_X = 50  # offset from the left border of the pygame window
 offset_Y = 100  # offset from the top border of the pygame window
 textAreaHeight = 500
 textAreaWidth = 800
-text = "Lorem Ipsum, or how I would say: why the fuck not if "\
-        " this is what it takes?" \
-        " Lorem Ipsum, or how I would say: why the fuck not?"
 
 with open("README.md", "r") as f:
     text_list = list(f)
