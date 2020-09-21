@@ -1,4 +1,5 @@
 import pygame
+from typing import List, Tuple
 
 
 def display(self) -> None:
@@ -6,6 +7,24 @@ def display(self) -> None:
     for block in self.text_blocks_dicts:
         y = self.render_block(block['chars'], block['type'], y)
         y = y + self.gap_paragraph
+
+
+def prep_code_and_draw_rect(self, text_split: List[str], y: int) -> Tuple[List[str], int]:
+    # Render background of coding block and perform special preparations
+    text_split = text_split[1:-1]  # remove codeblock apostrophe
+    indentation = 20  # code is shown indented
+    start_of_line = self.x + indentation
+
+    # Calculating the background area and drawing the rect
+    number_of_lines = len(text_split)
+    height_of_line = self.get_surface('tmp', 'code').get_height() + self.gap_line
+    extension = 3
+    x_coordinate = self.x + (0.5 * indentation)
+    y_coordinate = y - extension
+    width = self.w - (1 * indentation)
+    height = (number_of_lines * height_of_line) + extension
+    pygame.draw.rect(self.screen, self.coding_bg_color, pygame.Rect(x_coordinate, y_coordinate, width, height))
+    return text_split, start_of_line
 
 
 def render_block(self, text: str, t_type: str, y: int) -> int:
@@ -23,20 +42,7 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
 
     # ___ CODE BLOCK PREPARATION ___
     if t_type == 'code':
-        # Render background of coding block and perform special preparations
-        text_split = text_split[1:-1]  # remove codeblock apostrophe
-        indentation = 20  # code is shown indented
-        start_of_line = self.x + indentation
-
-        # Calculating the background area and drawing the rect
-        number_of_lines = len(text_split)
-        height_of_line = self.get_surface('tmp', 'code').get_height() + self.gap_line
-        extension = 3
-        x_coordinate = self.x + (0.5 * indentation)
-        y_coordinate = y - extension
-        width = self.w - (1 * indentation)
-        height = (number_of_lines * height_of_line) + extension
-        pygame.draw.rect(self.screen, self.coding_bg_color, pygame.Rect(x_coordinate, y_coordinate, width, height))
+        text_split, start_of_line = self.prep_code_and_draw_rect(text_split, y)
 
     # ___ LINE BLITTING ___
     for i, line in enumerate(text_split):
