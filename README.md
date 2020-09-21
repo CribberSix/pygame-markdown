@@ -9,6 +9,9 @@ This is another text
 
 This is a text beneath the third text header. A bit longer: The lstrip() method will remove leading whitespaces, newline and tab characters on a string beginning:
 
+```Python
+print("Hello World!")
+```
      
 # Contributing
 I welcome pull requests from the community. 

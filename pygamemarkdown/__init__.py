@@ -38,6 +38,7 @@ class MarkdownBlitter():
         # ...
 
         lines = [i.replace('\n', '') for i in text]  # replace newline characters (for now)
+        lines = [i.lstrip() for i in text]  # remove leading whitespaces
         text_cut = list(filter(lambda a: a != '', lines))  # filter out empty lines
         self.text_blocks = self.interpret_text_blocks(text_cut)
 

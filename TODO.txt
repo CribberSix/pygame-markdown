@@ -4,4 +4,9 @@
     - Syntax: [here](www.link.org)
     - Implementation as button?
 - Lists
-    - Syntax: line starts with a bullet point
+    - Syntax: line starts with a round bullet point
+- Coding area
+    - Coding blocks
+    - single line code
+    - Background - Color
+    - Font: couriernew
