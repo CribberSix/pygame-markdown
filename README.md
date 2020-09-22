@@ -32,11 +32,16 @@ Please ensure it fulfills the following requirements:
 
 
 
-### Special markdown element implementations
+### Markdown element implementations
 
-| Element       | Markdown Syntax     |
-| :------------- | :----------: | 
-|  Heading | # h1 <br/># h2 <br/># h3   |
-| Block of code   | \``` <br/>print("Hello World!") <br/> \``` |
-| Unordered List | - First item <br/>- Second item <br/>-Third Item | 
+| Element       | Markdown Syntax     | Status |
+| :------------- | :---------- | :---------- |
+|  Heading | # h1 <br/>## h2 <br/>### h3   | DONE |
+| Block of code   | \``` <br/>print("Hello World!") <br/> \``` | DONE |
+| Unordered List | - First item <br/>- Second item <br/>-Third Item |  DONE | 
+| Ordered List | 1. First item <br/>2. Second item <br/>3.Third Item | TODO |
+| Bold |  \*\*bold text\*\* | TODO |
+| Cursive | \*italicized text\* |TODO |
+| Blockquote | \> blockquote | TODO |
+| Horizontal rule | --------- | TODO |
 
