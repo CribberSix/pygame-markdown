@@ -38,6 +38,7 @@ Please ensure it fulfills the following requirements:
 | :------------- | :---------- | :---------- |
 |  Heading | # h1 <br/>## h2 <br/>### h3   | DONE |
 | Block of code   | \``` <br/>print("Hello World!") <br/> \``` | DONE |
+| Inline code | \`print("Hello World")\` | TODO |
 | Unordered List | - First item <br/>- Second item <br/>-Third Item |  DONE | 
 | Ordered List | 1. First item <br/>2. Second item <br/>3.Third Item | TODO |
 | Bold |  \*\*bold text\*\* | TODO |
