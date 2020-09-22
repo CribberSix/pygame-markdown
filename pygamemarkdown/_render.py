@@ -47,11 +47,6 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
     start_of_line_x = self.x
     text_split = text.split('\n')
 
-    print("________")
-    print(t_type)
-    print(text_split)
-    print("start_of_line_y: " + str(y))
-
     # ___ CODE BLOCK PREPARATION AND BACKGROUND RECT ___
     if t_type == 'code':
         text_split, start_of_line_x = self.prep_code_and_draw_rect(text_split, y)
@@ -94,7 +89,6 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
     # ___ QUOTE BLOCK RECT ___
     if t_type == 'quote':
         self.draw_quote_rect(start_of_line_y, y)
-    print("end_of_line_y: " + str(y))
 
     return y
 
@@ -107,7 +101,7 @@ def draw_quote_rect(self, y_start, y_end):
     x_coordinate = self.x + (0.5 * indentation_code)
     y_coordinate = y_start
     width = 5
-    height = (y_end - y_start) + line_height - 5
+    height = (y_end - y_start) + line_height - self.gap_line
 
     pygame.draw.rect(self.screen, self.quote_color, pygame.Rect(x_coordinate, y_coordinate, width, height))
 

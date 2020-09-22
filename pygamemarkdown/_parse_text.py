@@ -76,7 +76,8 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
 
         # ____ BLOCK CONTINUES ____
         else:
-            current_line = current_line + line
+            # remove any leading / trailing whitespaces and insert exactly one whitespace
+            current_line = current_line.rstrip() + ' ' + line.lstrip()
 
     # Append current/last line still in the var
     clean_current_line(current_line)

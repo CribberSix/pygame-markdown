@@ -6,7 +6,8 @@ A simple python function to blit Markdown text on a python surface.
 - This is another text
 - This is another text
 - This is another text
-> Text
+NewLine_w/o_break
+> Quoted text
 ### Third header for internal tests.
 
 This is a text beneath the third text header. A bit longer: 
