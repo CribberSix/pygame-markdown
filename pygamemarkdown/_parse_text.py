@@ -54,12 +54,13 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
             cleaned_lines.append(line)
 
         # ___ QUOTE BLOCKS ___
-        elif line[:2] == '> ' and not quote_flag:
-            quote_flag = True
-            clean_current_line(current_line)
-            current_line = line
-        elif line[:2] == '> ' and quote_flag:
-            current_line = current_line + line[1:]
+        elif line[:2] == '> ':
+            if not quote_flag:  # first line of a quote-block
+                quote_flag = True
+                clean_current_line(current_line)
+                current_line = line
+            else:  # quote_flag active
+                current_line = current_line + line[1:]
 
         # ___ EMPTY LINE -> BLOCK BREAK ____
         elif line == '':
@@ -76,8 +77,11 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
 
         # ____ BLOCK CONTINUES ____
         else:
-            # remove any leading / trailing whitespaces and insert exactly one whitespace
-            current_line = current_line.rstrip() + ' ' + line.lstrip()
+            # remove any leading / trailing whitespaces and insert exactly one whitespace after first line
+            if current_line != '':
+                current_line = current_line.rstrip() + ' ' + line.lstrip()
+            else:
+                current_line = current_line + line
 
     # Append current/last line still in the var
     clean_current_line(current_line)
@@ -114,7 +118,11 @@ def interpret_text_blocks(self, text_cut: List) -> List[Dict]:
         elif line[:2] == '> ':
             text_blocks.append({'chars': line[1:].lstrip(), 'type': 'quote'})
 
-        # ___ Normal text, unordered list, etc.
+        # ___ Bullet Point blocks ___
+        elif line[:2] == '- ':
+            text_blocks.append({'chars': line, 'type': 'unorderdList'})
+
+        # ___ Normal text
         else:
             text_blocks.append({'chars': line, 'type': 'text'})
 

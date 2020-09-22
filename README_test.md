@@ -10,8 +10,8 @@ NewLine_w/o_break
 > Quoted text
 ### Third header for internal tests.
 
-This is a `text` test beneath `the third text` header. A bit longer: 
-The lstrip() method will `remove leading whitespaces something some`
+This is a `variable` inline-code test. Also for `var = 3500` multiple words. A bit longer for the linebreak test
+ `from pygame import everything`
 newline and `tab` characters on a string beginning. Lorem Ipsum whoop. 
 
 Confucius said:
@@ -36,20 +36,4 @@ Please ensure it fulfills the following requirements:
     - New functionality (extending the existing functionalities)
     - Enhancement concerning performance, code readability, or usage. 
 - The README is updated accordingly.
-
-
-
-### Markdown element implementations
-
-| Element       | Markdown Syntax     | Status |
-| :------------- | :---------- | :---------- |
-|  Heading | # h1 <br/>## h2 <br/>### h3   | DONE |
-| Bold |  \*\*bold text\*\* | TODO |
-| Cursive | \*italicized text\* |TODO |
-| Block of code   | \``` <br/>print("Hello World!") <br/> \``` | DONE |
-| Inline code | \`print("Hello World")\` | DONE |
-| Unordered List | - First item <br/>- Second item <br/>- Third Item |  DONE | 
-| Ordered List | 1. First item <br/>2. Second item <br/>3.Third Item | TODO |
-| Blockquote | \> blockquote | DONE |
-| Horizontal rule | --------- | TODO |
 

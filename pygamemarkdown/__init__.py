@@ -5,7 +5,9 @@ class MarkdownBlitter():
 
     from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps
     from ._parse_text import parse_into_text_blocks, interpret_text_blocks
-    from ._render import display, render_block, get_surface, prep_code_and_draw_rect, draw_quote_rect, prep_quote
+    from ._render import display, render_block, get_surface, prep_code_and_draw_rect, draw_quote_rect, prep_quote, \
+        check_for_inline_code_and_draw, draw_inline_code_rect
+
 
     def __init__(self, screen, text, x, y, width=-1, height=-1):
 

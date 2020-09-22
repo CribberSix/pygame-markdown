@@ -16,7 +16,7 @@ offset_Y = 50  # offset from the top border of the pygame window
 textAreaHeight = 500
 textAreaWidth = 800
 
-with open("README.md", "r") as f:
+with open("README_test.md", "r") as f:
     text_list = list(f)
 
 # instantiation
