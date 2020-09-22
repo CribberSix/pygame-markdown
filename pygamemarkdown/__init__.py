@@ -5,7 +5,7 @@ class MarkdownBlitter():
 
     from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps
     from ._parse_text import parse_into_text_blocks, interpret_text_blocks
-    from ._render import display, render_block, get_surface, prep_code_and_draw_rect
+    from ._render import display, render_block, get_surface, prep_code_and_draw_rect, draw_quote_rect, prep_quote
 
     def __init__(self, screen, text, x, y, width=-1, height=-1):
 
@@ -28,14 +28,17 @@ class MarkdownBlitter():
         self.font_header3_size = 15
         self.font_header3 = pygame.font.SysFont(self.font, self.font_header3_size, bold=True)
         self.font_text_size = 15
-        self.font_text = pygame.font.SysFont(self.font, self.font_text_size)
+        self.font_text = pygame.font.SysFont(self.font, self.font_text_size, bold=False)
         self.font_code_size = 15
-        self.font_code = pygame.font.SysFont('CourierNew', self.font_text_size)
-
+        self.font_code = pygame.font.SysFont('CourierNew', self.font_text_size, bold=False)
+        self.font_quote_size = 15
+        self.font_quote = pygame.font.SysFont(self.font, self.font_quote_size, bold=False)
         self.gap_line = 5
         self.gap_paragraph = 30
 
-        self.coding_bg_color = (255, 255, 255)
+        self.font_color = (0, 0, 0)
+        self.coding_bg_color = (145, 163, 176)
+        self.quote_color = (114, 160, 193)
 
         lines = [i.replace('\n', '') for i in text]  # replace newline characters (for now)
         lines = [i.lstrip() for i in lines]  # remove leading whitespaces

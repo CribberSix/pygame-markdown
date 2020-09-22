@@ -18,6 +18,7 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
     current_line = ''
     code_flag = False
     bullet_points_flag = False
+    quote_flag = False
     for line in text:
 
         def clean_current_line(current_line):
@@ -27,9 +28,12 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
             return ''
 
         # Identify the end of a bullet-point block
-        if bullet_points_flag and (line[:1] == '#' or line[:3] == '```' or line == ''):
+        if bullet_points_flag and (line[:1] == '#' or line[:3] == '```' or line == '' or line[:1] == '>'):
             current_line = clean_current_line(current_line)
             bullet_points_flag = False
+        if quote_flag and (line[:1] == '#' or line[:3] == '```' or line == '' or line[:1] == '-'):
+            current_line = clean_current_line(current_line)
+            quote_flag = False
 
         # ___ CODE ____
         if line[:3] == '```' and not code_flag:  # Start of a code block
@@ -48,6 +52,14 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
         elif line[:2] == '# ' or line[:3] == '## ' or line[:4] == '### ':
             current_line = clean_current_line(current_line)
             cleaned_lines.append(line)
+
+        # ___ QUOTE BLOCKS ___
+        elif line[:2] == '> ' and not quote_flag:
+            quote_flag = True
+            clean_current_line(current_line)
+            current_line = line
+        elif line[:2] == '> ' and quote_flag:
+            current_line = current_line + line[1:]
 
         # ___ EMPTY LINE -> BLOCK BREAK ____
         elif line == '':
@@ -96,6 +108,10 @@ def interpret_text_blocks(self, text_cut: List) -> List[Dict]:
         # ___ Coding blocks ___
         elif line[:3] == '```':
              text_blocks.append({'chars': line, 'type': 'code'})
+
+        # ___ Quote blocks ___
+        elif line[:2] == '> ':
+            text_blocks.append({'chars': line[1:].lstrip(), 'type': 'quote'})
 
         # ___ Normal text, unordered list, etc.
         else:

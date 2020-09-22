@@ -6,13 +6,19 @@ A simple python function to blit Markdown text on a python surface.
 - This is another text
 - This is another text
 - This is another text
-Text
+> Text
 ### Third header for internal tests.
 
 This is a text beneath the third text header. A bit longer: 
-The lstrip() method will remove leading whitespaces, 
+The lstrip() method will remove leading whitespaces
 newline and tab characters on a string beginning. Lorem Ipsum whoop. 
 
+Confucius said:
+> Respect yourself
+> and others will respect you. The lstrip() method will remove leading whitespaces
+newline and tab characters on a string beginning. Lorem Ipsum whoop.
+
+Code lines:
 ```Python
 a = 500
 print("Hello World:" + str(500))
@@ -39,10 +45,10 @@ Please ensure it fulfills the following requirements:
 |  Heading | # h1 <br/>## h2 <br/>### h3   | DONE |
 | Block of code   | \``` <br/>print("Hello World!") <br/> \``` | DONE |
 | Inline code | \`print("Hello World")\` | TODO |
-| Unordered List | - First item <br/>- Second item <br/>-Third Item |  DONE | 
+| Unordered List | - First item <br/>- Second item <br/>- Third Item |  DONE | 
 | Ordered List | 1. First item <br/>2. Second item <br/>3.Third Item | TODO |
 | Bold |  \*\*bold text\*\* | TODO |
 | Cursive | \*italicized text\* |TODO |
-| Blockquote | \> blockquote | TODO |
+| Blockquote | \> blockquote | DONE |
 | Horizontal rule | --------- | TODO |
 
