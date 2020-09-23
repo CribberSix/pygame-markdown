@@ -28,7 +28,6 @@ To choose a markdown file to display, use the method:
 md.set_markdown(mdfile_path) 
 ```
 
-The obligatory parameters: 
 - `mdfile_path`: the path to the markdown file which will be displayed
 
 ##### 3. Display
@@ -37,15 +36,16 @@ To display the markdown file on a surface in a specific location use the method:
  ```Python
 md.display(surface, offset_X, offset_Y, width=-1, height=-1)  
 ```
-
-Obligatory parameters: 
 - `surface` - the pygame surface which the text is blitted on 
-- `offset_X` - the offset of the textarea from the surface's left sided border
-- `offset_Y`- the offset of the textarea from the surface's top border
+- `offset_X` - the offset of the text from the surface's left sided border
+- `offset_Y`- the offset of the text from the surface's top border
 
-Optional parameters:
-- `width` - the width of the textarea  (if no width is supplied, the entire space starting from the x-coordinate to the right side of the supplied surface is used.) 
-- `height` - the height of the textarea (if no height is supplied, the entire space starting from the y-coordinate to the bottom of the supplied surface is used.)
+Optional:
+- `width` - the width of the textarea  
+- `height` - the height of the textarea 
+
+If no width/height is supplied, the entire length starting from the x-/y-coordinate 
+to the opposite side of the supplied surface is used.
 
 ----
 
