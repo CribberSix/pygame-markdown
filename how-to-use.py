@@ -12,7 +12,7 @@ pygame.display.get_surface().fill((200, 200, 200))  # background coloring
 # parameters
 screen = pygame.display.get_surface()  # get existing pygame window/screen
 offset_X = 50  # offset from the left border of the pygame window
-offset_Y = 50  # offset from the top border of the pygame window
+offset_Y = 20  # offset from the top border of the pygame window
 textAreaHeight = 500
 textAreaWidth = 800
 

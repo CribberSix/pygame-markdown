@@ -1,6 +1,7 @@
 from typing import List, Dict
 import re
 
+
 def parse_into_text_blocks(self, text: List[str]) -> List[str]:
     """
     Parses physical lines into logical lines.
@@ -17,44 +18,51 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
     cleaned_lines = []
     current_line = ''
     code_flag = False
-    bullet_points_flag = False
+    unordered_List_flag = False
     quote_flag = False
+
+    def clean_current_line(c_line):
+        if c_line != '':
+            cleaned_lines.append(c_line)
+        return ''
+
     for line in text:
-
-        def clean_current_line(current_line):
-            if current_line != '':
-                cleaned_lines.append(current_line)
-                return ''
-            return ''
-
         # Identify the end of a bullet-point block
-        if bullet_points_flag and (line[:1] == '#' or line[:3] == '```' or line == '' or line[:1] == '>'):
+        if unordered_List_flag and (re.search(self.pattern_header, line) is not None
+                                   or re.search(self.pattern_code, line) is not None
+                                   or re.search(self.pattern_hrule, line) is not None
+                                   or re.search(self.pattern_quote, line) is not None
+                                   or line == ''):
             current_line = clean_current_line(current_line)
-            bullet_points_flag = False
-        if quote_flag and (line[:1] == '#' or line[:3] == '```' or line == '' or line[:1] == '-'):
+            unordered_List_flag = False
+
+        if quote_flag and (re.search(self.pattern_header, line) is not None
+                           or re.search(self.pattern_code, line) is not None
+                           or re.search(self.pattern_hrule, line) is not None
+                           or re.search(self.pattern_unorderedList, line) is not None
+                           or line == ''):
             current_line = clean_current_line(current_line)
             quote_flag = False
 
         # ___ CODE ____
-        if line[:3] == '```' and not code_flag:  # Start of a code block
+        if re.search(self.pattern_code, line) is not None and not code_flag:  # Start of a code block
             code_flag = True
-            current_line = clean_current_line(current_line)
+            clean_current_line(current_line)
             current_line = line
-        elif line[:3] == '```' and code_flag:  # End of a code block
+        elif re.search(self.pattern_code, line) is not None and code_flag:  # End of a code block
             code_flag = False
             current_line = current_line + '\n' + line
-            cleaned_lines.append(current_line)
-            current_line = ''
-        elif code_flag:
+            current_line = clean_current_line(current_line)
+        elif code_flag:  # middle of a code block
             current_line = current_line + '\n' + line
 
         # ___ HEADERS ____
-        elif line[:2] == '# ' or line[:3] == '## ' or line[:4] == '### ':
+        elif re.search(self.pattern_header, line) is not None:
             current_line = clean_current_line(current_line)
             cleaned_lines.append(line)
 
-        # ___ QUOTE BLOCKS ___
-        elif line[:2] == '> ':
+        # ___ QUOTES ___
+        elif re.search(self.pattern_quote, line) is not None:
             if not quote_flag:  # first line of a quote-block
                 quote_flag = True
                 clean_current_line(current_line)
@@ -62,77 +70,45 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
             else:  # quote_flag active
                 current_line = current_line + line[1:]
 
-        # ___ BULLET POINTS ____
-        elif line[:2] == '- ':
-            if not bullet_points_flag:
+        # ___ UNORDERED LIST ____
+        elif re.search(self.pattern_unorderedList, line) is not None:
+            print("___________________")
+            if not unordered_List_flag:  # first bullet point
+                print("First bullet point - auto-first level indentation")
                 clean_current_line(current_line)
-                bullet_points_flag = True
-                current_line = u'\u2022 ' + line[2:]
+                unordered_List_flag = True
+                current_line = line.lstrip()
+                print(current_line)
             else:
-                current_line = current_line + '\n' + u'\u2022 ' + line[2:]
+                if re.search(r'^\s{0,3}-\s.+$', line):  # (0-3 whitespaces)
+                    print("First level indentation")
+                    current_line = current_line + '\n' + line.lstrip()
+                elif re.search(r'^\s{4}-\s.+$', line) is not None:  # (4 whitespaces)
+                    print("Second level indentation")
+                    current_line = current_line + '\n\t' + line.lstrip()
+                else:  # (5 or more whitespaces -> text continuation)
+                    print("prev line continuation")
+                    current_line = current_line.rstrip() + ' ' + line.lstrip()
 
         # ___ HORIZONTAL RULE ___
-        elif re.search(r'^\s*-{3,}\s*$', line) is not None:
+        elif re.search(self.pattern_hrule, line) is not None:
             clean_current_line(current_line)
             current_line = clean_current_line(line.lstrip().rstrip())
 
         # ___ EMPTY LINE -> BLOCK BREAK ____
         elif line == '':
             current_line = clean_current_line(current_line)
+
         # ____ BLOCK CONTINUES ____
         else:
-            # remove any leading / trailing whitespaces and insert exactly one whitespace after first line
+            # remove any leading / trailing whitespaces
+            # and insert exactly one whitespace after first line
             if current_line != '':
                 current_line = current_line.rstrip() + ' ' + line.lstrip()
             else:
                 current_line = current_line + line
 
-        #print(re.search(r'^\s*-{3,}\s*$', line))
     # Append current/last line still in the var
     clean_current_line(current_line)
 
     return cleaned_lines
-
-
-def interpret_text_blocks(self, text_cut: List) -> List[Dict]:
-    """
-    Receives a list of text blocks.
-    Interprets each block by the starting character (if a key, else normal text) and creates a dict with the keys:
-    - chars : String
-    - type: String
-    """
-
-    text_blocks = []
-    code = False
-    language = ''
-    for line in text_cut:
-
-        # ___ Headers ___
-        if line[:2] == '# ':
-            text_blocks.append({'chars': line[2:].lstrip(), 'type': 'h1'})
-        elif line[:3] == '## ':
-            text_blocks.append({'chars': line[3:].lstrip(), 'type': 'h2'})
-        elif line[:4] == '### ':
-            text_blocks.append({'chars': line[4:].lstrip(), 'type': 'h3'})
-
-        # ___ Coding blocks ___
-        elif line[:3] == '```':
-             text_blocks.append({'chars': line, 'type': 'code'})
-
-        # ___ Quote blocks ___
-        elif line[:2] == '> ':
-            text_blocks.append({'chars': line[1:].lstrip(), 'type': 'quote'})
-
-        # ___ Bullet Point blocks ___
-        elif line[:2] == '- ':
-            text_blocks.append({'chars': line, 'type': 'unorderdList'})
-
-        # ___ Horizontal rule ___
-        elif re.search(r'^\s*-{3,}\s*$', line) is not None:
-            text_blocks.append({'chars': line, 'type': 'horizontalRule'})
-
-        # ___ Normal text
-        else:
-            text_blocks.append({'chars': line, 'type': 'text'})
-
-    return text_blocks

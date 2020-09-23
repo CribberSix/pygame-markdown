@@ -9,33 +9,9 @@ def display(self) -> None:
         y = y + self.gap_paragraph
 
 
-def prep_code_and_draw_rect(self, test_list: List[str], y: int) -> Tuple[List[str], int]:
-    # Render background of coding block and perform special preparations
-    test_list = test_list[1:-1]  # remove codeblock apostrophe lines
-    indentation = 20  # code is shown indented
-    start_of_line = self.x + indentation
-
-    # Calculating the background area and drawing the rect
-    number_of_lines = len(test_list)
-    height_of_line = self.get_surface('tmp', 'code').get_height() + self.gap_line
-    extension = 3
-    x_coordinate = self.x + (0.5 * indentation)
-    y_coordinate = y - extension
-    width = self.w - (1 * indentation)
-    height = (number_of_lines * height_of_line) + extension
-    pygame.draw.rect(self.screen, self.coding_bg_color, pygame.Rect(x_coordinate, y_coordinate, width, height))
-    return test_list, start_of_line
-
-
-def prep_quote(self):
-    indentation_code = 30  # quote is shown indented
-    start_of_line = self.x + indentation_code
-    return start_of_line
-
-
 def render_block(self, text: str, t_type: str, y: int) -> int:
     """
-    Renders a "block" (a string) based on the number of lines. Coding lines have necessary newline characters
+    Renders a "block" (a string) based on the number of lines. Coding paragraphs have necessary newline characters
     as well as bullet-point paragraphs.
 
     For overflowing text the method determines automatically at which point a new line is needed.
@@ -45,6 +21,8 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
     """
     start_of_line_x = self.x
     text_split = text.split('\n')
+    if t_type == 'unorderdList':
+        print(text_split)
 
     # ___ CODE BLOCK PREPARATION AND BACKGROUND RECT ___
     if t_type == 'code':
@@ -57,9 +35,9 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
 
     if t_type == 'text':
         # identify inline-code (start + end)
-        #print("______________")
-        #print("text")
-        #print(text_split)
+        # print("______________")
+        # print("text")
+        # print(text_split)
         inline_code_tuples = []
         start = -1
         c = 0
@@ -88,7 +66,6 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
 
     char_counter = 0
     if t_type == 'horizontalRule':
-        print("horizontalRule")
         self.draw_horizontal_rule(y)
     else:
         for i, line in enumerate(text_split):
@@ -135,6 +112,29 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
 
     return y
 
+
+def prep_code_and_draw_rect(self, test_list: List[str], y: int) -> Tuple[List[str], int]:
+    # Render background of coding block and perform special preparations
+    test_list = test_list[1:-1]  # remove codeblock apostrophe lines
+    indentation = 20  # code is shown indented
+    start_of_line = self.x + indentation
+
+    # Calculating the background area and drawing the rect
+    number_of_lines = len(test_list)
+    height_of_line = self.get_surface('tmp', 'code').get_height() + self.gap_line
+    extension = 3
+    x_coordinate = self.x + (0.5 * indentation)
+    y_coordinate = y - extension
+    width = self.w - (1 * indentation)
+    height = (number_of_lines * height_of_line) + extension
+    pygame.draw.rect(self.screen, self.coding_bg_color, pygame.Rect(x_coordinate, y_coordinate, width, height))
+    return test_list, start_of_line
+
+
+def prep_quote(self):
+    indentation_code = 30  # quote is shown indented
+    start_of_line = self.x + indentation_code
+    return start_of_line
 
 def draw_horizontal_rule(self, y):
     line_height = self.get_surface("line_tmp", 'text').get_height()

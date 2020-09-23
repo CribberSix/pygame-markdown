@@ -4,7 +4,8 @@ import pygame
 class MarkdownBlitter():
 
     from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps
-    from ._parse_text import parse_into_text_blocks, interpret_text_blocks
+    from ._parse_text import parse_into_text_blocks
+    from ._interpret_text import interpret_text_blocks
     from ._render import display, render_block, get_surface, prep_code_and_draw_rect, draw_quote_rect, prep_quote, \
         check_for_inline_code_and_draw, draw_inline_code_rect, draw_horizontal_rule
 
@@ -42,7 +43,15 @@ class MarkdownBlitter():
         self.coding_bg_color = (145, 163, 176)
         self.quote_color = (114, 160, 193)
 
+        self.pattern_header = r'^#.+$'
+        self.pattern_h1 = r'^#{1}\s?.+$'
+        self.pattern_h2 = r'^#{2}\s?.+$'
+        self.pattern_h3 = r'^#{3}\s?.+$'
+        self.pattern_unorderedList = r'^\s*-\s.+$'
+        self.pattern_hrule = r'^\s*-{3,}\s*$'
+        self.pattern_quote = r'^\s*>.*$'
+        self.pattern_code = r"^\s*`{3}.*$"
+
         lines = [i.replace('\n', '') for i in text]  # replace newline characters (for now)
-        lines = [i.lstrip() for i in lines]  # remove leading whitespaces
         text_blocks_logical = self.parse_into_text_blocks(lines)  # parse physical lines into logical lines
         self.text_blocks_dicts = self.interpret_text_blocks(text_blocks_logical)
