@@ -1,18 +1,20 @@
 
+
 - Ordered Lists
-    - Identify with regex !
+    - Improve: Identify second-level sublist by indent
+    - Feature: Implement different bulletpoint for second level sublist
+    - Improve: Identify with regex?
 
 - Unordered Lists
     - Identify with regex
     - Identify second level with regex by identation
 
-- Coding blocks
-    - Background - Color
-    - Font: couriernew
-
-- single line code
 
 - Link Binding
     - Syntax: [here](www.link.org)
     - Implementation as button?
 
+- Bugfix:
+    - inline-code
+    - single word with space between starting/ending quote and the word itself
+    - example: `other ` or ` other`

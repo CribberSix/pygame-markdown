@@ -57,9 +57,9 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
 
     if t_type == 'text':
         # identify inline-code (start + end)
-        print("______________")
-        print("text")
-        print(text_split)
+        #print("______________")
+        #print("text")
+        #print(text_split)
         inline_code_tuples = []
         start = -1
         c = 0
@@ -76,10 +76,10 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
                 c = c + 1
 
         # __ DEVELOPMENT ____
-        print(result)
-        print("inline_code_tuples: " + str(inline_code_tuples))
-        for t in inline_code_tuples:
-            print("CUT: " + result[t[0]:t[1] + 1])
+        #print(result)
+        #print("inline_code_tuples: " + str(inline_code_tuples))
+        #for t in inline_code_tuples:
+        #    print("CUT: " + result[t[0]:t[1] + 1])
 
         text_split[0] = result
 
@@ -87,82 +87,83 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
     # ___ LINE BLITTING ___
 
     char_counter = 0
-    for i, line in enumerate(text_split):
-        # Split on whitespaces and add whitespaces back to the individual words (all but the last)
-        word_split = line.split()
-        if len(word_split) == 0:
-            wordblock = [""]
-        else:
-            wordblock = [substr + " " for substr in word_split[:-1]] + [word_split[-1]]
+    if t_type == 'horizontalRule':
+        print("horizontalRule")
+        self.draw_horizontal_rule(y)
+    else:
+        for i, line in enumerate(text_split):
+            # Split on whitespaces and add whitespaces back to the individual words (all but the last)
+            word_split = line.split()
+            if len(word_split) == 0:
+                wordblock = [""]
+            else:
+                wordblock = [substr + " " for substr in word_split[:-1]] + [word_split[-1]]
 
-        # iterate over the words to determine when a new line is needed.
-        x = start_of_line_x
-        for word in wordblock:
-            surface = self.get_surface(word, t_type)
+            # iterate over the words to determine when a new line is needed.
+            x = start_of_line_x
+            for word in wordblock:
+                surface = self.get_surface(word, t_type)
 
-            if x + surface.get_width() < self.x + self.w:
-                # Continue in current line
+                if x + surface.get_width() < self.x + self.w:
+                    # Continue in current line
+                    if t_type == 'text':
+                        code_flag, inline_code_tuples = self.check_for_inline_code_and_draw(inline_code_tuples,
+                                                                                            char_counter, word, x, y,
+                                                                                            code_flag)
+                    self.screen.blit(surface, (x, y))
+                    x = x + surface.get_width()
+                    prev_text_height = surface.get_height()
 
-                if t_type == 'text':
-                    code_flag, inline_code_tuples = self.check_for_inline_code_and_draw(inline_code_tuples,
-                                                                                        char_counter, word, x, y,
-                                                                                        code_flag)
+                else:  # new line
+                    y += prev_text_height + self.gap_line
+                    x = start_of_line_x
+                    if t_type == 'text':
+                        code_flag, inline_code_tuples = self.check_for_inline_code_and_draw(inline_code_tuples,
+                                                                                            char_counter, word, x, y,
+                                                                                            code_flag)
+                    self.screen.blit(surface, (x, y))
+                    x = x + surface.get_width()
+                    prev_text_height = surface.get_height()
 
-                self.screen.blit(surface, (x, y))
-                x = x + surface.get_width()
-                prev_text_height = surface.get_height()
-
-            else:  # new line
+                char_counter += len(word)
+            if i < len(text_split) - 1:  # between the lines of a block, we add a gap
                 y += prev_text_height + self.gap_line
-                x = start_of_line_x
 
-                if t_type == 'text':
-                    code_flag, inline_code_tuples = self.check_for_inline_code_and_draw(inline_code_tuples,
-                                                                                        char_counter, word, x, y,
-                                                                                        code_flag)
+        # ___ QUOTE BLOCK RECT ___
+        if t_type == 'quote':
+            self.draw_quote_rect(start_of_line_y, y)
 
-                self.screen.blit(surface, (x, y))
-                x = x + surface.get_width()
-                prev_text_height = surface.get_height()
+    return y
 
-            char_counter += len(word)
-        if i < len(text_split) - 1:  # between the lines of one block, we add a gap
-            y += prev_text_height + self.gap_line
 
-    # ___ QUOTE BLOCK RECT ___
-    if t_type == 'quote':
-        self.draw_quote_rect(start_of_line_y, y)
-
+def draw_horizontal_rule(self, y):
+    line_height = self.get_surface("line_tmp", 'text').get_height()
+    pygame.draw.rect(self.screen, self.coding_bg_color, pygame.Rect(self.x, y + (0.4 * line_height), self.w, 5))
+    y += line_height + self.gap_line
     return y
 
 
 def check_for_inline_code_and_draw(self, inline_code_tuples, char_counter, word, x, y, code_flag) -> bool:
 
-    if len(inline_code_tuples) > 0:
-        print("_______________________________________________________________")
-        print(inline_code_tuples)
-        print("word: " + word + "|")
-        #print("char_counter: " + str(char_counter))
-        #print("char_counter - 2 + len(word): " + str(char_counter - 2 + len(word)))
-        print("Flag: " + str(code_flag))
+    #if len(inline_code_tuples) > 0:
+    #    print("_______________________________________________________________")
+    #    print(inline_code_tuples)
+    #    print("word: " + word + "|")
+    #    print("Flag: " + str(code_flag))
 
     for t in inline_code_tuples:
-        print(t[1])
-        if char_counter - 2 + len(word) == t[1]:
-            print("WORD END IS CORRECT")
-
         if char_counter == t[0]:  # code begins
             if char_counter + len(word) - 2 == t[1]:  # one-word code -> check minus whitespace
                 self.draw_inline_code_rect(x, y, word, 'oneword')
-                print("ONE-WORD-CODE")
+                #print("ONE-WORD-CODE")
                 return False, inline_code_tuples[1:]
             else:  # multiple words
-                print("CODE MULTIPLE BEGINS: " + word)
+                #print("CODE MULTIPLE BEGINS: " + word)
                 self.draw_inline_code_rect(x, y, word, 'start')
                 return True, inline_code_tuples
 
         elif char_counter - 2 + len(word) == t[1] and code_flag:  # code ends  -> check minus whitespace
-            print("CODE MULTIPLE ENDS")
+            #print("CODE MULTIPLE ENDS")
             self.draw_inline_code_rect(x, y, word, 'end')
             return False, inline_code_tuples[1:]
 
@@ -172,7 +173,7 @@ def check_for_inline_code_and_draw(self, inline_code_tuples, char_counter, word,
     return code_flag, inline_code_tuples
 
 def draw_inline_code_rect(self, x, y, word, position):
-    print("DRAW: " + str(x) + ", " + str(y) + ", " + word)
+    #print("DRAW: " + str(x) + ", " + str(y) + ", " + word)
     height_of_line = self.get_surface(word, 'text').get_height()  # + self.gap_line
     xcoord = x
 

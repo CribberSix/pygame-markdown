@@ -51,5 +51,5 @@ Please ensure it fulfills the following requirements:
 | Unordered List | - First item <br/>- Second item <br/>- Third Item |  DONE | 
 | Ordered List | 1. First item <br/>2. Second item <br/>3.Third Item | TODO |
 | Blockquote | \> blockquote | DONE |
-| Horizontal rule | --------- | TODO |
+| Horizontal rule | --------- | DONE |
 

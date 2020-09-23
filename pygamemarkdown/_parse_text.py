@@ -1,5 +1,5 @@
 from typing import List, Dict
-
+import re
 
 def parse_into_text_blocks(self, text: List[str]) -> List[str]:
     """
@@ -62,10 +62,6 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
             else:  # quote_flag active
                 current_line = current_line + line[1:]
 
-        # ___ EMPTY LINE -> BLOCK BREAK ____
-        elif line == '':
-            current_line = clean_current_line(current_line)
-
         # ___ BULLET POINTS ____
         elif line[:2] == '- ':
             if not bullet_points_flag:
@@ -75,6 +71,14 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
             else:
                 current_line = current_line + '\n' + u'\u2022 ' + line[2:]
 
+        # ___ HORIZONTAL RULE ___
+        elif re.search(r'^\s*-{3,}\s*$', line) is not None:
+            clean_current_line(current_line)
+            current_line = clean_current_line(line.lstrip().rstrip())
+
+        # ___ EMPTY LINE -> BLOCK BREAK ____
+        elif line == '':
+            current_line = clean_current_line(current_line)
         # ____ BLOCK CONTINUES ____
         else:
             # remove any leading / trailing whitespaces and insert exactly one whitespace after first line
@@ -83,6 +87,7 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
             else:
                 current_line = current_line + line
 
+        #print(re.search(r'^\s*-{3,}\s*$', line))
     # Append current/last line still in the var
     clean_current_line(current_line)
 
@@ -121,6 +126,10 @@ def interpret_text_blocks(self, text_cut: List) -> List[Dict]:
         # ___ Bullet Point blocks ___
         elif line[:2] == '- ':
             text_blocks.append({'chars': line, 'type': 'unorderdList'})
+
+        # ___ Horizontal rule ___
+        elif re.search(r'^\s*-{3,}\s*$', line) is not None:
+            text_blocks.append({'chars': line, 'type': 'horizontalRule'})
 
         # ___ Normal text
         else:

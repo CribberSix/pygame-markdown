@@ -12,7 +12,9 @@ NewLine_w/o_break
 
 This is a `variable` inline-code test. Also for `var = 3500` multiple words. A bit longer for the linebreak test
  `from pygame import everything`
-newline and `tab` characters on a string beginning. Lorem Ipsum whoop. 
+newline and ` other` characters on a string beginning. Lorem Ipsum whoop. 
+
+-----
 
 Confucius said:
 > Respect yourself
