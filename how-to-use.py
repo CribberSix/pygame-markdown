@@ -10,29 +10,26 @@ pygame.display.set_caption("Pygame")
 pygame.display.get_surface().fill((200, 200, 200))  # background coloring
 
 # parameters
-screen = pygame.display.get_surface()  # get existing pygame window/screen
+surface = pygame.display.get_surface()  # get existing pygame window/screen
 offset_X = 50  # offset from the left border of the pygame window
 offset_Y = 20  # offset from the top border of the pygame window
 textAreaHeight = 500
 textAreaWidth = 800
+mdfile_path = "README_test.md"
 
-with open("README_test.md", "r") as f:
-    text_list = list(f)
 
-# instantiation
-md_blitter = MarkdownBlitter(screen, text_list, offset_X, offset_Y,
-                             textAreaWidth, textAreaHeight)
+md_blitter = MarkdownBlitter()
+md_blitter.set_markdown(mdfile_path)
+md_blitter.display(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)  # renders the markdown text onto the surface.
 
-f = True
-# TextEditor in the pygame-loop
+
+# pygame-loop
 while True:
     # INPUT - Mouse + Keyboard
     for event in pygame.event.get():  # handle QUIT operation
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-    if f:
-        md_blitter.display()  # Logic
-        f = False
 
+    md_blitter.display(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)  # renders the markdown text onto the surface.
     pygame.display.flip()  # updates pygame window

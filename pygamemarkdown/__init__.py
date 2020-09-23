@@ -9,7 +9,7 @@ class MarkdownBlitter:
 
     from ._interpret_text import interpret_text_blocks
 
-    from ._render import display, render_block
+    from ._render import render_block
     from ._render_get_surface import get_surface
     from ._render_code_block import prep_code_block_and_draw_rect
     from ._render_quote import prep_quote, draw_quote_rect
@@ -17,16 +17,16 @@ class MarkdownBlitter:
     from ._render_horizontal_rule import draw_horizontal_rule
     from._render_text import prep_text
 
-    def __init__(self, screen, text, x, y, width=-1, height=-1):
+    def __init__(self):
 
-        # dimensions of the area in which the text is being blitted
-        self.x = x
-        self.y = y
-        # if no values are given, we take the end of the screen as limit.
-        self.w = width if width > 0 else screen.get_width() - x
-        self.h = height if height > 0 else screen.get_height() - y
-        self.screen = screen
-        self.text = text
+        # attributes for the rendering process
+        self.text = []
+        self.text_blocks_dicts = []
+        self.x = None
+        self.y = None
+        self.w = None
+        self.h = None
+        self.surface_background = None
 
         # FONT
         pygame.font.init()
@@ -59,6 +59,23 @@ class MarkdownBlitter:
         self.pattern_quote = r'^\s*>.*$'
         self.pattern_code = r"^\s*`{3}.*$"
 
-        lines = [i.replace('\n', '') for i in text]  # replace newline characters (for now)
+    def set_markdown(self, mdfile_path):
+        with open(mdfile_path, "r") as f:
+            self.text = list(f)
+
+        lines = [i.replace('\n', '') for i in self.text]  # replace newline characters (for now)
         text_blocks_logical = self.parse_into_text_blocks(lines)  # parse physical lines into logical lines
         self.text_blocks_dicts = self.interpret_text_blocks(text_blocks_logical)
+
+    def display(self, surface, offset_X, offset_Y, width=-1, height=-1) -> None:
+        self.x = offset_X
+        self.y = offset_Y
+        # if no values are given, we take the end of the screen as limit.
+        self.w = width if width > 0 else self.surface.get_width() - self.x
+        self.h = height if height > 0 else self.surface.get_height() - self.y
+        self.surface_background = surface
+
+        line_position_y = self.y
+        for block in self.text_blocks_dicts:
+            line_position_y = self.render_block(block['chars'], block['type'], line_position_y)
+            line_position_y = line_position_y + self.gap_paragraph

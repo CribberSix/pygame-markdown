@@ -1,13 +1,3 @@
-import pygame
-
-
-def display(self) -> None:
-    line_position_y = self.y
-    for block in self.text_blocks_dicts:
-        line_position_y = self.render_block(block['chars'], block['type'], line_position_y)
-        line_position_y = line_position_y + self.gap_paragraph
-
-
 def render_block(self, text: str, t_type: str, y: int) -> int:
     """
     Renders a "block" (a string) based on the number of lines. Coding paragraphs have necessary newline characters
