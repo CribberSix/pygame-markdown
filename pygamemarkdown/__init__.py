@@ -1,14 +1,21 @@
 import pygame
 
 
-class MarkdownBlitter():
+class MarkdownBlitter:
 
     from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps
-    from ._parse_text import parse_into_text_blocks
-    from ._interpret_text import interpret_text_blocks
-    from ._render import display, render_block, get_surface, prep_code_and_draw_rect, draw_quote_rect, prep_quote, \
-        check_for_inline_code_and_draw, draw_inline_code_rect, draw_horizontal_rule
 
+    from ._parse_text import parse_into_text_blocks
+
+    from ._interpret_text import interpret_text_blocks
+
+    from ._render import display, render_block
+    from ._render_get_surface import get_surface
+    from ._render_code_block import prep_code_block_and_draw_rect
+    from ._render_quote import prep_quote, draw_quote_rect
+    from ._render_code_inline import check_for_inline_code_and_draw, draw_inline_code_rect
+    from ._render_horizontal_rule import draw_horizontal_rule
+    from._render_text import prep_text
 
     def __init__(self, screen, text, x, y, width=-1, height=-1):
 
