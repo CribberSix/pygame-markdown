@@ -3,11 +3,13 @@
 A simple python function to blit Markdown text on a python surface.
 
 ## Second header for internal tests.
-- This is another text
-    - This is another text
+- Unordered List test
+    - Second indent level
     - test
-- This is another text
+- This is another text for the unordered List
 NewLine_w/o_break
+
+Confucius said:
 
 > Quoted text
 
@@ -19,7 +21,7 @@ newline and ` other` characters on a string beginning. Lorem Ipsum whoop.
 
 -----
 
-Confucius said:
+Confucius also said:
 > Respect yourself
 > and others will respect you. The lstrip() method will remove leading whitespaces
 newline and tab characters on a string beginning. Lorem Ipsum whoop.
@@ -30,4 +32,4 @@ a = 500
 print("Hello World:" + str(500))
 ```
 
-TEST
+Next test comes soon.

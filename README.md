@@ -17,7 +17,7 @@ The package's class parses, interprets and renders the contents of a markdown fi
 ##### 1. Instantiation
 The class instantiation takes no parameters. 
 ```Python
-from pygamemarkdown import Markdown_Renderer
+from pygamemarkdown import MarkdownRenderer
 md = Markdown_Renderer()  # create instance 
 ```
 
@@ -79,6 +79,9 @@ Based on the type of the block the text is rendered with certain parameters. Exa
 ### Markdown element implementations
 The following table gives an overview on which markdown elements are implemented so far and can be displayed correctly.
 
+A further indented ordered list item (e.g. an item "1.1." under item "1.") 
+can be achieved by four spaces in front of the hyphen. Analogue for unordered lists. 
+
 | Element       | Markdown Syntax     | Status |
 | :------------- | :---------- | :---------- |
 |  Heading | # h1 <br/>## h2 <br/>### h3   | DONE |
@@ -86,7 +89,7 @@ The following table gives an overview on which markdown elements are implemented
 | Cursive | \*italicized text\* |TODO |
 | Block of code   | \``` <br/>print("Hello World!") <br/> \``` | DONE |
 | Inline code | \`print("Hello World")\` | DONE |
-| Unordered List | - First item <br/>- Second item <br/>- Third Item |  DONE | 
+| Unordered List | - First item <br/>- Second item<br/>- Third item |  DONE | 
 | Ordered List | 1. First item <br/>2. Second item <br/>3.Third Item | TODO |
 | Blockquote | \> blockquote | DONE |
 | Horizontal rule | --------- | DONE |

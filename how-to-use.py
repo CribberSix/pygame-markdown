@@ -22,12 +22,14 @@ md_blitter = MarkdownRenderer()
 md_blitter.set_markdown(mdfile_path)
 
 # pygame-loop
+f = True
 while True:
     # INPUT - Mouse + Keyboard
     for event in pygame.event.get():  # handle QUIT operation
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-
-    md_blitter.display(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)  # renders the markdown text onto the surface.
+    if f:
+        md_blitter.display(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)  # renders the markdown text onto the surface.
+        f = False
     pygame.display.flip()  # updates pygame window

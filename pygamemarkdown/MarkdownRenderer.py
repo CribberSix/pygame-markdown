@@ -12,6 +12,7 @@ class MarkdownRenderer:
     from ._render_code_inline import check_for_inline_code_and_draw, draw_inline_code_rect
     from ._render_horizontal_rule import draw_horizontal_rule
     from ._render_text import prep_text
+    from ._render_list_unordered import prep_unordered_list
 
     from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps
 
@@ -52,6 +53,9 @@ class MarkdownRenderer:
         self.pattern_h2 = r'^#{2}\s?.+$'
         self.pattern_h3 = r'^#{3}\s?.+$'
         self.pattern_unorderedList = r'^\s*-\s.+$'
+        self.pattern_uList_first_indent = r'^\s{0,3}-\s.+$'
+        self.pattern_uList_second_indent = r'^\s{4}-\s.+$'
+
         self.pattern_hrule = r'^\s*-{3,}\s*$'
         self.pattern_quote = r'^\s*>.*$'
         self.pattern_code = r"^\s*`{3}.*$"

@@ -31,8 +31,8 @@ def interpret_text_blocks(self, text_cut: List) -> List[Dict]:
             text_blocks.append({'chars': line[1:].lstrip(), 'type': 'quote'})
 
         # ___ Unordered List blocks ___
-        elif re.search(self.pattern_unorderedList, line) is not None:
-            text_blocks.append({'chars': line, 'type': 'unorderdList'})
+        elif re.search(self.pattern_unorderedList, line, re.DOTALL) is not None:
+            text_blocks.append({'chars': line, 'type': 'unorderedList'})
 
         # ___ Horizontal rule ___
         elif re.search(self.pattern_hrule, line) is not None:

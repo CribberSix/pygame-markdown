@@ -30,6 +30,9 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
     if t_type == 'text':
         text_split[0], inline_code_tuples = self.prep_text(text_split[0])
 
+    if t_type == 'unorderedList':
+        text_split = self.prep_unordered_list(text_split)
+
     # ___ LINE BLITTING ___
     code_flag = False
     char_counter = 0
@@ -44,6 +47,10 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
         # iterate over the words to determine when a new line is needed.
         x = start_of_line_x
         for word in wordblock:
+            if t_type == 'unorderedList' and word[:4] == '____':  # second level indent
+                word = "    " + word[4:]
+
+            # create surface to get width to identify necessary linebreaks
             surface = self.get_surface(word, t_type)
 
             if x + surface.get_width() < self.x + self.w:
@@ -52,6 +59,7 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
                     code_flag, inline_code_tuples = self.check_for_inline_code_and_draw(inline_code_tuples,
                                                                                         char_counter, word, x, y,
                                                                                         code_flag)
+
                 self.screen.blit(surface, (x, y))
                 x = x + surface.get_width()
                 prev_text_height = surface.get_height()
