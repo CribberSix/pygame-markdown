@@ -6,7 +6,7 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
     For overflowing text the method determines automatically at which point a new line is needed.
     The text is left leaning on the border of the area and never extends over the width of the text area.
 
-    Returns
+    Returns the adapted y for the next block. Y changes only for blocks that stretch over multiple lines.
     """
 
     start_of_line_x = self.x
@@ -15,7 +15,7 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
     # ___ HORIZONTAL RULE IMPLEMENTATION ___
     if t_type == 'horizontalRule':
         self.draw_horizontal_rule(y)
-        return
+        return y  # since the hrule is only one line, y is not changed
 
     # ___ CODE BLOCK PREPARATION AND BACKGROUND RECT ___
     if t_type == 'code':
@@ -74,7 +74,7 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
     # ___ QUOTE BLOCK RECT ___
     if t_type == 'quote':
         self.draw_quote_rect(start_of_line_y, y)
-
     return y
+
 
 

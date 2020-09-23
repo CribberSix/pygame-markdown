@@ -1,28 +1,31 @@
 
 # pygame-markdown
 
-
 1. [Purpose](#Purpose)
-2. [Procedure](#Procedure)
+2. [Usage](#Usage)
 3. [Internal workings](#Internal-workings)
 4. [Markdown element implementations](#Markdown-element-implementations)
 5. [Contributing](#Contributing)
+
+----
 
 ### Purpose
 
 The package's class parses, interprets and renders the contents of a markdown file onto a pygame surface. 
 
-### Procedure
+### Usage
 ##### 1. Instantiation
 The class instantiation takes no parameters. 
-```
-md_blitter = MarkdownBlitter()  # create instance 
+```Python
+from pygamemarkdown import Markdown_Renderer
+md = Markdown_Renderer()  # create instance 
 ```
 
 ##### 2. Choose markdown file by path
 To choose a markdown file to display, use the method:
-```
- set_markdown(mdfile_path) 
+
+```Python
+md.set_markdown(mdfile_path) 
 ```
 
 The obligatory parameters: 
@@ -30,21 +33,21 @@ The obligatory parameters:
 
 ##### 3. Display
 To display the markdown file on a surface in a specific location use the method: 
- ```
- md_blitter.display(surface, offset_X, offset_Y, width=-1, height=-1)  
+
+ ```Python
+md.display(surface, offset_X, offset_Y, width=-1, height=-1)  
 ```
+
 Obligatory parameters: 
-- `surface`: the pygame surface which the text is blitted on 
-- `offset_X`: the offset of the textarea from the surface's left sided border
-- `offset_Y`: the offset of the textarea from the surface's top border
+- `surface` - the pygame surface which the text is blitted on 
+- `offset_X` - the offset of the textarea from the surface's left sided border
+- `offset_Y`- the offset of the textarea from the surface's top border
 
 Optional parameters:
-- `width`: the width of the textarea 
-    - if no width is supplied, the entire space starting from the x-coordinate to the right side of the supplied surface is used. 
-- `height`: the height of the textarea
-    - if no height is supplied, the entire space starting from the y-coordinate to the bottom of the supplied surface is used.
+- `width` - the width of the textarea  (if no width is supplied, the entire space starting from the x-coordinate to the right side of the supplied surface is used.) 
+- `height` - the height of the textarea (if no height is supplied, the entire space starting from the y-coordinate to the bottom of the supplied surface is used.)
 
----
+----
 
 ### Internal workings
 The class's takes an md file as a list of strings (each String is one line in the md-file) and 

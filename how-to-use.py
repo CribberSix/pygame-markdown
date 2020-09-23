@@ -1,5 +1,5 @@
 import pygame
-from pygamemarkdown import *
+from pygamemarkdown import MarkdownRenderer
 
 # minimal pygame setup
 pygame.init()
@@ -17,11 +17,9 @@ textAreaHeight = 500
 textAreaWidth = 800
 mdfile_path = "README_test.md"
 
-
-md_blitter = MarkdownBlitter()
+# Setup MD-Renderer
+md_blitter = MarkdownRenderer()
 md_blitter.set_markdown(mdfile_path)
-md_blitter.display(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)  # renders the markdown text onto the surface.
-
 
 # pygame-loop
 while True:
