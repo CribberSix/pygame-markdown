@@ -10,15 +10,19 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
     Parses elements of the lists and connects common blocks going over multiple lines.
 
     Returns a list of Strings as a result with each block as one element.
-    - coding paragraph
-    - bullet point paragraph
-    - normal text paragraph
-    - Header lines
+    - coding block
+    - quote block
+    - normal text block
+    - unordered List blocks (second level indentation possible)
+    - ordered list blocks (no second level indentation possible)
+    - header lines
+    - normal text blocks
     """
     cleaned_lines = []
     current_line = ''
     code_flag = False
     unordered_List_flag = False
+    ordered_List_flag = False
     quote_flag = False
 
     def clean_current_line(c_line):
@@ -30,14 +34,25 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
         # Identify the end of a bullet-point block
         if unordered_List_flag and (re.search(self.pattern_header, line) is not None
                                    or re.search(self.pattern_code, line) is not None
+                                   or re.search(self.pattern_orderedList, line) is not None
                                    or re.search(self.pattern_hrule, line) is not None
                                    or re.search(self.pattern_quote, line) is not None
                                    or line == ''):
             current_line = clean_current_line(current_line)
             unordered_List_flag = False
 
-        if quote_flag and (re.search(self.pattern_header, line) is not None
+        elif ordered_List_flag and (re.search(self.pattern_header, line) is not None
+                                   or re.search(self.pattern_code, line) is not None
+                                   or re.search(self.pattern_unorderedList, line) is not None
+                                   or re.search(self.pattern_hrule, line) is not None
+                                   or re.search(self.pattern_quote, line) is not None
+                                   or line == ''):
+            current_line = clean_current_line(current_line)
+            ordered_List_flag = False
+
+        elif quote_flag and (re.search(self.pattern_header, line) is not None
                            or re.search(self.pattern_code, line) is not None
+                           or re.search(self.pattern_orderedList, line) is not None
                            or re.search(self.pattern_hrule, line) is not None
                            or re.search(self.pattern_unorderedList, line) is not None
                            or line == ''):
@@ -72,25 +87,28 @@ def parse_into_text_blocks(self, text: List[str]) -> List[str]:
 
         # ___ UNORDERED LIST ____
         elif re.search(self.pattern_unorderedList, line) is not None:
-            print("___________________")
             if not unordered_List_flag:  # first bullet point
-                print("First bullet point - auto-first level indentation")
                 clean_current_line(current_line)
                 unordered_List_flag = True
                 current_line = line.lstrip()
-                print(current_line)
             else:
                 if re.search(self.pattern_uList_first_indent, line):  # (0-3 whitespaces)
-                    print("First level indentation")
                     current_line = current_line + '\n' + line.lstrip()
                 elif re.search(self.pattern_uList_second_indent, line) is not None:  # (4 whitespaces)
-                    print("Second level indentation")
                     current_line = current_line + '\n    ' + line.lstrip()
                 else:  # (5 or more whitespaces -> text continuation)
-                    print("prev line continuation")
                     current_line = current_line.rstrip() + ' ' + line.lstrip()
 
-        # ___ HORIZONTAL RULE ___
+        # ___ ORDERED LIST ____
+        elif re.search(self.pattern_orderedList, line) is not None:
+            if not ordered_List_flag:
+                ordered_List_flag = True
+                clean_current_line(current_line)
+                current_line = line
+            elif ordered_List_flag:
+                current_line = current_line + "\n" + line.lstrip()
+
+            # ___ HORIZONTAL RULE ___
         elif re.search(self.pattern_hrule, line) is not None:
             clean_current_line(current_line)
             current_line = clean_current_line(line.lstrip().rstrip())

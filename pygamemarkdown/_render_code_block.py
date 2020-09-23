@@ -3,6 +3,10 @@ from typing import List, Tuple
 
 
 def prep_code_block_and_draw_rect(self, test_list: List[str], y: int) -> Tuple[List[str], int]:
+    """
+    Renders a background rect of the coding area and returns the lines containing code.
+    Cuts leading and trailing line which contains the coding block signifiers.
+    """
     # Render background of coding block and perform special preparations
     test_list = test_list[1:-1]  # remove codeblock apostrophe lines
     indentation = 20  # code is shown indented

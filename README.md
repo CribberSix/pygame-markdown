@@ -79,8 +79,9 @@ Based on the type of the block the text is rendered with certain parameters. Exa
 ### Markdown element implementations
 The following table gives an overview on which markdown elements are implemented so far and can be displayed correctly.
 
-A further indented ordered list item (e.g. an item "1.1." under item "1.") 
-can be achieved by four spaces in front of the hyphen. Analogue for unordered lists. 
+A further indented unordered sublist of an unordered list item can be achieved 
+by adding four spaces in front of the hyphen. The first item in an unordered list cannot be further indented, 
+only sublists can be indented further.
 
 | Element       | Markdown Syntax     | Status |
 | :------------- | :---------- | :---------- |
@@ -90,9 +91,9 @@ can be achieved by four spaces in front of the hyphen. Analogue for unordered li
 | Block of code   | \``` <br/>print("Hello World!") <br/> \``` | DONE |
 | Inline code | \`print("Hello World")\` | DONE |
 | Unordered List | - First item <br/>- Second item<br/>- Third item |  DONE | 
-| Ordered List | 1. First item <br/>2. Second item <br/>3.Third Item | TODO |
+| Ordered List | 1. First item <br/>2. Second item <br/>3. Third Item | DONE |
 | Blockquote | \> blockquote | DONE |
-| Horizontal rule | --------- | DONE |
+| Horizontal rule | --- | DONE |
 
 ----
 

@@ -8,11 +8,12 @@ class MarkdownRenderer:
     from ._render import render_block
     from ._render_get_surface import get_surface
     from ._render_code_block import prep_code_block_and_draw_rect
-    from ._render_quote import prep_quote, draw_quote_rect
+    from ._render_quote import get_quote_identation, draw_quote_rect
     from ._render_code_inline import check_for_inline_code_and_draw, draw_inline_code_rect
     from ._render_horizontal_rule import draw_horizontal_rule
     from ._render_text import prep_text
     from ._render_list_unordered import prep_unordered_list
+    from ._render_list_ordered import prep_ordered_list
 
     from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps
 
@@ -55,10 +56,11 @@ class MarkdownRenderer:
         self.pattern_unorderedList = r'^\s*-\s.+$'
         self.pattern_uList_first_indent = r'^\s{0,3}-\s.+$'
         self.pattern_uList_second_indent = r'^\s{4}-\s.+$'
+        self.pattern_orderedList = r'^\s*\d{1,2}\.\s.*$'
 
         self.pattern_hrule = r'^\s*-{3,}\s*$'
         self.pattern_quote = r'^\s*>.*$'
-        self.pattern_code = r"^\s*`{3}.*$"
+        self.pattern_code = r'^\s*`{3}.*$'
 
     def set_markdown(self, mdfile_path):
         with open(mdfile_path, "r") as f:

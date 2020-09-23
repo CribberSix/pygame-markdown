@@ -3,11 +3,23 @@
 A simple python function to blit Markdown text on a python surface.
 
 ## Second header for internal tests.
-- Unordered List test
-    - Second indent level
-    - test
-- This is another text for the unordered List
-NewLine_w/o_break
+1. This is another text
+2. This is ano 
+3. This is another text
+2. Text
+---
+4. Continued
+2. This is ano 
+3. This is another text
+2. Text
+4. Continued
+2. This is ano 
+3. This is another text
+2. Text
+4. Continued
+4. Continued
+4. Continued
+
 
 Confucius said:
 

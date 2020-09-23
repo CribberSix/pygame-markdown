@@ -1,13 +1,21 @@
 import pygame
 
 
-def prep_quote(self) -> int:
+def get_quote_identation(self) -> int:
+    """
+    Returns the indentation of the code
+    by pixels as concrete coordinates based
+    on the x-coordinate of the textarea.
+    """
     indentation_code = 30  # quote is shown indented
     start_of_line = self.x + indentation_code
     return start_of_line
 
 
 def draw_quote_rect(self, y_start, y_end) -> None:
+    """
+    Draws the vertical thin rect in front of the quoted text.
+    """
     # Only possible to draw after the fact, as we do not know how many lines the quote will have.
     indentation_code = 30  # quote is shown indented
 

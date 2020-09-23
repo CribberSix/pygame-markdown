@@ -18,20 +18,23 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
         return y  # since the hrule is only one line, y is not changed
 
     # ___ CODE BLOCK PREPARATION AND BACKGROUND RECT ___
-    if t_type == 'code':
+    elif t_type == 'code':
         text_split, start_of_line_x = self.prep_code_block_and_draw_rect(text_split, y)
 
     # ___ QUOTE BLOCK PREPARATION ___
-    if t_type == 'quote':
-        start_of_line_x = self.prep_quote()
+    elif t_type == 'quote':
+        start_of_line_x = self.get_quote_identation()
         start_of_line_y = y
 
     # ___ TEXT (with possible inline-code) PREPARATION __
-    if t_type == 'text':
+    elif t_type == 'text':
         text_split[0], inline_code_tuples = self.prep_text(text_split[0])
 
-    if t_type == 'unorderedList':
+    elif t_type == 'unorderedList':
         text_split = self.prep_unordered_list(text_split)
+
+    elif t_type == 'orderedList':
+        text_split = self.prep_ordered_list(text_split)
 
     # ___ LINE BLITTING ___
     code_flag = False
@@ -49,6 +52,11 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
         for word in wordblock:
             if t_type == 'unorderedList' and word[:4] == '____':  # second level indent
                 word = "    " + word[4:]
+            elif t_type == 'orderedList':
+                if word[:3] == '___':  # number lower than 10
+                    word = "     " + word[3:]
+                elif t_type == 'orderedList' and word[:2] == '__':  # number higher than 10
+                    word = "   " + word[2:]
 
             # create surface to get width to identify necessary linebreaks
             surface = self.get_surface(word, t_type)

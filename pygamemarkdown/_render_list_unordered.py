@@ -1,6 +1,6 @@
 from typing import List
 import re
-from ast import literal_eval
+
 
 def prep_unordered_list(self, textlist: List) -> List:
     res = []

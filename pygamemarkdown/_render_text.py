@@ -2,6 +2,10 @@ from typing import List, Tuple
 
 
 def prep_text(self, text: str) -> Tuple[str, List]:
+    """
+    Prepares the text by searching through all characters for inline-code signifiers, removes them and adds starting
+    and ending position to a tuple which gets returned alongside the cleaned text.
+    """
     inline_code_tuples = []
     start = -1
     c = 0
