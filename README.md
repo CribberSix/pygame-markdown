@@ -28,7 +28,7 @@ To choose a markdown file to display, use the method:
 md.set_markdown(mdfile_path) 
 ```
 
-- `mdfile_path` - the path to the markdown file which will be displayed
+- `mdfile_path` - the path of the markdown file which will be displayed
 
 ##### 3. Display
 To display the content of the markdown file on a surface in a specific location use the method: 
