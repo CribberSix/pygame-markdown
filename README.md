@@ -2,9 +2,11 @@
 # pygame-markdown
 
 
-1. [Purpose](#Procedure)
+1. [Purpose](#Purpose)
 2. [Procedure](#Procedure)
-2. [Internal workings]>
+3. [Internal workings](#Internal-workings)
+4. [Markdown element implementations](#Markdown-element-implementations)
+5. [Contributing](#Contributing)
 
 ### Purpose
 
@@ -42,7 +44,7 @@ Optional parameters:
 - `height`: the height of the textarea
     - if no height is supplied, the entire space starting from the y-coordinate to the bottom of the supplied surface is used.
 
-
+---
 
 ### Internal workings
 The class's takes an md file as a list of strings (each String is one line in the md-file) and 
@@ -69,22 +71,9 @@ Based on the type of the block the text is rendered with certain parameters. Exa
 - Quotes are indentend, have a different font color and a vertical rectangle in front of the text. 
 - Horizontal rule blocks are rendered as a horizontal rectangle along the width of the textarea.
 
+----
      
-# Contributing
-I welcome pull requests from the community. 
-Please take a look at the [TODO](https://github.com/CribberSix/pygame-markdown/blob/master/TODO.txt) file for opportunities to help this project. 
-
-Please ensure it fulfills the following requirements:
-- It must pass [PEP8](https://www.python.org/dev/peps/pep-0008/). You can check your code's PEP8 compliance [here](http://pep8online.com/checkresult).
-- Pull Request's must be adequately formatted, described and fulfill at least one of the following purposes:
-    - Bugfixing    
-    - New functionality (extending the existing functionalities)
-    - Enhancement concerning performance, code readability, or usage. 
-- The README is updated accordingly.
-
-
-
-# Markdown element implementations
+### Markdown element implementations
 The following table gives an overview on which markdown elements are implemented so far and can be displayed correctly.
 
 | Element       | Markdown Syntax     | Status |
@@ -99,3 +88,16 @@ The following table gives an overview on which markdown elements are implemented
 | Blockquote | \> blockquote | DONE |
 | Horizontal rule | --------- | DONE |
 
+----
+
+### Contributing
+I welcome pull requests from the community. 
+Please take a look at the [TODO](https://github.com/CribberSix/pygame-markdown/blob/master/TODO.txt) file for opportunities to help this project. 
+
+Please ensure it fulfills the following requirements:
+- It must pass [PEP8](https://www.python.org/dev/peps/pep-0008/). You can check your code's PEP8 compliance [here](http://pep8online.com/checkresult).
+- Pull Request's must be adequately formatted, described and fulfill at least one of the following purposes:
+    - Bugfixing    
+    - New functionality (extending the existing functionalities)
+    - Enhancement concerning performance, code readability, or usage. 
+- The README is updated accordingly.
