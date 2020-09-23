@@ -1,5 +1,11 @@
 
 
+- BUG: Code Block
+    - Code cannot be continued in the next line if the line is too long, otherwise it doesn't make any sense.
+        -> insert syntactic linebreak ?
+        -> vertical scrollbar on the code-window/overall?
+
+
 - Ordered Lists
     - Improve: Identify second-level sublist by indent
     - Feature: Implement different bulletpoint for second level sublist
@@ -8,7 +14,6 @@
 - Unordered Lists
     - Identify with regex
     - Identify second level with regex by identation
-
 
 - Link Binding
     - Syntax: [here](www.link.org)

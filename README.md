@@ -28,7 +28,7 @@ To choose a markdown file to display, use the method:
 md.set_markdown(mdfile_path) 
 ```
 
-- `mdfile_path`: the path to the markdown file which will be displayed
+- `mdfile_path` - the path to the markdown file which will be displayed
 
 ##### 3. Display
 To display the markdown file on a surface in a specific location use the method: 
@@ -50,19 +50,19 @@ to the opposite side of the supplied surface is used.
 ----
 
 ### Internal workings
-The class's takes an md file as a list of strings (each String is one line in the md-file) and 
-uses a three stage process to blit the contents of the markdown file onto the pygame surface. 
-
+The class uses a three stage process to render the contents of a markdown file onto a pygame surface. 
+For an overview of the implemented syntactic markdown structures, see [Markdown element implementations](#Markdown-element-implementations).
 
 ##### Stage 1: Parsing
 The text is restructured from physical lines to logical lines. 
 Since markdown allows for continuation of a logical line
-after a physical linebreak, the text gets rearranged into paragraphs/"blocks" depending on the content. 
+after a physical linebreak, the text gets rearranged into paragraphs/blocks depending on the content. 
  
 ##### Stage 2: Interpreting
-Each textblock is given a tag what it contains. Examples are:
+Each block is given a tag to describe its content. Examples are:
 - Header (h1,h2 or h3)
 - Unordered List
+- Ordered List
 - Code 
 - Quote
 - Normal text
@@ -73,7 +73,7 @@ Based on the type of the block the text is rendered with certain parameters. Exa
 - Code is indented and has a different background color 
 - Quotes are indentend, have a different font color and a vertical rectangle in front of the text. 
 - Horizontal rule blocks are rendered as a horizontal rectangle along the width of the textarea.
-
+- All text is automatically continued in the next line if the supplied width is too small.  
 ----
      
 ### Markdown element implementations
@@ -98,9 +98,10 @@ I welcome pull requests from the community.
 Please take a look at the [TODO](https://github.com/CribberSix/pygame-markdown/blob/master/TODO.txt) file for opportunities to help this project. 
 
 Please ensure it fulfills the following requirements:
-- It must pass [PEP8](https://www.python.org/dev/peps/pep-0008/). You can check your code's PEP8 compliance [here](http://pep8online.com/checkresult).
-- Pull Request's must be adequately formatted, described and fulfill at least one of the following purposes:
+- At least try to pass [PEP8](https://www.python.org/dev/peps/pep-0008/). You can check your code's PEP8 compliance [here](http://pep8online.com/checkresult).
+- English code documentation - including doc-strings for new methods.
+- Pull Requests must fulfill at least one of the following purposes:
     - Bugfixing    
-    - New functionality (extending the existing functionalities)
-    - Enhancement concerning performance, code readability, or usage. 
+    - New functionality (or extending the existing functionalities)
+    - Enhancement concerning performance or ease of use. 
 - The README is updated accordingly.
