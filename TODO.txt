@@ -5,21 +5,24 @@
         -> insert syntactic linebreak ?
         -> vertical scrollbar on the code-window/overall?
 
-
-- Ordered Lists
-    - Improve: Identify second-level sublist by indent
-    - Feature: Implement different bulletpoint for second level sublist
-    - Improve: Identify with regex?
-
-- Unordered Lists
-    - Identify with regex
-    - Identify second level with regex by identation
-
-- Link Binding
-    - Syntax: [here](www.link.org)
-    - Implementation as button?
-
-- Bugfix:
+- BUG: Inline-Code
     - inline-code
     - single word with space between starting/ending quote and the word itself
     - example: `other ` or ` other`
+
+
+Release: 0.9.4
+- FEATURE: Vertical scrolling
+    - In case the length of the supplied surface is not valid, enable scrollbar.
+
+Release: 0.9.5
+- FEATURE: italicized text
+- FEATURE: bold text
+
+
+
+
+Release: x.x.x
+- FEATURE: Link Binding
+    - Syntax: [here](www.link.org)
+    - Implementation as button?

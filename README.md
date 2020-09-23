@@ -31,7 +31,7 @@ md.set_markdown(mdfile_path)
 - `mdfile_path` - the path to the markdown file which will be displayed
 
 ##### 3. Display
-To display the markdown file on a surface in a specific location use the method: 
+To display the content of the markdown file on a surface in a specific location use the method: 
 
  ```Python
 md.display(surface, offset_X, offset_Y, width=-1, height=-1)  
@@ -44,8 +44,8 @@ Optional:
 - `width` - the width of the textarea  
 - `height` - the height of the textarea 
 
-If no width/height is supplied, the entire length starting from the x-/y-coordinate 
-to the opposite side of the supplied surface is used.
+If no width/height is supplied, the entire length - starting from the x-/y-coordinate 
+to the opposite side of the supplied surface - is used.
 
 ----
 
@@ -101,11 +101,12 @@ only sublists can be indented further.
 I welcome pull requests from the community. 
 Please take a look at the [TODO](https://github.com/CribberSix/pygame-markdown/blob/master/TODO.txt) file for opportunities to help this project. 
 
-Please ensure it fulfills the following requirements:
-- At least try to pass [PEP8](https://www.python.org/dev/peps/pep-0008/). You can check your code's PEP8 compliance [here](http://pep8online.com/checkresult).
+Please ensure your PR fulfills the following requirements:
 - English code documentation - including doc-strings for new methods.
 - Pull Requests must fulfill at least one of the following purposes:
     - Bugfixing    
     - New functionality (or extending the existing functionalities)
     - Enhancement concerning performance or ease of use. 
 - The README is updated accordingly.
+- Your code should pass [PEP8](https://www.python.org/dev/peps/pep-0008/). You can check your code's PEP8 compliance [here](http://pep8online.com/checkresult).
+The exception is the errorcode `E501 - line too long` - because 79 characters per line is a stupid limit. 

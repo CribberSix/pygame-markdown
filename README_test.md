@@ -3,45 +3,32 @@
 A simple python function to blit Markdown text on a python surface.
 
 ## Second header for internal tests.
-1. This is another text
-2. This is ano 
-3. This is another text
-2. Text
----
-4. Continued
-2. This is ano 
-3. This is another text
-2. Text
-4. Continued
-2. This is ano 
-3. This is another text
-2. Text
-4. Continued
-4. Continued
-4. Continued
-
+1. This is a test for ordered lists
+2. Another item
+3. Third item
+2. Fourth item
 
 Confucius said:
 
-> Quoted text
+> Test for quoted text
 
 ### Third header for internal tests.
 
-This is a `variable` inline-code test. Also for `var = 3500` multiple words. A bit longer for the linebreak test
+This is a  `inline-code` test. Also for `var = 3500` multiple words with spaces. A bit longer for the linebreak test
  `from pygame import everything`
-newline and ` other` characters on a string beginning. Lorem Ipsum whoop. 
+newline and ` other` characters on a string beginning. Lorem Ipsum and all that. 
 
 -----
 
 Confucius also said:
 > Respect yourself
-> and others will respect you. The lstrip() method will remove leading whitespaces
-newline and tab characters on a string beginning. Lorem Ipsum whoop.
+> and others will respect you. Especially when it comes to multi-line quotes from an ancient chinese philosopher, 
+> you should always wear socks.
 
 Code lines:
 ```Python
 a = 500
-print("Hello World:" + str(500))
+print("Hello World:" + str(a))
 ```
 
-Next test comes soon.
+File end, last line.

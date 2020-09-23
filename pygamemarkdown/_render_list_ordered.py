@@ -1,5 +1,4 @@
 from typing import List
-import re
 
 
 def prep_ordered_list(self, textlist: List) -> List:
