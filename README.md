@@ -1,5 +1,8 @@
 
 # pygame-markdown
+![PyPI](https://img.shields.io/pypi/v/pygame-markdown?color=%233775A9&label=pypi%20package&style=plastic)
+![GitHub](https://img.shields.io/github/license/CribberSix/pygame-markdown?style=plastic)
+
 
 1. [Purpose](#Purpose)
 2. [Usage](#Usage)
