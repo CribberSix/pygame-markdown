@@ -1,5 +1,5 @@
 import pygame
-from pygamemarkdown import MarkdownRenderer
+from src.pygamemarkdown import MarkdownRenderer
 
 # minimal pygame setup
 pygame.init()
@@ -15,7 +15,7 @@ offset_X = 50  # offset from the left border of the pygame window
 offset_Y = 20  # offset from the top border of the pygame window
 textAreaHeight = 500
 textAreaWidth = 800
-mdfile_path = "README_test.md"
+mdfile_path = "README_test.mdwe"
 
 # Setup MD-Renderer
 md_blitter = MarkdownRenderer()

@@ -1,5 +1,5 @@
 import pygame
-
+from warnings import warn
 
 class MarkdownRenderer:
 
@@ -63,10 +63,18 @@ class MarkdownRenderer:
         self.pattern_code = r'^\s*`{3}.*$'
 
     def set_markdown(self, mdfile_path):
-        with open(mdfile_path, "r") as f:
-            self.text = list(f)
+        """
+        :param mdfile_path: path to a local markdown file
+        :return: None
+        """
+        if mdfile_path.endswith('.md'):
+            with open(mdfile_path, "r") as f:
+                self.text = list(f)
+            lines = [i.replace('\n', '') for i in self.text]  # replace newline characters (for now)
+        else:
+            warn(mdfile_path + " is not a markdown file. Continuing with substituted empty file.")
+            lines = []
 
-        lines = [i.replace('\n', '') for i in self.text]  # replace newline characters (for now)
         text_blocks_logical = self.parse_into_text_blocks(lines)  # parse physical lines into logical lines
         self.text_blocks_dicts = self.interpret_text_blocks(text_blocks_logical)
 
