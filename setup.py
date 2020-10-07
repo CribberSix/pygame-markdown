@@ -16,7 +16,7 @@ setup(
     long_description=README,
     long_description_content_type='text/markdown',
     url='https://github.com/CribberSix/pygame-markdown',
-    version='0.9.38',
+    version='0.9.39',
     python_requires=">=3.6",
     author='CribberSix',
     author_email='cribbersix@gmail.com',

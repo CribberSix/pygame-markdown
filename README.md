@@ -7,8 +7,9 @@
 1. [Purpose](#Purpose)
 2. [Usage](#Usage)
 3. [Internal workings](#Internal-workings)
-4. [Markdown element implementations](#Markdown-element-implementations)
-5. [Contributing](#Contributing)
+4. [Customization](#Customization)
+5. [Markdown element implementations](#Markdown-element-implementations)
+6. [Contributing](#Contributing)
 
 ----
 
@@ -117,6 +118,7 @@ md.set_quote_color(r: int, g: int, b: int)
 md.set_code_bg_color(r: int, g: int, b: int)
 ```
 
+----
 
 ### Markdown element implementations
 The following table gives an overview on which markdown elements are implemented so far and can be displayed correctly.
