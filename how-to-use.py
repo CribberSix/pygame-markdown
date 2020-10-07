@@ -15,7 +15,7 @@ offset_X = 50  # offset from the left border of the pygame window
 offset_Y = 20  # offset from the top border of the pygame window
 textAreaHeight = 500
 textAreaWidth = 800
-mdfile_path = "README_test.mdwe"
+mdfile_path = "README_test.md"
 
 # Setup MD-Renderer
 md_blitter = MarkdownRenderer()
@@ -30,6 +30,6 @@ while True:
             pygame.quit()
             exit()
     if f:
-        md_blitter.display(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)  # renders the markdown text onto the surface.
+        md_blitter.display(surface, offset_X, offset_Y)  # renders the markdown text onto the surface.
         f = False
     pygame.display.flip()  # updates pygame window

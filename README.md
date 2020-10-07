@@ -20,7 +20,7 @@ The package's class parses, interprets and renders the contents of a markdown fi
 ##### 1. Instantiation
 The class instantiation takes no parameters. 
 ```Python
-from src.pygamemarkdown import MarkdownRenderer
+from pygamemarkdown import MarkdownRenderer
 md = MarkdownRenderer()  # create instance 
 ```
 

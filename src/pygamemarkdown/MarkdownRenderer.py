@@ -82,8 +82,8 @@ class MarkdownRenderer:
         self.x = offset_x
         self.y = offset_y
         # if no values are given, we take the end of the screen as limit.
-        self.w = width if width > 0 else self.surface.get_width() - self.x
-        self.h = height if height > 0 else self.surface.get_height() - self.y
+        self.w = width if width > 0 else surface.get_width() - self.x
+        self.h = height if height > 0 else surface.get_height() - self.y
         self.screen = surface
 
         line_position_y = self.y
