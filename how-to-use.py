@@ -20,7 +20,7 @@ mdfile_path = "README_test.md"
 # Setup MD-Renderer
 md_blitter = MarkdownRenderer()
 md_blitter.set_markdown(mdfile_path)
-
+md_blitter.set_line_gaps(10, 40)
 # pygame-loop
 f = True
 while True:

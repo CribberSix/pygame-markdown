@@ -78,7 +78,46 @@ Based on the type of the block the text is rendered with certain parameters. Exa
 - Horizontal rule blocks are rendered as a horizontal rectangle along the width of the textarea.
 - All text is automatically continued in the next line if the supplied width is too small.  
 ----
-     
+
+### Customization
+ 
+The visuals of the markdown code can be customized with the following function. 
+Most functions have default values for the parameters. 
+
+##### Text Format
+- Setting gaps after lines and paragraphs respectively: 
+```
+md.set_line_gaps(gap_line=5, gap_paragraph=30)
+```
+
+##### Fonts
+- Setting the font for the normal text and for the code-blocks independently. 
+The module uses pygame.font.SysFont. Possible options are Verdana, Arial, CourierNew, Helvetica etc. 
+The Fonts are given by name as Strings.
+```
+md.set_font(font_text='Arial', font_code='CourierNew')
+```
+- Setting Font sizes for the three headers, normal text and code-blocks.
+```
+md.set_font_sizes(h1=20, h2=18, h3=15, normal=15, code=15)
+```
+
+
+##### Coloring
+- Setting the general font color of via rgb codes (no default values)
+```
+md.set_font_color(r: int, g: int, b: int)
+```
+- Setting the font color of quote-blocks via rgb codes (no default values)
+```
+md.set_quote_color(r: int, g: int, b: int)
+```
+- Setting the background color of the code-blocks via rgb codes (no default values)
+```
+md.set_code_bg_color(r: int, g: int, b: int)
+```
+
+
 ### Markdown element implementations
 The following table gives an overview on which markdown elements are implemented so far and can be displayed correctly.
 

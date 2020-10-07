@@ -15,7 +15,9 @@ class MarkdownRenderer:
     from ._render_list_unordered import prep_unordered_list
     from ._render_list_ordered import prep_ordered_list
 
-    from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps
+    from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps, set_quote_color, set_font_color,\
+            set_code_bg_color
+
 
     def __init__(self):
         # attributes for the rendering process
@@ -29,19 +31,20 @@ class MarkdownRenderer:
 
         # FONT
         pygame.font.init()
-        self.font = 'Arial'
+        self.font_normal_str = 'Arial'
+        self.font_code_str = 'CourierNew'
         self.font_header_size = 20
-        self.font_header = pygame.font.SysFont(self.font, self.font_header_size, bold=True)
+        self.font_header = pygame.font.SysFont(self.font_normal_str, self.font_header_size, bold=True)
         self.font_header2_size = 18
-        self.font_header2 = pygame.font.SysFont(self.font, self.font_header2_size, bold=True)
+        self.font_header2 = pygame.font.SysFont(self.font_normal_str, self.font_header2_size, bold=True)
         self.font_header3_size = 15
-        self.font_header3 = pygame.font.SysFont(self.font, self.font_header3_size, bold=True)
+        self.font_header3 = pygame.font.SysFont(self.font_normal_str, self.font_header3_size, bold=True)
         self.font_text_size = 15
-        self.font_text = pygame.font.SysFont(self.font, self.font_text_size, bold=False)
+        self.font_text = pygame.font.SysFont(self.font_normal_str, self.font_text_size, bold=False)
         self.font_code_size = 15
-        self.font_code = pygame.font.SysFont('CourierNew', self.font_text_size, bold=False)
+        self.font_code = pygame.font.SysFont(self.font_code_str, self.font_text_size, bold=False)
         self.font_quote_size = 15
-        self.font_quote = pygame.font.SysFont(self.font, self.font_quote_size, bold=False)
+        self.font_quote = pygame.font.SysFont(self.font_normal_str, self.font_quote_size, bold=False)
         self.gap_line = 5
         self.gap_paragraph = 30
 
