@@ -70,3 +70,10 @@ def set_background_color(self, r: int, g: int, b: int) -> None:
     Setting the background color of the markdown area with three separate integers (rgb).
     """
     self.md_area_bg_color = (r, g, b)
+
+
+def set_scroll_step(self, i: int) -> None:
+    """
+    Setting the amount of pixels which get scrolled upon one mousewheel 'click'.
+    """
+    self.pixel_scroll_step = i

@@ -17,7 +17,7 @@ class MarkdownRenderer:
     from ._render_list_unordered import prep_unordered_list
     from ._render_list_ordered import prep_ordered_list
     from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps, set_quote_color, set_font_color,\
-            set_code_bg_color, set_background_color
+            set_code_bg_color, set_background_color, set_scroll_step
     from ._mouse import handle_mouse_input, mouse_within_md_area
 
     def __init__(self):
@@ -69,6 +69,7 @@ class MarkdownRenderer:
         self.pattern_code = r'^\s*`{3}.*$'
 
         # Scrollbar
+        self.pixel_scroll_step = 25
         self.pixel_first_showable = 0
         self.pixels_showable_at_once = 0
         self.pixels_entire_length = 0
