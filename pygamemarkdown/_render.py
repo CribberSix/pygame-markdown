@@ -67,28 +67,34 @@ def render_block(self, text: str, t_type: str, y: int) -> int:
                     code_flag, inline_code_tuples = self.check_for_inline_code_and_draw(inline_code_tuples,
                                                                                         char_counter, word, x, y,
                                                                                         code_flag)
-
-                self.screen.blit(surface, (x, y))
+                if self.is_visible(y) and self.is_visible(y + surface.get_height()):
+                    self.screen.blit(surface, (x, y))
+                else:  # TODO: DEV -> DELETE (!)
+                    self.screen.blit(surface, (x, y))
                 x = x + surface.get_width()
                 prev_text_height = surface.get_height()
 
             else:  # new line
-                y += prev_text_height + self.gap_line
+                y = y + prev_text_height + self.gap_line
                 x = start_of_line_x
                 if t_type == 'text':
                     code_flag, inline_code_tuples = self.check_for_inline_code_and_draw(inline_code_tuples,
                                                                                         char_counter, word, x, y,
                                                                                         code_flag)
-                self.screen.blit(surface, (x, y))
-                x = x + surface.get_width()
-                prev_text_height = surface.get_height()
+                if self.is_visible(y) and self.is_visible(y + surface.get_height()):
+                    self.screen.blit(surface, (x, y))  # first surface of the new line
+                elif self.is_below_area(y) and t_type == 'quote':  # the line would now be
+                    self.draw_quote_rect(start_of_line_y, y - prev_text_height - self.gap_line)
+
+                x = x + surface.get_width()  # update for next word
+                prev_text_height = surface.get_height()  # update for next line
 
             char_counter += len(word)
         if i < len(text_split) - 1:  # between the lines of a block, we add a gap
             y += prev_text_height + self.gap_line
 
     # ___ QUOTE BLOCK RECT ___
-    if t_type == 'quote':
+    if t_type == 'quote' and self.is_visible(y):
         self.draw_quote_rect(start_of_line_y, y)
     return y
 

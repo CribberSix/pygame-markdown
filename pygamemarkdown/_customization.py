@@ -63,3 +63,10 @@ def set_quote_color(self, r: int, g: int, b: int) -> None:
     Setting the general font color with three separate integers (rgb).
     """
     self.quote_color = (r, g, b)
+
+
+def set_background_color(self, r: int, g: int, b: int) -> None:
+    """
+    Setting the background color of the markdown area with three separate integers (rgb).
+    """
+    self.md_area_bg_color = (r, g, b)

@@ -46,6 +46,7 @@ def draw_inline_code_rect(self, x, y, word, position) -> None:
         xcoord = x - (0.5 * self.get_surface(' ', 'text').get_width())
         width = self.get_surface(word, 'text').get_width()
 
-    pygame.draw.rect(self.screen, self.coding_bg_color, pygame.Rect(xcoord, y, width, height_of_line))
+    if self.is_visible(y):
+        pygame.draw.rect(self.screen, self.coding_bg_color, pygame.Rect(xcoord, y, width, height_of_line))
 
 

@@ -10,7 +10,7 @@ def prep_ordered_list(self, textlist: List) -> List:
     res = []
     for i, line in enumerate(textlist):
         dot_index = line.find('.') + 2
-        if i + 1 < 10:  # further identation at all times if num 1-9
+        if i + 1 < 10:  # further indentation at all times if num 1-9
             res.append('___' + str(i+1) + '. ' + line[dot_index:])
         else:
             res.append('__' + str(i+1) + '. ' + line[dot_index:])
