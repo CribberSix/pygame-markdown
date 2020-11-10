@@ -133,30 +133,33 @@ md.set_font_color(204, 204, 204)
 ### Markdown element implementations
 The following table gives an overview on which markdown elements are implemented so far and can be displayed correctly.
 
-| Element       | Markdown Syntax     | Status |
-| :------------- | :---------- | :---------- |
-|  Heading | # h1 <br/>## h2 <br/>### h3   | DONE |
-| Bold |  \*\*bold text\*\* | DONE |
-| Italic | \*italicized text\* |DONE |
-| Block of code   | \``` <br/>print("Hello World!") <br/> \``` | DONE |
-| Inline code | \`print("Hello World")\` | DONE |
-| Unordered List | - First item <br/>- Second item<br/>- Third item |  DONE | 
-| Ordered List | 1. First item <br/>2. Second item <br/>3. Third Item | DONE |
-| Blockquote | \> blockquote | DONE |
-| Horizontal rule | --- | DONE |
+| Element       | Markdown Syntax | 
+| :------------- | :---------- | 
+|  Heading | # h1 <br/>## h2 <br/>### h3   | 
+| Bold | Lorem \*\*bold text\*\* ipsum | 
+| Italic | Lorem \*italicized text\* ipsum |
+| Block of code   | \``` <br/>print("Hello World!") <br/> \``` |
+| Inline code | Lorem \`print("Hello World")\` ipsum | 
+| Unordered List | - First item <br/>- Second item<br/>- Third item | 
+| Ordered List | 1. First item <br/>2. Second item <br/>3. Third Item |
+| Blockquote | \> Lorem ipsum | 
+| Horizontal rule | --- |
 
 
 ---
 
 ### Limitations 
+Disregarding the following warnings leads to unpredictable outcomes.
 
 A further indented sublist within a list (2nd level items) is not possible at the moment.
 
+Codeblocks are not wrapped. This can lead to code being displayed to the right side of the text area if a code line
+is longer than the specified width of the textarea. 
+
+
 Overloading the format of a word with bold and italic at the same time is not possible. 
-Disregarding this rule leads to unpredictable outcomes.
 
 Inline formatting is currently only recognized if a whitespace leads and trails the formatting characters. 
-Disregarding this rule leads to unpredictable outcomes.
 
 Incorrect Example: 
 ``` 
@@ -166,9 +169,6 @@ Correct example:
 ``` 
 Lorem **ipsum.** Lorem Ipsum
 ```
-
-Codeblocks are not wrapped. This can lead to code being displayed to the right side of the text area if a code line
-is longer than the specified width of the textarea. 
 
 ---
 
