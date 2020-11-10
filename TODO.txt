@@ -6,9 +6,11 @@
         -> insert syntactic linebreak ?
         -> vertical scrollbar on the code-window/overall?
 
-- Second level of identation in lists (ordered + unordered)
+- FEATURE: Second level of identation in lists (ordered + unordered)
 
 
 - FEATURE: Link Binding
     - Syntax: If you want to know more [click here](www.link.org) or read more.
     - Implementation as a 'button' by checking if left click happened on the word?
+
+- FEATURE: inner margin around text area.

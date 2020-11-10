@@ -227,6 +227,7 @@ md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
 #md.set_font_color(204, 204, 204)
 
 while True:
+    pygame.draw.rect(screen, (255,255,255), (0, 0, screenWidth, screenHeight))
     pygame_events = pygame.event.get()
     mouse_x, mouse_y = pygame.mouse.get_pos()
 
