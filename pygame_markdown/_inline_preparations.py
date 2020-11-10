@@ -7,7 +7,16 @@ def inline_formatting_preparation(self, word, position, code_flag, bold_flag, it
              Overloading the format of a word with bold and italic is not possible.
 
     Setting the variable 'position' to 'last' is used to reset the current formatting after the word has been rendered.
+
+    :param self: MarkdownRenderer
+    :param word: word to be checked for formatting HTML markers
+    :param position: string, current position keyword
+    :param code_flag: boolean to signal inline-code text
+    :param bold_flag: boolean to signal strong/bold text
+    :param italic_flag: boolean to signal italicized text
+    :return: word, position, code_flag, bold_flag, italic_flag
     """
+
     if word[:6] == '<code>':
         code_flag = True
         position = 'first'

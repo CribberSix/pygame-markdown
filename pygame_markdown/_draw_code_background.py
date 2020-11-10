@@ -2,6 +2,16 @@ import pygame
 
 
 def draw_code_background(self, code_flag, word, x, y, position):
+    """ Draws a background rectangle behind inline-code.
+
+    :param self: MarkdownRenderer
+    :param code_flag: inline-code flag
+    :param word: the word for which the background will be rendered.
+    :param x: x-coordinate
+    :param y: y-coordinate
+    :param position: position of the word in the context of a multi-word inline-code subtext.
+    :return: None
+    """
     if code_flag:
         if position == 'last':  # remove last char (whitespace) from background-surface
             word = word[:-1]
@@ -14,6 +24,12 @@ def draw_code_background(self, code_flag, word, x, y, position):
 
 
 def draw_codeblock_background(self, y):
+    """ Draws the background for an entire line of a codeblock
+
+    :param self: MarkdownRenderer
+    :param y: y-coordinate
+    :return: None
+    """
 
     height_of_line = self.get_surface('placeholder', 'code').get_height()
 

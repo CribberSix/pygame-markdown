@@ -1,5 +1,13 @@
 
 def render_text(self, block: str, block_type: str, y: int) -> int:
+    """
+
+    :param self: MarkdownRenderer
+    :param block: string of text
+    :param block_type: type of the text (e.g. headers, ordered/unordered lists, blockquotes, code etc)
+    :param y:  y-coordinate to start rendering on
+    :return:  y-coordinate after rendering is finished
+    """
 
     start_of_line_x = self.x
     if block_type == 'blockquote':
@@ -51,6 +59,4 @@ def render_text(self, block: str, block_type: str, y: int) -> int:
         code_flag = False if code_flag and position == 'last' else code_flag
         italic_flag = False if italic_flag and position == 'last' else italic_flag
 
-
     return y
-

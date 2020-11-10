@@ -1,5 +1,13 @@
 
 def render_block(self, block: str, block_type: str, y: int) -> int:
+    """
+
+    :param self: MarkdownRenderer
+    :param block: string of text
+    :param block_type: type of the text (e.g. headers, ordered/unordered lists, blockquotes, code etc)
+    :param y: y-coordinate to start rendering on
+    :return: y-coordinate after rendering of current block was finished
+    """
 
     # Same background functionality
     if block_type == 'p':

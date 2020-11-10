@@ -19,8 +19,19 @@ textAreaWidth = 500
 mdfile_path = "README_test.md"
 
 
-md_blitter = MarkdownRenderer(mdfile_path)
-md_blitter.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
+md = MarkdownRenderer(mdfile_path)
+md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
+# OPTIONAL
+#md.set_line_gaps(5, 30)
+#md.set_scroll_step(25)
+#md.set_font_sizes(20, 18, 15, 15, 15, 15)
+#md.set_font('Arial', 'CourierNew')
+#md.set_background_color(60, 63, 65)
+#md.set_code_bg_color(44, 44, 44)
+#md.set_quote_color(98, 102, 103)
+#md.set_hline_color(44, 44, 44)
+#md.set_font_color(204, 204, 204)
+
 
 while True:
     # INPUT - Mouse + Keyboard
@@ -34,7 +45,7 @@ while True:
             pygame.quit()
             exit()
 
-    md_blitter.display(pygame_events, mouse_x, mouse_y)  # renders the markdown text onto the surface.
+    md.display(pygame_events, mouse_x, mouse_y)  # renders the markdown text onto the surface.
 
 
     pygame.display.flip()  # updates pygame window

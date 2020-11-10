@@ -2,9 +2,16 @@ import pygame
 
 
 def get_surface(self, word: str, t_type: str, strong=False, italic=False) -> pygame.Surface:
+    """ Returns rendered surface of a string (word) based on Markdown text types.
+
+    :param self: MarkdownRenderer
+    :param word: word to get a surface from
+    :param t_type: the type of the text
+    :param strong: boolean to signal strong/bold text
+    :param italic: boolean to signal italicized text
+    :return:  pygame.Surface
     """
-    Returns rendered surface of a string (word) based on Markdown text types.
-    """
+
     if strong:
         # headers are already bold and code cannot be bold -> only applicable to text or quotes.
         self.font_text.set_bold(True)

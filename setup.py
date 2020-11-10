@@ -16,7 +16,7 @@ setup(
     long_description=README,
     long_description_content_type='text/markdown',
     url='https://github.com/CribberSix/pygame-markdown',
-    version='0.9.6.6',
+    version='1.0.0',
     python_requires=">=3.6",
     author='CribberSix',
     author_email='cribbersix@gmail.com',
@@ -24,8 +24,7 @@ setup(
     classifiers=[
         # Trove classifiers
         # (https://pypi.python.org/pypi?%3Aaction=list_classifiers)
-        #'Development Status :: 5 - Production/Stable',
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',

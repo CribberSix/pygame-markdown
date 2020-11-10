@@ -1,13 +1,18 @@
 
 
 def render_codeblock(self, block: str, block_type: str, y: int) -> int:
-    """
-    Renders a block of code.
+    """Renders a block of code.
 
     Warning: Each code line is represented in one physical line, there are no line-breaks inserted!
              If the code-line is too long, it might be blitted to the right of the area.
 
+    :param self:  MarkdownRenderer
+    :param block: string of text
+    :param block_type: type of the text (e.g. headers, ordered/unordered lists, blockquotes, code etc)
+    :param y: y-coordinate to start rendering on
+    :return: y-coordinate after rendering is finished
     """
+
 
     start_of_line_x = self.x + self.indentation_code
     x = start_of_line_x  # for the start with the first line of block

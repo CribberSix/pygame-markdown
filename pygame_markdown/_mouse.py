@@ -2,13 +2,26 @@ import pygame
 
 
 def mouse_within_md_area(self, mouse_x, mouse_y) -> bool:
+    """ Returns True if the given coordinates are within the console area of the pygame window, otherwise False.
+
+    :param self: MarkdownRenderer
+    :param mouse_x: x-coordinate of mouse position
+    :param mouse_y: y-coordinate of mouse position
+    :return: boolean
     """
-    Returns True if the given coordinates are within the console area of the pygame window, otherwise False.
-    """
+
     return self.x < mouse_x < (self.x + self.w) and self.y < mouse_y < (self.h + self.y)
 
 
 def handle_mouse_input(self, pygame_events, mouse_x, mouse_y):
+    """
+
+    :param self: MarkdownRenderer
+    :param pygame_events: return value of 'pygame.event.get()'
+    :param mouse_x: x-coordinate of mouse position
+    :param mouse_y: y-coordinate of mouse position
+    :return: None
+    """
     for event in pygame_events:
         # Mouse scrolling wheel should only work if it is within the coding area.
         if event.type == pygame.MOUSEBUTTONDOWN and self.mouse_within_md_area(mouse_x, mouse_y):

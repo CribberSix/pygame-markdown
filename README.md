@@ -80,12 +80,12 @@ paragraph to fit into one line.
 ### Customization
  
 The visuals of the markdown code can be customized with the following function. 
-Most functions have default values for the parameters. 
+All functions have default values for the parameters. 
 
 ##### Text Format
 - Setting gaps after lines and paragraphs respectively: 
 ```
-md.set_line_gaps(gap_line=5, gap_paragraph=30)
+md.set_line_gaps(gap_line: int, gap_paragraph: int)
 ```
 
 ##### Fonts
@@ -97,7 +97,7 @@ md.set_font(font_text='Arial', font_code='CourierNew')
 ```
 - Setting Font sizes for the three headers, normal text and code-blocks.
 ```
-md.set_font_sizes(h1=20, h2=18, h3=15, normal=15, code=15)
+md.set_font_sizes(h1: int, h2: int, h3: int, text: int, code: int, quote: int)
 ```
 
 
@@ -113,6 +113,19 @@ md.set_quote_color(r: int, g: int, b: int)
 - Setting the background color of the code-blocks via rgb codes (no default values)
 ```
 md.set_code_bg_color(r: int, g: int, b: int)
+```
+- Setting the color of the horizontal line: 
+```
+md.set_hline_color(r: int, g: int, b: int)
+```
+
+Default colors are: 
+```python
+md.set_background_color(60, 63, 65)
+md.set_code_bg_color(44, 44, 44)
+md.set_quote_color(98, 102, 103)
+md.set_hline_color(44, 44, 44)
+md.set_font_color(204, 204, 204)
 ```
 
 ----
@@ -137,9 +150,13 @@ The following table gives an overview on which markdown elements are implemented
 
 ### Limitations 
 
-A further indented sublist within a list (2nd level) is not possible at the moment.
+A further indented sublist within a list (2nd level items) is not possible at the moment.
+
+Overloading the format of a word with bold and italic at the same time is not possible. 
+Disregarding this rule leads to unpredictable outcomes.
 
 Inline formatting is currently only recognized if a whitespace leads and trails the formatting characters. 
+Disregarding this rule leads to unpredictable outcomes.
 
 Incorrect Example: 
 ``` 
@@ -151,7 +168,7 @@ Lorem **ipsum.** Lorem Ipsum
 ```
 
 Codeblocks are not wrapped. This can lead to code being displayed to the right side of the text area if a code line
-is longer than the width of the textarea. 
+is longer than the specified width of the textarea. 
 
 ---
 
@@ -168,6 +185,8 @@ Please ensure your PR fulfills the following requirements:
 - The README is updated accordingly.
 - Your code should pass [PEP8](https://www.python.org/dev/peps/pep-0008/). You can check your code's PEP8 compliance [here](http://pep8online.com/checkresult).
 The exception is the errorcode `E501 - line too long` - because 79 characters per line is a stupid limit. 
+
+---
 
 ### Full example
 
@@ -194,8 +213,18 @@ textAreaWidth = 500
 mdfile_path = "C:\\my_markdown_file.md"
 
 
-md_blitter = MarkdownRenderer(mdfile_path)
-md_blitter.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
+md = MarkdownRenderer(mdfile_path)
+md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
+# OPTIONAL
+#md.set_line_gaps(5, 30)
+#md.set_scroll_step(25)
+#md.set_font_sizes(20, 18, 15, 15, 15, 15)
+#md.set_font('Arial', 'CourierNew')
+#md.set_background_color(60, 63, 65)
+#md.set_code_bg_color(44, 44, 44)
+#md.set_quote_color(98, 102, 103)
+#md.set_hline_color(44, 44, 44)
+#md.set_font_color(204, 204, 204)
 
 while True:
     pygame_events = pygame.event.get()
@@ -206,6 +235,6 @@ while True:
             pygame.quit()
             exit()
 
-    md_blitter.display(pygame_events, mouse_x, mouse_y)  # renders the markdown text onto the surface.
+    md.display(pygame_events, mouse_x, mouse_y)  # renders the markdown text onto the surface.
     pygame.display.flip()  # updates pygame window
 ```

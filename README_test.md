@@ -1,4 +1,4 @@
-# pygame-markdown
+# Pygame markdown package
 
 A simple `python` *function,* to **blit Markdown** text on a **python surface.**
 A simple `python function` to blit Markdown text on a python surface.
