@@ -7,6 +7,7 @@ A simple `python function` to blit Markdown text on a python surface.
 - This is a test for unordered lists
 - One of the `socks` is **code** 
 - Who on *Mars* has a third sock?
+- This is not what should happen when we have a linebreak of a listitem we have a linebreak of a listitem
 
 ### Third header for internal tests
 
@@ -36,6 +37,7 @@ print("Hello World4:" + str(a))
 2. Another item
 3. Third item
 2. Fourth item
+4. This is not what should happen when we have a linebreak of a listitem we have a linebreak of a listitem
 
 File end, last line.
 

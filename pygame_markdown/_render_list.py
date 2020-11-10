@@ -44,7 +44,12 @@ def render_list(self, block: str, block_type: str, y: int, ordered) -> int:
 
             if not(x + surface.get_width() < self.x + self.w):  # new line necessary
                 y = y + prev_text_height + self.gap_line
-                x = start_of_line_x
+                if ordered:
+                    extra_width = self.get_surface(u'    ' + str(i + 1) + '. ', 'p').get_width()
+                else:
+                    extra_width = self.get_surface(u'    \u2022 ', 'p').get_width()
+
+                x = start_of_line_x + extra_width
 
             if self.is_visible(y) and self.is_visible(y + surface.get_height()):
                 self.draw_code_background(code_flag, word, x, y, position)

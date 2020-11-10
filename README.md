@@ -210,7 +210,7 @@ offset_X = 50  # offset from the left border of the pygame window
 offset_Y = 20  # offset from the top border of the pygame window
 textAreaHeight = 500
 textAreaWidth = 500
-mdfile_path = "C:\\my_markdown_file.md"
+mdfile_path = "X:\\my_markdown_file.md"
 
 
 md = MarkdownRenderer(mdfile_path)
