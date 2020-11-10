@@ -1,5 +1,5 @@
 import pygame
-from pygamemarkdown.PygameMarkdown import MarkdownRenderer
+from pygame_markdown.PygameMarkdown import MarkdownRenderer
 
 
 # minimal pygame setup

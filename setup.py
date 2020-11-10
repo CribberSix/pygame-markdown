@@ -9,14 +9,14 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='pygame-markdown',
-    packages=find_packages(exclude=['README_test.md']),
+    packages=find_packages(),
     include_package_data=True,
     license='MIT',
-    description='A renderer for markdown text onto pygame surfaces.',
+    description=('A renderer for markdown text onto pygame surfaces.'),
     long_description=README,
     long_description_content_type='text/markdown',
     url='https://github.com/CribberSix/pygame-markdown',
-    version='0.9.6.3',
+    version='0.9.6.6',
     python_requires=">=3.6",
     author='CribberSix',
     author_email='cribbersix@gmail.com',

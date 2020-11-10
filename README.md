@@ -3,7 +3,6 @@
 ![PyPI](https://img.shields.io/pypi/v/pygame-markdown?color=%233775A9&label=pypi%20package&style=plastic)
 ![GitHub](https://img.shields.io/github/license/CribberSix/pygame-markdown?style=plastic)
 
-
 1. [Purpose](#Purpose)
 2. [Usage](#Usage)
 3. [Internal workings](#Internal-workings)
@@ -11,6 +10,7 @@
 5. [Markdown element implementations](#Markdown-element-implementations)
 6. [Contributing](#Contributing)
 7. [Full example](#Full-example)
+
 ----
 
 ### Purpose
@@ -22,7 +22,7 @@ The package's class parses and renders the contents of a markdown file onto a py
 The class instantiation takes one parameter: the path to the local markdown file.
  
 ```Python
-from pygamemarkdown import MarkdownRenderer
+from pygame_markdown import MarkdownRenderer
 md = MarkdownRenderer(mdfile_path)  # create instance 
 ```
 
@@ -175,7 +175,7 @@ The following code is a full example of how the package can be used.
 
 ```python
 import pygame
-from pygamemarkdown import MarkdownRenderer  # import of the package
+from pygame_markdown import MarkdownRenderer  # import of the package
 
 # minimal pygame setup
 pygame.init()
