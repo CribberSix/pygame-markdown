@@ -1,5 +1,5 @@
 import pathlib
-from setuptools import setup
+from setuptools import setup, find_packages
 
 # The directory containing this file
 HERE = pathlib.Path(__file__).parent
@@ -9,18 +9,18 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='pygame-markdown',
-    packages=['pygamemarkdown'],
+    packages=find_packages(exclude=['README_test.md']),
     include_package_data=True,
     license='MIT',
     description='A renderer for markdown text onto pygame surfaces.',
     long_description=README,
     long_description_content_type='text/markdown',
     url='https://github.com/CribberSix/pygame-markdown',
-    version='0.9.6.1',
+    version='0.9.6.3',
     python_requires=">=3.6",
     author='CribberSix',
     author_email='cribbersix@gmail.com',
-    install_requires=['pygame==1.9.6'],
+    install_requires=['pygame==1.9.6', 'markdown>=3.3.3'],
     classifiers=[
         # Trove classifiers
         # (https://pypi.python.org/pypi?%3Aaction=list_classifiers)

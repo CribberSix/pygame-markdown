@@ -1,9 +1,10 @@
 import pygame
-from pygamemarkdown import MarkdownRenderer
+from pygamemarkdown.PygameMarkdown import MarkdownRenderer
+
 
 # minimal pygame setup
 pygame.init()
-screenHeight = 1800
+screenHeight = 900
 screenWidth = 600
 screen = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption("Pygame")
@@ -17,17 +18,10 @@ textAreaHeight = 500
 textAreaWidth = 500
 mdfile_path = "README_test.md"
 
-# mark
 
-# Setup MD-Renderer
-md_blitter = MarkdownRenderer()
-md_blitter.set_markdown(mdfile_path)
-md_blitter.set_line_gaps(10, 40)
+md_blitter = MarkdownRenderer(mdfile_path)
 md_blitter.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
 
-# pygame-loop
-f = True
-blitonce = False
 while True:
     # INPUT - Mouse + Keyboard
     pygame.draw.rect(screen, (255,255,255), (0, 0, screenWidth, screenHeight))
@@ -39,9 +33,10 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-    if f:
-        md_blitter.display(pygame_events, mouse_x, mouse_y) # renders the markdown text onto the surface.
-        if blitonce:
-            f = False
+
+    md_blitter.display(pygame_events, mouse_x, mouse_y)  # renders the markdown text onto the surface.
+
 
     pygame.display.flip()  # updates pygame window
+
+

@@ -1,28 +1,14 @@
 
 
-- BUG: Code Block
+- FEATURE/BUG: Code Block linebreaks when code is too long to fit.
+    - Currently the code is not wrapped if it doesn't fit into one line
     - Code cannot be continued in the next line if the line is too long, otherwise it doesn't make any sense.
         -> insert syntactic linebreak ?
         -> vertical scrollbar on the code-window/overall?
 
-- BUG: Inline-Code
-    - inline-code
-    - single word with space between starting/ending quote and the word itself
-    - example: `other ` or ` other`
+- Second level of identation in lists (ordered + unordered)
 
 
-Release: 0.9.4
-- FEATURE: Vertical scrolling
-    - In case the length of the supplied surface is not valid, enable scrollbar.
-
-Release: 0.9.5
-- FEATURE: italicized text
-- FEATURE: bold text
-
-
-
-
-Release: x.x.x
 - FEATURE: Link Binding
-    - Syntax: [here](www.link.org)
-    - Implementation as button?
+    - Syntax: If you want to know more [click here](www.link.org) or read more.
+    - Implementation as a 'button' by checking if left click happened on the word?

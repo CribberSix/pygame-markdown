@@ -1,3 +1,1 @@
-from .MarkdownRenderer import MarkdownRenderer
-
-MarkdownRenderer()
+from .PygameMarkdown import MarkdownRenderer

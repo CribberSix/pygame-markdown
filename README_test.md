@@ -1,32 +1,29 @@
 # pygame-markdown
 
-A simple python function to blit Markdown text on a python surface.
+A simple `python` *function,* to **blit Markdown** text on a **python surface.**
+A simple `python function` to blit Markdown text on a python surface.
 
-## Second header for internal tests.
-1. This is a test for ordered lists
-2. Another item
-3. Third item
-2. Fourth item
+## Second header for internal tests
+- This is a test for unordered lists
+- One of the `socks` is **code** 
+- Who on *Mars* has a third sock?
 
-Confucius said:
+### Third header for internal tests
 
-> Test for quoted text
+This is an `inline-code` test. Also for `var = 3500` multiple words with spaces. A bit longer for the linebreak test
+ `from pygame import everything` 
+newline and `other` characters on a string beginning. Lorem Ipsum and all that. 
 
-### Third header for internal tests.
-
-This is a  `inline-code` test. Also for `var = 3500` multiple words with spaces. A bit longer for the linebreak test
- `from pygame import everything`
-newline and ` other` characters on a string beginning. Lorem Ipsum and all that. 
-
------
+---
 
 Confucius also said:
 > Respect yourself
 > and others will respect you. Especially when it comes to multi-line quotes from an ancient chinese philosopher, 
-> you should always wear socks.
+> you should always **wear socks.**
 
 Code lines:
-```Python
+
+```
 a = 500
 print("Hello World:" + str(a))
 print("Hello World2:" + str(a))
@@ -34,11 +31,11 @@ print("Hello World3:" + str(a))
 print("Hello World4:" + str(a))
 ```
 
-##  header for internal tests.
+##  header for internal tests
 1. This is a test for ordered lists
 2. Another item
 3. Third item
 2. Fourth item
 
-
 File end, last line.
+

@@ -1,5 +1,3 @@
-import pygame
-from typing import Tuple
 
 
 def set_font_sizes(self, h1=20, h2=18, h3=15, normal=15, code=15) -> None:

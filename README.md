@@ -10,75 +10,72 @@
 4. [Customization](#Customization)
 5. [Markdown element implementations](#Markdown-element-implementations)
 6. [Contributing](#Contributing)
-
+7. [Full example](#Full-example)
 ----
 
 ### Purpose
 
-The package's class parses, interprets and renders the contents of a markdown file onto a pygame surface. 
+The package's class parses and renders the contents of a markdown file onto a pygame surface. 
 
 ### Usage
 ##### 1. Instantiation
-The class instantiation takes no parameters. 
+The class instantiation takes one parameter: the path to the local markdown file.
+ 
 ```Python
 from pygamemarkdown import MarkdownRenderer
-md = MarkdownRenderer()  # create instance 
+md = MarkdownRenderer(mdfile_path)  # create instance 
 ```
 
-##### 2. Choose markdown file by path
-To choose a markdown file to display, use the method:
 
-```Python
-md.set_markdown(mdfile_path) 
-```
-
-- `mdfile_path` - the local path of the markdown file which will be displayed
-
-##### 3. Display
-To display the content of the markdown file on a surface in a specific location use the method: 
+##### 2. Setting the surface and location 
+To display the content of the markdown file on a specific surface in a specific location use the method: 
 
  ```Python
-md.display(surface, offset_X, offset_Y, width=-1, height=-1)  
+md.set_area(surface, offset_X, offset_Y, width=-1, height=-1)  
 ```
 - `surface` - the pygame surface which the text is blitted on 
 - `offset_X` - the offset of the text from the surface's left sided border
 - `offset_Y`- the offset of the text from the surface's top border
 
 Optional:
-- `width` - the width of the textarea  
-- `height` - the height of the textarea 
+- `textAreaWidth` - the width of the textarea  
+- `textAreaHeight` - the height of the textarea 
 
 If no width/height is supplied, the entire length - starting from the x-/y-coordinate 
 to the opposite side of the supplied surface - is used.
 
-----
+##### 3. Displaying 
+In the *pygame loop*, the method `display` renders the contents of the markdown file onto the surface. 
+In order to allow for scrolling, the display method requires some values from pygame.
+
+```python
+while True:  # pygame loop
+    pygame_events = pygame.event.get()
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+
+    md.display(pygame_events, mouse_x, mouse_y)  
+```
+
 
 ### Internal workings
-The class uses a three stage process to render the contents of a markdown file onto a pygame surface. 
+The class uses a two stage process to render the contents of a markdown file onto a pygame surface. 
 For an overview of the implemented syntactic markdown structures, see [Markdown element implementations](#Markdown-element-implementations).
 
 ##### Stage 1: Parsing
-The text is restructured from physical lines to logical lines. 
-Since markdown allows for continuation of a logical line
-after a physical linebreak, the text gets rearranged into paragraphs/blocks depending on the content. 
- 
-##### Stage 2: Interpreting
-Each block is given a tag to describe its content. Examples are:
-- Header (h1,h2 or h3)
-- Unordered List
-- Ordered List
-- Code 
-- Quote
-- Normal text
-- Horizontal rule 
+The markdown file is parsed to HTML using the package [markdown](https://pypi.org/project/Markdown/). 
 
-##### Stage 3: Rendering
-Based on the type of the block the text is rendered with certain parameters. Examples:
+Based on the HTML-markers for different types of paragraphs, lists and headers, the text is split into thematic blocks. 
+ 
+##### Stage 2: Rendering
+Each block is rendered based on its specifications. Inline formatting such as `bold/strong`, `italic` and `code` 
+are taken into account during the rendering process. 
+
+- Text (excluding code-blocks!) is automatically continued in the next line if the supplied width is too small for the 
+paragraph to fit into one line.  
 - Code is indented and has a different background color 
 - Quotes are indentend, have a different font color and a vertical rectangle in front of the text. 
 - Horizontal rule blocks are rendered as a horizontal rectangle along the width of the textarea.
-- All text is automatically continued in the next line if the supplied width is too small.  
-----
+
 
 ### Customization
  
@@ -123,15 +120,11 @@ md.set_code_bg_color(r: int, g: int, b: int)
 ### Markdown element implementations
 The following table gives an overview on which markdown elements are implemented so far and can be displayed correctly.
 
-A further indented unordered sublist of an unordered list item can be achieved 
-by adding four spaces in front of the hyphen. The first item in an unordered list cannot be further indented, 
-only sublists can be indented further.
-
 | Element       | Markdown Syntax     | Status |
 | :------------- | :---------- | :---------- |
 |  Heading | # h1 <br/>## h2 <br/>### h3   | DONE |
-| Bold |  \*\*bold text\*\* | TODO |
-| Cursive | \*italicized text\* |TODO |
+| Bold |  \*\*bold text\*\* | DONE |
+| Italic | \*italicized text\* |DONE |
 | Block of code   | \``` <br/>print("Hello World!") <br/> \``` | DONE |
 | Inline code | \`print("Hello World")\` | DONE |
 | Unordered List | - First item <br/>- Second item<br/>- Third item |  DONE | 
@@ -139,7 +132,28 @@ only sublists can be indented further.
 | Blockquote | \> blockquote | DONE |
 | Horizontal rule | --- | DONE |
 
-----
+
+---
+
+### Limitations 
+
+A further indented sublist within a list (2nd level) is not possible at the moment.
+
+Inline formatting is currently only recognized if a whitespace leads and trails the formatting characters. 
+
+Incorrect Example: 
+``` 
+Lorem **ipsum**. Lorem Ipsum
+```
+Correct example:
+``` 
+Lorem **ipsum.** Lorem Ipsum
+```
+
+Codeblocks are not wrapped. This can lead to code being displayed to the right side of the text area if a code line
+is longer than the width of the textarea. 
+
+---
 
 ### Contributing
 I welcome pull requests from the community. 
@@ -154,3 +168,44 @@ Please ensure your PR fulfills the following requirements:
 - The README is updated accordingly.
 - Your code should pass [PEP8](https://www.python.org/dev/peps/pep-0008/). You can check your code's PEP8 compliance [here](http://pep8online.com/checkresult).
 The exception is the errorcode `E501 - line too long` - because 79 characters per line is a stupid limit. 
+
+### Full example
+
+The following code is a full example of how the package can be used.
+
+```python
+import pygame
+from pygamemarkdown import MarkdownRenderer  # import of the package
+
+# minimal pygame setup
+pygame.init()
+screenHeight = 900
+screenWidth = 600
+screen = pygame.display.set_mode((screenWidth, screenHeight))
+pygame.display.set_caption("Pygame")
+pygame.display.get_surface().fill((200, 200, 200))  # background coloring
+
+# parameters
+surface = pygame.display.get_surface()  # get existing pygame window/screen
+offset_X = 50  # offset from the left border of the pygame window
+offset_Y = 20  # offset from the top border of the pygame window
+textAreaHeight = 500
+textAreaWidth = 500
+mdfile_path = "C:\\my_markdown_file.md"
+
+
+md_blitter = MarkdownRenderer(mdfile_path)
+md_blitter.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
+
+while True:
+    pygame_events = pygame.event.get()
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+
+    for event in pygame_events:  
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+
+    md_blitter.display(pygame_events, mouse_x, mouse_y)  # renders the markdown text onto the surface.
+    pygame.display.flip()  # updates pygame window
+```
