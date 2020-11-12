@@ -118,6 +118,16 @@ class MarkdownRenderer:
                 self.blocks.append((block, block_type))
 
     def set_area(self, surface, offset_x, offset_y, width=-1, height=-1, margin=10) -> None:
+        """
+        TODO: missing docstring
+        :param surface:
+        :param offset_x:
+        :param offset_y:
+        :param width:
+        :param height:
+        :param margin:
+        :return:
+        """
         self.margin = margin
         # for simplicity, margin is subtracted from the initial x, y, w and h.
         # When rendering the background rect, we add the margin.
@@ -126,13 +136,21 @@ class MarkdownRenderer:
         self.x = offset_x + margin
         self.y = offset_y + margin
         # if no values are given, we take the end of the screen as limit.
-        self.w = width - (2 * self.margin) if width > 0 else surface.get_width() - self.x - (2 * self.margin)
-        self.h = height - (2 * self.margin) if height > 0 else surface.get_height() - self.y - (2 * self.margin)
+        self.w = width - (2 * self.margin) if width > 0 else surface.get_width() - offset_x - (2 * self.margin)
+        self.h = height - (2 * self.margin) if height > 0 else surface.get_height() - offset_y - (2 * self.margin)
         self.pixels_showable_at_once = self.h
         self.screen = surface
 
     def display(self, pygame_events, mouse_x, mouse_y, mouse_pressed):
-        # Background
+        """
+        TODO: missing docstring
+        :param pygame_events:
+        :param mouse_x:
+        :param mouse_y:
+        :param mouse_pressed:
+        :return:
+        """
+        # Background -> reverse the margins
         pygame.draw.rect(self.screen, self.color_area_background, (self.x - self.margin, self.y - self.margin,
                                                                    self.w + (2 * self.margin), self.h + (2 * self.margin)))
 
