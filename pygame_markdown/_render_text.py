@@ -29,6 +29,10 @@ def render_text(self, block: str, block_type: str, y: int) -> int:
     bold_flag = False
     italic_flag = False
     position = None
+
+    if block_type in ('h1', 'h2', 'h3'):  # insert additional gap in front of h1 or h2 headers
+        y += self.gap_line
+
     for word in block.split(" "):
 
         # _________ PREPARATION _________ #
@@ -58,5 +62,11 @@ def render_text(self, block: str, block_type: str, y: int) -> int:
         bold_flag = False if bold_flag and position == 'last' else bold_flag
         code_flag = False if code_flag and position == 'last' else code_flag
         italic_flag = False if italic_flag and position == 'last' else italic_flag
+
+    if block_type in ('h1', 'h2'):
+        y = y + prev_text_height * 0.5  # add an additional margin below h1 and h2 headers
+        if block_type == 'h1':  # insert subline below h1 headers
+            y = y + prev_text_height * 0.5  # add an additional margin below h1 headers for the subheader line
+            y = self.draw_subheader_line(y)
 
     return y

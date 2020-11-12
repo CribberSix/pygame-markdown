@@ -20,7 +20,7 @@ def draw_code_background(self, code_flag, word, x, y, position):
         word_surface = self.get_surface(word, 'text')
         width = word_surface.get_width()
         height = word_surface.get_height()
-        pygame.draw.rect(self.screen, self.coding_bg_color, pygame.Rect(x, y, width, height))
+        pygame.draw.rect(self.screen, self.color_code_background, pygame.Rect(x, y, width, height))
 
 
 def draw_codeblock_background(self, y):
@@ -38,7 +38,7 @@ def draw_codeblock_background(self, y):
 
     y_coordinate = y - self.gap_line
     height = height_of_line + (2 * self.gap_line)
-    pygame.draw.rect(self.screen, self.coding_bg_color, pygame.Rect(x_coordinate, y_coordinate, width, height))
+    pygame.draw.rect(self.screen, self.color_code_background, pygame.Rect(x_coordinate, y_coordinate, width, height))
 
 
 

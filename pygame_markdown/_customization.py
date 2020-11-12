@@ -45,35 +45,35 @@ def set_line_gaps(self, gap_line: int = 5, gap_paragraph: int = 30) -> None:
     self.gap_paragraph = gap_paragraph
 
 
-def set_code_bg_color(self, r: int = 44, g: int = 44, b: int = 44) -> None:
+def set_color_code_background(self, r: int = 44, g: int = 44, b: int = 44) -> None:
     """
     Setting the coding color with three separate integers (rgb).
     """
     self.coding_bg_color = (r, g, b)
 
 
-def set_font_color(self, r: int = 204, g: int = 204, b: int = 204) -> None:
+def set_color_font(self, r: int = 204, g: int = 204, b: int = 204) -> None:
     """
     Setting the general font color with three separate integers (rgb).
     """
     self.font_color = (r, g, b)
 
 
-def set_quote_color(self, r: int = 98, g: int = 102, b: int = 103) -> None:
+def set_color_quote(self, r: int = 98, g: int = 102, b: int = 103) -> None:
     """
     Setting the general font color with three separate integers (rgb).
     """
     self.quote_color = (r, g, b)
 
 
-def set_hline_color(self, r: int = 44, g: int = 44, b: int = 44) -> None:
+def set_color_hline(self, r: int = 44, g: int = 44, b: int = 44) -> None:
     """
     Setting the general font color with three separate integers (rgb).
     """
     self.hline_color = (r, g, b)
 
 
-def set_background_color(self, r: int = 60, g: int = 63, b: int = 65) -> None:
+def set_color_background(self, r: int = 60, g: int = 63, b: int = 65) -> None:
     """
     Setting the background color of the markdown area with three separate integers (rgb).
     """

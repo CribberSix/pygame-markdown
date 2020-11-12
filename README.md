@@ -23,7 +23,8 @@ The class instantiation takes one parameter: the path to the local markdown file
  
 ```Python
 from pygame_markdown import MarkdownRenderer
-md = MarkdownRenderer(mdfile_path)  # create instance 
+md = MarkdownRenderer()  # create instance 
+md.set_markdown(mdfile_path)  # set the markdown file to be rendered
 ```
 
 
@@ -33,6 +34,7 @@ To display the content of the markdown file on a specific surface in a specific 
  ```Python
 md.set_area(surface, offset_X, offset_Y, width=-1, height=-1)  
 ```
+
 - `surface` - the pygame surface which the text is blitted on 
 - `offset_X` - the offset of the text from the surface's left sided border
 - `offset_Y`- the offset of the text from the surface's top border
@@ -45,7 +47,7 @@ If no width/height is supplied, the entire length - starting from the x-/y-coord
 to the opposite side of the supplied surface - is used.
 
 ##### 3. Displaying 
-In the *pygame loop*, the method `display` renders the contents of the markdown file onto the surface. 
+In the *pygame loop,* the method `display` renders the contents of the markdown file onto the surface. 
 In order to allow for scrolling, the display method requires some values from pygame.
 
 ```python
@@ -55,7 +57,6 @@ while True:  # pygame loop
 
     md.display(pygame_events, mouse_x, mouse_y)  
 ```
-
 
 ### Internal workings
 The class uses a two stage process to render the contents of a markdown file onto a pygame surface. 
@@ -86,6 +87,7 @@ All functions have default values for the parameters.
 - Setting gaps after lines and paragraphs respectively: 
 ```
 md.set_line_gaps(gap_line: int, gap_paragraph: int)
+md.set_line_gaps(8, 35)  # default values
 ```
 
 ##### Fonts
@@ -93,40 +95,43 @@ md.set_line_gaps(gap_line: int, gap_paragraph: int)
 The module uses pygame.font.SysFont. Possible options are Verdana, Arial, CourierNew, Helvetica etc. 
 The Fonts are given by name as Strings.
 ```
-md.set_font(font_text='Arial', font_code='CourierNew')
+md.set_font(font_text: str, font_code: str)
+md.set_font('Arial', 'CourierNew')  # default values
 ```
 - Setting Font sizes for the three headers, normal text and code-blocks.
 ```
 md.set_font_sizes(h1: int, h2: int, h3: int, text: int, code: int, quote: int)
+md.set_font_sizes(28, 24, 20, 16, 16, 16)  # default values
 ```
 
 
 ##### Coloring
+- Setting the background color of the markdown area
+```
+md.set_color_background(r: int, g: int, b: int)
+md.set_color_background(60, 63, 65)  # default values
+```
 - Setting the general font color of via rgb codes (no default values)
 ```
-md.set_font_color(r: int, g: int, b: int)
+md.set_color_font(r: int, g: int, b: int)
+md.set_color_font(204, 204, 204)  # default values
 ```
 - Setting the font color of quote-blocks via rgb codes (no default values)
 ```
-md.set_quote_color(r: int, g: int, b: int)
+md.set_color_quote(r: int, g: int, b: int)
+md.set_color_quote(98, 102, 103)  # default values
 ```
 - Setting the background color of the code-blocks via rgb codes (no default values)
 ```
 md.set_code_bg_color(r: int, g: int, b: int)
+md.set_code_bg_color(44, 44, 44)  # default values
 ```
 - Setting the color of the horizontal line: 
 ```
-md.set_hline_color(r: int, g: int, b: int)
+md.set_color_hline(r: int, g: int, b: int)
+md.set_color_hline(44, 44, 44)  # default values
 ```
 
-Default colors are: 
-```python
-md.set_background_color(60, 63, 65)
-md.set_code_bg_color(44, 44, 44)
-md.set_quote_color(98, 102, 103)
-md.set_hline_color(44, 44, 44)
-md.set_font_color(204, 204, 204)
-```
 
 ----
 
@@ -149,13 +154,14 @@ The following table gives an overview on which markdown elements are implemented
 ---
 
 ### Limitations 
-Disregarding the following warnings leads to unpredictable outcomes.
+> Warning: Disregarding the following limitations leads to unpredictable outcomes.
 
 A further indented sublist within a list (2nd level items) is not possible at the moment.
 
 Codeblocks are not wrapped. This can lead to code being displayed to the right side of the text area if a code line
 is longer than the specified width of the textarea. 
 
+Code blocks do not recognize language strings. Code highlighting is hence not implemented.
 
 Overloading the format of a word with bold and italic at the same time is not possible. 
 
@@ -213,18 +219,20 @@ textAreaWidth = 500
 mdfile_path = "X:\\my_markdown_file.md"
 
 
-md = MarkdownRenderer(mdfile_path)
+md = MarkdownRenderer()
+md.set_markdown(mdfile_path)
 md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
 # OPTIONAL
-#md.set_line_gaps(5, 30)
+#md.set_line_gaps(5, 35)
 #md.set_scroll_step(25)
 #md.set_font_sizes(20, 18, 15, 15, 15, 15)
+#md.set_color_font(204, 204, 204)
 #md.set_font('Arial', 'CourierNew')
-#md.set_background_color(60, 63, 65)
-#md.set_code_bg_color(44, 44, 44)
-#md.set_quote_color(98, 102, 103)
-#md.set_hline_color(44, 44, 44)
-#md.set_font_color(204, 204, 204)
+
+#md.set_color_background(60, 63, 65)
+#md.set_color_code_background(44, 44, 44)
+#md.set_color_quote(98, 102, 103)
+#md.set_color_hline(44, 44, 44)
 
 while True:
     pygame.draw.rect(screen, (255,255,255), (0, 0, screenWidth, screenHeight))

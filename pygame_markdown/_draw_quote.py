@@ -16,4 +16,4 @@ def draw_quote_rect(self, y_start, y_end) -> None:
     y_coordinate = y_start - (self.gap_line * 0.5)
     width = 5
     height = (y_end - y_start) + self.gap_line
-    pygame.draw.rect(self.screen, self.quote_color, pygame.Rect(x_coordinate, y_coordinate, width, height))
+    pygame.draw.rect(self.screen, self.color_quote, pygame.Rect(x_coordinate, y_coordinate, width, height))

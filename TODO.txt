@@ -1,7 +1,5 @@
 
 
-- BUG: "&"-symbol is not parsed correctly. Transferral to HTML converts it to:    &amp;
-
 - FEATURE/BUG: Code Block linebreaks when code is too long to fit.
     - Currently the code is not wrapped if it doesn't fit into one line
     - Code cannot be continued in the next line if the line is too long, otherwise it doesn't make any sense.
@@ -10,11 +8,8 @@
 
 - FEATURE: Second level of identation in lists (ordered + unordered)
 
-
 - FEATURE: Link Binding
     - Syntax: If you want to know more [click here](www.link.org) or read more.
     - Implementation as a 'button' by checking if left click happened on the word?
 
-- FEATURE: inner margin around text area.
-
-- FEATURE: thin line below h1 headers
+- FEATURE: visual vertical scrollbar

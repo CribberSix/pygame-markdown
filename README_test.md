@@ -1,9 +1,14 @@
 # Pygame markdown package
 
-A simple `python` *function,* to **blit Markdown** text on a **python surface.**
+A simple python function & methods to **blit Markdown** text on a **python surface.**
+A simple `python function` to blit Markdown text on a python surface.
+
+A simple python function & methods to **blit Markdown** text on a **python surface.**
 A simple `python function` to blit Markdown text on a python surface.
 
 ## Second header for internal tests
+The following is a list.
+
 - This is a test for unordered lists
 - One of the `socks` is **code** 
 - Who on *Mars* has a third sock?
@@ -32,7 +37,10 @@ print("Hello World3:" + str(a))
 print("Hello World4:" + str(a))
 ```
 
-##  header for internal tests
+A simple python function & methods to **blit Markdown** text on a **python surface.**
+A simple `python function` to blit Markdown text on a python surface.
+
+# Header for internal tests
 1. This is a test for ordered lists
 2. Another item
 3. Third item

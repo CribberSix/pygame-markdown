@@ -14,23 +14,27 @@ pygame.display.get_surface().fill((200, 200, 200))  # background coloring
 surface = pygame.display.get_surface()  # get existing pygame window/screen
 offset_X = 50  # offset from the left border of the pygame window
 offset_Y = 20  # offset from the top border of the pygame window
-textAreaHeight = 500
+textAreaHeight = 800
 textAreaWidth = 500
 mdfile_path = "README_test.md"
 
 
-md = MarkdownRenderer(mdfile_path)
+md = MarkdownRenderer()
+md.set_markdown(mdfile_path)
 md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
+
 # OPTIONAL
-#md.set_line_gaps(5, 30)
 #md.set_scroll_step(25)
-#md.set_font_sizes(20, 18, 15, 15, 15, 15)
+#md.set_line_gaps(8, 35)
+#md.set_font_sizes(28, 24, 20, 16, 16, 16)
+
+
 #md.set_font('Arial', 'CourierNew')
-#md.set_background_color(60, 63, 65)
-#md.set_code_bg_color(44, 44, 44)
-#md.set_quote_color(98, 102, 103)
-#md.set_hline_color(44, 44, 44)
-#md.set_font_color(204, 204, 204)
+#md.set_color_background(60, 63, 65)
+#md.set_color_code_background(44, 44, 44)
+#md.set_color_quote(98, 102, 103)
+#md.set_color_hline(44, 44, 44)
+#md.set_color_font(204, 204, 204)
 
 
 while True:
@@ -38,13 +42,14 @@ while True:
 
     pygame_events = pygame.event.get()
     mouse_x, mouse_y = pygame.mouse.get_pos()
+    mouse_pressed = pygame.mouse.get_pressed()
 
     for event in pygame_events:  # handle QUIT operation
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
 
-    md.display(pygame_events, mouse_x, mouse_y)  # renders the markdown text onto the surface.
+    md.display(pygame_events, mouse_x, mouse_y, mouse_pressed)  # renders the markdown text onto the surface.
 
 
     pygame.display.flip()  # updates pygame window
