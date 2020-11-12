@@ -11,5 +11,3 @@
 - FEATURE: Link Binding
     - Syntax: If you want to know more [click here](www.link.org) or read more.
     - Implementation as a 'button' by checking if left click happened on the word?
-
-- FEATURE: visual vertical scrollbar

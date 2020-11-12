@@ -40,6 +40,7 @@ md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
 while True:
     pygame.draw.rect(screen, (255,255,255), (0, 0, screenWidth, screenHeight))
 
+    # get various input from pygame
     pygame_events = pygame.event.get()
     mouse_x, mouse_y = pygame.mouse.get_pos()
     mouse_pressed = pygame.mouse.get_pressed()
@@ -50,7 +51,6 @@ while True:
             exit()
 
     md.display(pygame_events, mouse_x, mouse_y, mouse_pressed)  # renders the markdown text onto the surface.
-
 
     pygame.display.flip()  # updates pygame window
 
