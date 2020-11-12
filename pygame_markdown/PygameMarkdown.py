@@ -126,8 +126,8 @@ class MarkdownRenderer:
         self.x = offset_x + margin
         self.y = offset_y + margin
         # if no values are given, we take the end of the screen as limit.
-        self.w = width if width > 0 else surface.get_width() - self.x - self.margin
-        self.h = height if height > 0 else surface.get_height() - self.y - self.margin
+        self.w = width - (2 * self.margin) if width > 0 else surface.get_width() - self.x - (2 * self.margin)
+        self.h = height - (2 * self.margin) if height > 0 else surface.get_height() - self.y - (2 * self.margin)
         self.pixels_showable_at_once = self.h
         self.screen = surface
 

@@ -4,6 +4,7 @@ import pygame
 def draw_scrollbar(self):
 
     if self.pixels_showable_at_once >= self.pixels_entire_length:
+        self.scrollbar = None
         return  # scrollbar hidden when there is nothing to scroll
 
     # Calculate position and dimensions of the scrollbar
