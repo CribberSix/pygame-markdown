@@ -29,6 +29,6 @@ def scroll_up(self):
 
 
 def scroll_down(self):
-            self.pixel_first_showable += self.pixel_scroll_step
-            if self.pixel_first_showable > self.pixels_entire_length - self.pixels_showable_at_once: # reset to max
-                self.pixel_first_showable = self.pixels_entire_length - self.pixels_showable_at_once
+    self.pixel_first_showable += self.pixel_scroll_step
+    if self.pixel_first_showable > self.pixels_entire_length - self.pixels_showable_at_once: # reset to max
+        self.pixel_first_showable = self.pixels_entire_length - self.pixels_showable_at_once
