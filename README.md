@@ -8,8 +8,9 @@
 3. [Internal workings](#Internal-workings)
 4. [Customization](#Customization)
 5. [Markdown element implementations](#Markdown-element-implementations)
-6. [Contributing](#Contributing)
-7. [Full example](#Full-example)
+6. [Limitations](#Limitations)
+7. [Contributing](#Contributing)
+8. [Full example](#Full-example)
 
 ----
 
@@ -28,7 +29,7 @@ md.set_markdown(mdfile_path)  # set the markdown file to be rendered
 ```
 
 
-##### 2. Setting the surface and location 
+##### 2. Set the surface, location and area 
 To display the content of the markdown file on a specific surface in a specific location use the method: 
 
  ```Python
@@ -44,9 +45,9 @@ Optional:
 - `textAreaHeight` - the height of the textarea 
 
 If no width/height is supplied, the entire length - starting from the x-/y-coordinate 
-to the opposite side of the supplied surface - is used.
+to the right/bottom side of the supplied surface - is used.
 
-##### 3. Displaying 
+##### 3. Display
 In the *pygame loop,* the method `display` renders the contents of the markdown file onto the surface. 
 In order to allow for scrolling, the display method requires some values from pygame.
 

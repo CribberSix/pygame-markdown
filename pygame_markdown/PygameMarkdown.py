@@ -110,10 +110,10 @@ class MarkdownRenderer:
                 block = self.html[start.span()[1]:  end.span()[0]]
 
                 if block_type == 'p':  # test whether the paragraph is actually a nested code block
-                    rex = re.search(r'^<code>[\s\S]+<\/code>$', block)
+                    rex = re.search(r'^<code>[\s\S]+<\/code>$', block.strip(' '))
                     if rex is not None:
                         block_type = 'codeblock'
-                        block = block[6:-7]
+                        block = block.strip(' ')[6:-7]
 
                 self.html = self.html[end.span()[1]:]
                 self.blocks.append((block, block_type))

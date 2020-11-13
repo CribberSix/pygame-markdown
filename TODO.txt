@@ -1,4 +1,5 @@
 
+- BUG: Inline formatting is currently only recognized if a whitespace leads and trails the formatting characters.
 
 - FEATURE/BUG: Code Block linebreaks when code is too long to fit.
     - Currently the code is not wrapped if it doesn't fit into one line
@@ -11,3 +12,9 @@
 - FEATURE: Link Binding
     - Syntax: If you want to know more [click here](www.link.org) or read more.
     - Implementation as a 'button' by checking if left click happened on the word?
+
+
+- FEATURE: Code blocks should recognize language strings
+    - FEATURE: Code highlighting
+
+- FEATURE: Overloading the format of a word with bold and italic at the same time

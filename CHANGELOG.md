@@ -1,5 +1,8 @@
 # Changelog for 'pygame-markdown' package 
 
+#### 1.0.6
+- Documentation revised
+- Bugfix in the recognition of code-blocks
 
 #### 1.0.5
 - Feature: Rounded corners for inline-code background.

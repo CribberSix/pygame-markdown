@@ -1,12 +1,23 @@
-# Pygame markdown package
+# pygame-markdown 
 
-A simple python function & methods to **blit Markdown** text on a **python surface.**
-A simple `python function` to blit Markdown text on a python surface.
+A simple python package to render a Markdown file on a pygame surface. Support of `inline code` as well as *italic* and **bold** characters.
+Three header types (h1, h2, h3), ordered and unordered lists,
 
-A simple python function & methods to **blit Markdown** text on a **python surface.**
-A simple `python function` to blit Markdown text on a python surface.
+> quote blocks
 
-## Second header for internal tests
+and even
+
+```
+code blocks!
+var = 500
+``` 
+
+1. **The entire color scheme is customizable** as well as font, fontsizes and the size of gaps between lines and paragraphs.
+2. Vertical scrollbar appears automatically if the text is bigger than the assigned area within the surface.
+
+
+
+## Second header 
 The following is a list.
 
 - This is a test for unordered lists
