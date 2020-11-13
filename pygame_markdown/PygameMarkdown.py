@@ -70,6 +70,7 @@ class MarkdownRenderer:
         self.gap_paragraph = 35
         self.indentation_quote = 25
         self.indentation_code = 25
+        self.code_padding = 2
 
         # Scrollbar
         self.pixel_scroll_step = 25

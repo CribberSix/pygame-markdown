@@ -1,4 +1,5 @@
 import pygame
+import pygame.gfxdraw
 
 
 def draw_code_background(self, code_flag, word, x, y, position):
@@ -18,9 +19,10 @@ def draw_code_background(self, code_flag, word, x, y, position):
 
         # blit colored background rectangle
         word_surface = self.get_surface(word, 'text')
-        width = word_surface.get_width()
+        width = word_surface.get_width() + (self.code_padding * 2)
         height = word_surface.get_height()
-        pygame.draw.rect(self.screen, self.color_code_background, pygame.Rect(x, y, width, height))
+        draw_rounded_rect(self.screen, pygame.Rect(x - self.code_padding, y, width, height),
+                          self.color_code_background, 3)
 
 
 def draw_codeblock_background(self, y):
@@ -38,7 +40,35 @@ def draw_codeblock_background(self, y):
 
     y_coordinate = y - self.gap_line
     height = height_of_line + (2 * self.gap_line)
-    pygame.draw.rect(self.screen, self.color_code_background, pygame.Rect(x_coordinate, y_coordinate, width, height))
+    draw_rounded_rect(self.screen, pygame.Rect(x_coordinate, y_coordinate, width, height),
+                      self.color_code_background, 5)
 
 
+def draw_rounded_rect(surface, rect, color, corner_radius):
+    """ Draw a rectangle with rounded corners.
+    We use anti-aliased circles to make the corners smoother
+    """
+    if rect.width < 2 * corner_radius or rect.height < 2 * corner_radius:
+        raise ValueError(f"Both height (rect.height) and width (rect.width) must be > 2 * corner radius ({corner_radius})")
 
+    # need to use anti aliasing circle drawing routines to smooth the corners
+    pygame.gfxdraw.aacircle(surface, rect.left+corner_radius, rect.top+corner_radius, corner_radius, color)
+    pygame.gfxdraw.aacircle(surface, rect.right-corner_radius-1, rect.top+corner_radius, corner_radius, color)
+    pygame.gfxdraw.aacircle(surface, rect.left+corner_radius, rect.bottom-corner_radius-1, corner_radius, color)
+    pygame.gfxdraw.aacircle(surface, rect.right-corner_radius-1, rect.bottom-corner_radius-1, corner_radius, color)
+
+    pygame.gfxdraw.filled_circle(surface, rect.left+corner_radius, rect.top+corner_radius, corner_radius, color)
+    pygame.gfxdraw.filled_circle(surface, rect.right-corner_radius-1, rect.top+corner_radius, corner_radius, color)
+    pygame.gfxdraw.filled_circle(surface, rect.left+corner_radius, rect.bottom-corner_radius-1, corner_radius, color)
+    pygame.gfxdraw.filled_circle(surface, rect.right-corner_radius-1, rect.bottom-corner_radius-1, corner_radius, color)
+
+    rect_tmp = pygame.Rect(rect)
+
+    rect_tmp.width -= 2 * corner_radius
+    rect_tmp.center = rect.center
+    pygame.draw.rect(surface, color, rect_tmp)
+
+    rect_tmp.width = rect.width
+    rect_tmp.height -= 2 * corner_radius
+    rect_tmp.center = rect.center
+    pygame.draw.rect(surface, color, rect_tmp)

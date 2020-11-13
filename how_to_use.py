@@ -54,4 +54,3 @@ while True:
 
     pygame.display.flip()  # updates pygame window
 
-

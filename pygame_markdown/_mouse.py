@@ -20,6 +20,7 @@ def handle_mouse_input(self, pygame_events, mouse_x, mouse_y, mouse_pressed):
     :param pygame_events: return value of 'pygame.event.get()'
     :param mouse_x: x-coordinate of mouse position
     :param mouse_y: y-coordinate of mouse position
+    :param mouse_pressed: return value of 'pygame.mouse.get_pressed()'
     :return: None
     """
     for event in pygame_events:
