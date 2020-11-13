@@ -86,7 +86,7 @@ All functions have default values for the parameters.
 
 ##### Text Format
 - Setting gaps after lines and paragraphs respectively: 
-```
+```python
 md.set_line_gaps(gap_line: int, gap_paragraph: int)
 md.set_line_gaps(8, 35)  # default values
 ```
@@ -95,12 +95,12 @@ md.set_line_gaps(8, 35)  # default values
 - Setting the font for the normal text and for the code-blocks independently. 
 The module uses pygame.font.SysFont. Possible options are Verdana, Arial, CourierNew, Helvetica etc. 
 The Fonts are given by name as Strings.
-```
+```python
 md.set_font(font_text: str, font_code: str)
 md.set_font('Arial', 'CourierNew')  # default values
 ```
 - Setting Font sizes for the three headers, normal text and code-blocks.
-```
+```python
 md.set_font_sizes(h1: int, h2: int, h3: int, text: int, code: int, quote: int)
 md.set_font_sizes(28, 24, 20, 16, 16, 16)  # default values
 ```
@@ -108,27 +108,27 @@ md.set_font_sizes(28, 24, 20, 16, 16, 16)  # default values
 
 ##### Coloring
 - Setting the background color of the markdown area
-```
+```python
 md.set_color_background(r: int, g: int, b: int)
 md.set_color_background(60, 63, 65)  # default values
 ```
 - Setting the general font color of via rgb codes (no default values)
-```
+```python
 md.set_color_font(r: int, g: int, b: int)
 md.set_color_font(204, 204, 204)  # default values
 ```
 - Setting the font color of quote-blocks via rgb codes (no default values)
-```
+```python
 md.set_color_quote(r: int, g: int, b: int)
 md.set_color_quote(98, 102, 103)  # default values
 ```
 - Setting the background color of the code-blocks via rgb codes (no default values)
-```
+```python
 md.set_code_bg_color(r: int, g: int, b: int)
 md.set_code_bg_color(44, 44, 44)  # default values
 ```
 - Setting the color of the horizontal line: 
-```
+```python
 md.set_color_hline(r: int, g: int, b: int)
 md.set_color_hline(44, 44, 44)  # default values
 ```
