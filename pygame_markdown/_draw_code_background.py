@@ -18,7 +18,10 @@ def draw_code_background(self, code_flag, word, x, y, position):
             word = word[:-1]
 
         # blit colored background rectangle
-        word_surface = self.get_surface(word, 'text')
+        if code_flag:
+            word_surface = self.get_surface(word, 'code')
+        else:
+            word_surface = self.get_surface(word, 'text')
         width = word_surface.get_width() + (self.code_padding * 2)
         height = word_surface.get_height()
         draw_rounded_rect(self.screen, pygame.Rect(x - self.code_padding, y, width, height),

@@ -19,7 +19,7 @@ def render_codeblock(self, block: str, block_type: str, y: int) -> int:
 
     for i, line in enumerate(block.split('\n')):   # user-set lines in codeblocks
         # render background of line if visible before rendering the line
-        if self.is_visible(y) and self.is_visible(y + self.get_surface('palceholder', 'code').get_height()):
+        if self.is_visible(y) and self.is_visible(y + self.get_surface('placeholder', 'code').get_height()):
             self.draw_codeblock_background(y)
 
         # render actual line

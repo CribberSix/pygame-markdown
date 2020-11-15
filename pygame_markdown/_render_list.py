@@ -40,7 +40,10 @@ def render_list(self, block: str, block_type: str, y: int, ordered) -> int:
             # _________ TEXT BLITTING _________ #
             # create surface to get width of the word to identify necessary linebreaks
             word = word + " "
-            surface = self.get_surface(word, block_type, bold_flag, italic_flag)
+            if code_flag:
+                surface = self.get_surface(word, 'code', bold_flag, italic_flag)
+            else:
+                surface = self.get_surface(word, block_type, bold_flag, italic_flag)
 
             if not(x + surface.get_width() < self.x + self.w):  # new line necessary
                 y = y + prev_text_height + self.gap_line

@@ -51,7 +51,7 @@ class MarkdownRenderer:
         # Fonts
         pygame.font.init()
         self.font_normal_str = 'Arial'
-        self.font_code_str = 'CourierNew'
+        self.font_code_str = 'Courier'
         self.font_header_size = 28
         self.font_header = pygame.font.SysFont(self.font_normal_str, self.font_header_size, bold=True)
         self.font_header2_size = 24

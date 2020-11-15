@@ -29,6 +29,8 @@ def get_surface(self, word: str, t_type: str, strong=False, italic=False) -> pyg
 
     elif t_type == 'code':
         surface = self.font_code.render(word, True, self.color_font)
+    elif t_type == 'codeblock':
+        surface = self.font_code.render(word, True, self.color_font)
 
     elif t_type == 'blockquote':
         surface = self.font_quote.render(word, True, self.color_quote)
