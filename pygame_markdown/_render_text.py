@@ -47,11 +47,13 @@ def render_text(self, block: str, block_type: str, y: int) -> int:
         else:
             surface = self.get_surface(word, block_type, bold_flag, italic_flag)
 
+        text_height = surface.get_height()  # update for next line
+        
         if not(x + surface.get_width() < self.x + self.w):  # new line necessary
-            y = y + prev_text_height + self.gap_line
+            y = y + text_height + self.gap_line
             x = start_of_line_x
 
-        if self.is_visible(y) and self.is_visible(y + surface.get_height()):
+        if self.is_visible(y) and self.is_visible(y + text_height):
             if block_type == 'blockquote':  # draw quote-rectangle in front of text
                 self.draw_quote_rect(y, y + self.get_surface(word, 'blockquote').get_height())
 
@@ -59,7 +61,7 @@ def render_text(self, block: str, block_type: str, y: int) -> int:
             self.screen.blit(surface, (x, y))
 
         x = x + surface.get_width()  # update for next word
-        prev_text_height = surface.get_height()  # update for next line
+
 
         # _________ FORMATTING RESET _________ #
         bold_flag = False if bold_flag and position == 'last' else bold_flag
@@ -67,9 +69,9 @@ def render_text(self, block: str, block_type: str, y: int) -> int:
         italic_flag = False if italic_flag and position == 'last' else italic_flag
 
     if block_type in ('h1', 'h2'):
-        y = y + prev_text_height * 0.5  # add an additional margin below h1 and h2 headers
+        y = y + text_height * 0.5  # add an additional margin below h1 and h2 headers
         if block_type == 'h1':  # insert subline below h1 headers
-            y = y + prev_text_height * 0.5  # add an additional margin below h1 headers for the subheader line
+            y = y + text_height * 0.5  # add an additional margin below h1 headers for the subheader line
             y = self.draw_subheader_line(y)
 
     return y
