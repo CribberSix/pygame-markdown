@@ -1,5 +1,9 @@
 # Changelog for 'pygame-markdown' package 
 
+#### 1.0.8
+- Bugfix: When the first word of a block necessitated an immediate linebreak (the word is longer than the line), 
+a variable wasn't instantiated and caused the code to crash. (Thanks [Paul](https://github.com/pmp-p)!)
+
 #### 1.0.6
 - Documentation revised
 - Bugfix in the recognition of code-blocks
