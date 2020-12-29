@@ -24,7 +24,8 @@ class MarkdownRenderer:
 
     # CUSTOMIZATION
     from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps, set_color_hline, \
-        set_color_code_background, set_color_font, set_color_quote, set_color_background, set_scroll_step
+        set_color_code_background, set_color_font, set_color_quote, set_color_background, set_scroll_step, \
+        render_background
 
     def __init__(self):
         self.x: int = None
