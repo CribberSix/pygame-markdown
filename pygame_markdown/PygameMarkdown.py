@@ -4,7 +4,6 @@ import re
 
 
 class MarkdownRenderer:
-
     # MISCELLANEOUS
     from ._visibility import is_visible, is_above_area, is_below_area
     from ._get_surface import get_surface
@@ -80,6 +79,7 @@ class MarkdownRenderer:
 
         self.html = ""
         self.blocks = []
+        self.render_background = True
 
     def set_markdown(self, mdfile_path):
         # load md file and parse to HTML
@@ -151,9 +151,12 @@ class MarkdownRenderer:
         :param mouse_pressed:
         :return:
         """
-        # Background -> reverse the margins
-        pygame.draw.rect(self.screen, self.color_area_background, (self.x - self.margin, self.y - self.margin,
-                                                                   self.w + (2 * self.margin), self.h + (2 * self.margin)))
+        # Background
+        if self.render_background:
+            # with reversed margins
+            pygame.draw.rect(self.screen, self.color_area_background,
+                             (self.x - self.margin, self.y - self.margin, self.w + (2 * self.margin),
+                              self.h + (2 * self.margin)))
 
         # Set start position with scroll taken into account
         line_position_y = self.y - self.pixel_first_showable
@@ -173,4 +176,3 @@ class MarkdownRenderer:
 
         # handle scrolling-action
         self.handle_mouse_input(pygame_events, mouse_x, mouse_y, mouse_pressed)
-

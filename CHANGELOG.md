@@ -1,5 +1,10 @@
 # Changelog for 'pygame-markdown' package 
 
+#### 1.0.9
+- Feature: Introduction of a new function `render_background(boolean)` to enable the user to enable/disable the background if needed.
+- Bugfix: A crash occurred when the scrollbar was disabled and the user used the mousewheel 
+while the mouse was within the textarea. 
+
 #### 1.0.8
 - Bugfix: When the first word of a block necessitated an immediate linebreak (the word is longer than the line), 
 a variable wasn't instantiated and caused the code to crash. (Thanks [Paul](https://github.com/pmp-p)!)

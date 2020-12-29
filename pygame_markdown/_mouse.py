@@ -31,7 +31,7 @@ def handle_mouse_input(self, pygame_events, mouse_x, mouse_y, mouse_pressed):
             elif event.button == 5 and self.pixel_first_showable + self.pixels_showable_at_once < self.pixels_entire_length:
                 self.scroll_down()
 
-            if event.button == 1:
+            if event.button == 1 and self.scrollbar is not None:
                 if self.scrollbar.collidepoint(mouse_x, mouse_y):
                     self.scroll_start_y = mouse_y
                     self.scroll_dragging = True
