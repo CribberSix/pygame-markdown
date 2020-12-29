@@ -5,7 +5,7 @@ def render_background(self, b) -> None:
     """
     Enabling / Disabling of the background rendering.
     """
-    self.render_background = b
+    self.background_rendering = b
 
 
 def set_font_sizes(self, h1: int = 20, h2: int = 18, h3: int = 15, text: int = 15, code: int = 15, quote: int = 15) -> None:

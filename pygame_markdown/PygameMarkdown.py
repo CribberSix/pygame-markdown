@@ -79,7 +79,7 @@ class MarkdownRenderer:
 
         self.html = ""
         self.blocks = []
-        self.render_background = True
+        self.background_rendering = True
 
     def set_markdown(self, mdfile_path):
         # load md file and parse to HTML
@@ -152,7 +152,7 @@ class MarkdownRenderer:
         :return:
         """
         # Background
-        if self.render_background:
+        if self.background_rendering:
             # with reversed margins
             pygame.draw.rect(self.screen, self.color_area_background,
                              (self.x - self.margin, self.y - self.margin, self.w + (2 * self.margin),
