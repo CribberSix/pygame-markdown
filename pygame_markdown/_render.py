@@ -29,7 +29,6 @@ def render_block(self, block: str, block_type: str, y: int) -> int:
         y = self.draw_horizontal_line(y)
 
     else:
-        print("ELSE:" + repr(block))  # TODO: Comment line
         y = self.render_text(block, block_type, y)
 
     return y

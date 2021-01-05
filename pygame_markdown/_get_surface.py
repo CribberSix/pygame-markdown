@@ -26,21 +26,16 @@ def get_surface(self, word: str, t_type: str, strong=False, italic=False) -> pyg
         surface = self.font_header2.render(word, True, self.color_font)
     elif t_type == 'h3':
         surface = self.font_header3.render(word, True, self.color_font)
-
     elif t_type == 'code':
         surface = self.font_code.render(word, True, self.color_font)
     elif t_type == 'codeblock':
         surface = self.font_code.render(word, True, self.color_font)
-
     elif t_type == 'blockquote':
         surface = self.font_quote.render(word, True, self.color_quote)
-
     elif t_type in ('ol', 'ul'):  # un-/ordered lists
         surface = self.font_text.render(word, True, self.color_font)
-
     elif t_type == 'p':  # normal text paragraph
         surface = self.font_text.render(word, True, self.color_font)
-
     else:
         surface = self.font_text.render(word, True, self.color_font)
 

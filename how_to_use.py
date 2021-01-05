@@ -29,16 +29,15 @@ md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
 #md.set_font_sizes(28, 24, 20, 16, 16, 16)
 
 
-#md.set_font('Arial', 'CourierNew')
-#md.set_color_background(60, 63, 65)
-#md.set_color_code_background(44, 44, 44)
-#md.set_color_quote(98, 102, 103)
-#md.set_color_hline(44, 44, 44)
-#md.set_color_font(204, 204, 204)
-
+md.set_font('Arial', 'CourierNew')
+md.set_color_background(204, 204, 204)
+md.set_color_code_background(204, 0, 204)
+#md.set_color_hline(204, 204, 204)
+md.set_color_font(41, 50, 65)
+#md.set_color_quote(41, 50, 65)
 
 while True:
-    pygame.draw.rect(screen, (255,255,255), (0, 0, screenWidth, screenHeight))
+    pygame.draw.rect(screen, (255,255, 255), (0, 0, screenWidth, screenHeight))
 
     # get various input from pygame
     pygame_events = pygame.event.get()
@@ -50,6 +49,7 @@ while True:
             pygame.quit()
             exit()
 
+    md.color_font = (41, 50, 65)
     md.display(pygame_events, mouse_x, mouse_y, mouse_pressed)  # renders the markdown text onto the surface.
 
     pygame.display.flip()  # updates pygame window

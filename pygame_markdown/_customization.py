@@ -56,35 +56,35 @@ def set_color_code_background(self, r: int = 44, g: int = 44, b: int = 44) -> No
     """
     Setting the coding color with three separate integers (rgb).
     """
-    self.coding_bg_color = (r, g, b)
+    self.color_code_background = (r, g, b)
 
 
 def set_color_font(self, r: int = 204, g: int = 204, b: int = 204) -> None:
     """
     Setting the general font color with three separate integers (rgb).
     """
-    self.font_color = (r, g, b)
+    self.color_font = (r, g, b)
 
 
 def set_color_quote(self, r: int = 98, g: int = 102, b: int = 103) -> None:
     """
     Setting the general font color with three separate integers (rgb).
     """
-    self.quote_color = (r, g, b)
+    self.color_quote = (r, g, b)
 
 
 def set_color_hline(self, r: int = 44, g: int = 44, b: int = 44) -> None:
     """
     Setting the general font color with three separate integers (rgb).
     """
-    self.hline_color = (r, g, b)
+    self.color_hline = (r, g, b)
 
 
 def set_color_background(self, r: int = 60, g: int = 63, b: int = 65) -> None:
     """
     Setting the background color of the markdown area with three separate integers (rgb).
     """
-    self.md_area_bg_color = (r, g, b)
+    self.color_area_background = (r, g, b)
 
 
 def set_scroll_step(self, i: int = 25) -> None:

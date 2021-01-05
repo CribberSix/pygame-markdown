@@ -1,5 +1,8 @@
 # Changelog for 'pygame-markdown' package 
 
+#### 1.1.0
+- Bugfix: color of fonts could not be set.  
+
 #### 1.0.9
 - Feature: Introduction of a new function `render_background(boolean)` to enable the user to enable/disable the background if needed.
 - Bugfix: A crash occurred when the scrollbar was disabled and the user used the mousewheel 

@@ -145,7 +145,6 @@ class MarkdownRenderer:
 
     def display(self, pygame_events, mouse_x, mouse_y, mouse_pressed):
         """
-        TODO: missing docstring
         :param pygame_events:
         :param mouse_x:
         :param mouse_y:
