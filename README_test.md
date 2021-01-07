@@ -28,8 +28,7 @@ The following is a list.
 ### Third header for internal tests
 
 This is an `inline-code` test. Also for `var = 3500` multiple words with spaces. A bit longer for the linebreak test
- `from pygame import everything` 
-newline and `other` characters on a string beginning. Lorem Ipsum and all that. 
+ `from pygame import everything` newline and `other` characters on a string beginning. Lorem Ipsum and all that. 
 
 ---
 

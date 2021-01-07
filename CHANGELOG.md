@@ -1,5 +1,8 @@
 # Changelog for 'pygame-markdown' package 
 
+#### 1.1.1
+- Fixed padding errors on inline-code in text and lists which lead to irregular distances between words.
+
 #### 1.1.0
 - Bugfix: color of fonts could not be set.  
 

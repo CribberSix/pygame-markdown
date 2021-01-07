@@ -17,6 +17,10 @@ def inline_formatting_preparation(self, word, position, code_flag, bold_flag, it
     :return: word, position, code_flag, bold_flag, italic_flag
     """
 
+    if word[:6] == '<code>' and word[-7:] == '</code>':
+        code_flag = True
+        position = 'single'
+        word = word[6:-7]
     if word[:6] == '<code>':
         code_flag = True
         position = 'first'

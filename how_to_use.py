@@ -31,9 +31,9 @@ md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
 
 md.set_font('Arial', 'CourierNew')
 md.set_color_background(204, 204, 204)
-md.set_color_code_background(204, 0, 204)
-#md.set_color_hline(204, 204, 204)
+md.set_color_code_background(42, 157, 143)
 md.set_color_font(41, 50, 65)
+md.set_color_hline(41, 50, 65)
 #md.set_color_quote(41, 50, 65)
 
 while True:

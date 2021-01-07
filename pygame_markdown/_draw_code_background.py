@@ -14,7 +14,7 @@ def draw_code_background(self, code_flag, word, x, y, position):
     :return: None
     """
     if code_flag:
-        if position == 'last':  # remove last char (whitespace) from background-surface
+        if position == 'last' or position == 'single':  # remove last char (whitespace) from background-surface
             word = word[:-1]
 
         # blit colored background rectangle

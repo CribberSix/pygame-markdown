@@ -27,7 +27,7 @@ def render_list(self, block: str, block_type: str, y: int, ordered) -> int:
     position = None
     for i, item in enumerate(block.split('\n')):
         if ordered:
-            item = u'    ' + str(i +1) + '. ' + item
+            item = u'    ' + str(i + 1) + '. ' + item
         else:
             item = u'    \u2022 ' + item
 
@@ -41,6 +41,8 @@ def render_list(self, block: str, block_type: str, y: int, ordered) -> int:
             # create surface to get width of the word to identify necessary linebreaks
             word = word + " "
             if code_flag:
+                if position == 'first' or position == 'single':
+                    x += self.code_padding
                 surface = self.get_surface(word, 'code', bold_flag, italic_flag)
             else:
                 surface = self.get_surface(word, block_type, bold_flag, italic_flag)
@@ -58,12 +60,16 @@ def render_list(self, block: str, block_type: str, y: int, ordered) -> int:
                 self.draw_code_background(code_flag, word, x, y, position)
                 self.screen.blit(surface, (x, y))
 
-            x = x + surface.get_width()  # update for next word
             prev_text_height = surface.get_height()  # update for next line
 
-            # _________ FORMATTING RESET _________ #
+            # Update x for the next word
+            x = x + surface.get_width()
+            if code_flag and position in ('single', 'last'):
+                x -= self.code_padding  # reduce empty space by padding.
+
+            # _________ FORMATTING RESET FOR NEXT WORD _________ #
             bold_flag = False if bold_flag and position == 'last' else bold_flag
-            code_flag = False if code_flag and position == 'last' else code_flag
+            code_flag = False if code_flag and (position == 'last' or position == 'single') else code_flag
             italic_flag = False if italic_flag and position == 'last' else italic_flag
 
         if i == len(block.split('\n')) - 1:
