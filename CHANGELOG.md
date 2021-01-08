@@ -1,5 +1,9 @@
 # Changelog for 'pygame-markdown' package 
 
+#### 1.1.2
+
+- Fixed parsing of the math operator symbols `<` and `>`. (Previously were rendered as `&gt;` / `&lt;` )
+
 #### 1.1.1
 - Fixed padding errors on inline-code in text and lists which lead to irregular distances between words.
 

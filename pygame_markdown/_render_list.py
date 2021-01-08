@@ -40,6 +40,7 @@ def render_list(self, block: str, block_type: str, y: int, ordered) -> int:
             # _________ TEXT BLITTING _________ #
             # create surface to get width of the word to identify necessary linebreaks
             word = word + " "
+            word = word.replace("&gt;", ">").replace("&lt;", "<")
             if code_flag:
                 if position == 'first' or position == 'single':
                     x += self.code_padding

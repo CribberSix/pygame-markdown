@@ -13,7 +13,6 @@ def render_codeblock(self, block: str, block_type: str, y: int) -> int:
     :return: y-coordinate after rendering is finished
     """
 
-
     start_of_line_x = self.x + self.indentation_code
     x = start_of_line_x  # for the start with the first line of block
 
@@ -25,6 +24,7 @@ def render_codeblock(self, block: str, block_type: str, y: int) -> int:
         # render actual line
         for word in line.split(" "):
             word = word + " "
+            word = word.replace("&gt;", ">").replace("&lt;", "<")
             # create surface to get width of the word to identify necessary linebreaks
             surface = self.get_surface(word, block_type)
 

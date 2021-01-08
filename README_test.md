@@ -2,6 +2,7 @@
 
 A simple python package to render a Markdown file on a pygame surface. Support of `inline code` as well as *italic* and **bold** characters.
 Three header types (h1, h2, h3), ordered and unordered lists,
+If x > 50 then do soimething, if y <= 51 do something else. 
 
 > quote blocks
 
@@ -10,6 +11,14 @@ and even
 ```
 code blocks!
 var = 500
+if var == 5: 
+    print(x)
+elif var >= 4:
+    print(5)
+elif var <= 5:
+    print(3)
+elif var < var:
+    print("error")
 ``` 
 
 1. **The entire color scheme is customizable** as well as font, fontsizes and the size of gaps between lines and paragraphs.
