@@ -16,11 +16,11 @@ setup(
     long_description=README,
     long_description_content_type='text/markdown',
     url='https://github.com/CribberSix/pygame-markdown',
-    version='1.1.3',
+    version='1.1.4',
     python_requires=">=3.6",
     author='CribberSix',
     author_email='cribbersix@gmail.com',
-    install_requires=['pygame==1.9.6', 'markdown>=3.3.3'],
+    install_requires=['pygame>=1.9.6', 'markdown>=3.3.3'],
     classifiers=[
         # Trove classifiers
         # (https://pypi.python.org/pypi?%3Aaction=list_classifiers)

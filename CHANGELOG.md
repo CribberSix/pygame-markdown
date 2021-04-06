@@ -1,6 +1,6 @@
 # Changelog for 'pygame-markdown' package 
 
-#### 1.1.3
+#### 1.1.4
 
 - Changed requirements concerning pygame to `>= 1.9.6` as version `2.0.1` has backwards compatibility.
 
