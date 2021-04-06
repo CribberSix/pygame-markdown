@@ -1,5 +1,9 @@
 # Changelog for 'pygame-markdown' package 
 
+#### 1.1.3
+
+- Changed requirements concerning pygame to `>= 1.9.6` as version `2.0.1` has backwards compatibility.
+
 #### 1.1.2
 
 - Fixed parsing of the math operator symbols `<` and `>`. (Previously were rendered as `&gt;` / `&lt;` )
