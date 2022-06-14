@@ -1,14 +1,14 @@
 import pygame
 
 
-def draw_quote_rect(self, y_start, y_end) -> None:
+def draw_quote_rect(self, y_start: int, y_end: int) -> None:
     """
     Draws the vertical thin rect in front of the quoted text.
     Starts/ends half of a gap_line above/below the first line.
 
     :param self: MarkdownRenderer
-    :param y_start: y-coordinate to start from
-    :param y_end: y-coordinate to finish at
+    :param int y_start: y-coordinate to start from
+    :param int y_end: y-coordinate to finish at
     :return: None
     """
 

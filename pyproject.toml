@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "pygame-markdown"
+version = "1.1.6"
+description = "A renderer for markdown text onto pygame surfaces."
+authors = ["CribberSix <seifert.victor@web.de>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pygame = ">=1.9.6"
+markdown = ">=3.3.3"
+
+[tool.poetry.dev-dependencies]
+wheel = "^0.37.1"
+twine = "^4.0.1"
+setuptools = "^62.4.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

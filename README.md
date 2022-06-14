@@ -19,13 +19,17 @@
 The package's class parses and renders the contents of a markdown file onto a pygame surface. 
 
 ### Usage
-##### 1. Instantiation
-The class instantiation takes one parameter: the path to the local markdown file.
+
+##### 1. Instantiation and setting the markdown content
+The class instantiation takes no parameter. You can set the markdown content to be rendered either as a filepath (to a markdown file) or directly from a string.
  
 ```Python
 from pygame_markdown import MarkdownRenderer
-md = MarkdownRenderer()  # create instance 
-md.set_markdown(mdfile_path)  # set the markdown file to be rendered
+md = MarkdownRenderer()  # create instance
+# EITHER, set the markdown file to be rendered based on a filepath:
+md.set_markdown(mdfile_path=mdfile_path)  
+# OR, set content directly from a string.
+md.set_markdown_from_string(md_string=md_string) 
 ```
 
 
@@ -60,6 +64,8 @@ while True:  # pygame loop
     md.display(pygame_events, mouse_x, mouse_y, mouse_pressed) 
 ```
 
+See the bottom of this README file for a full example.
+
 ### Internal workings
 The class uses a two stage process to render the contents of a markdown file onto a pygame surface. 
 For an overview of the implemented syntactic markdown structures, see [Markdown element implementations](#Markdown-element-implementations).
@@ -88,8 +94,7 @@ All functions have default values for the parameters.
 ##### Text Format
 - Setting gaps after lines and paragraphs respectively: 
 ```python
-md.set_line_gaps(gap_line: int, gap_paragraph: int)
-md.set_line_gaps(8, 35)  # default values
+md.set_line_gaps(gap_line=8, gap_paragraph=35)  # 8 & 35 are the default values
 ```
 
 ##### Fonts
@@ -97,41 +102,34 @@ md.set_line_gaps(8, 35)  # default values
 The module uses pygame.font.SysFont. Possible options are Verdana, Arial, CourierNew, Helvetica etc. 
 The Fonts are given by name as Strings.
 ```python
-md.set_font(font_text: str, font_code: str)
-md.set_font('Arial', 'CourierNew')  # default values
+md.set_font(font_text='Arial', font_code='CourierNew')  # Arial & CourierNew are the default values
 ```
 - Setting Font sizes for the three headers, normal text and code-blocks.
 ```python
-md.set_font_sizes(h1: int, h2: int, h3: int, text: int, code: int, quote: int)
-md.set_font_sizes(28, 24, 20, 16, 16, 16)  # default values
+md.set_font_sizes(h1=28, h2=24, h3=20, text=16, code=16, quote=16)  # these are the default values
 ```
 
 
 ##### Coloring
 - Setting the background color of the markdown area
 ```python
-md.set_color_background(r: int, g: int, b: int)
-md.set_color_background(60, 63, 65)  # default values
+md.set_color_background(r=60, g=63, b=65)  # default values
 ```
 - Setting the general font color of via rgb codes (no default values)
 ```python
-md.set_color_font(r: int, g: int, b: int)
-md.set_color_font(204, 204, 204)  # default values
+md.set_color_font(r=204, g=204, b=204)  # default values
 ```
 - Setting the font color of quote-blocks via rgb codes (no default values)
 ```python
-md.set_color_quote(r: int, g: int, b: int)
-md.set_color_quote(98, 102, 103)  # default values
+md.set_color_quote(r=98, g=102, b=103)  # default values
 ```
 - Setting the background color of the code-blocks via rgb codes (no default values)
 ```python
-md.set_code_bg_color(r: int, g: int, b: int)
-md.set_code_bg_color(44, 44, 44)  # default values
+md.set_code_bg_color(r=44, g=44, b=44)  # default values
 ```
 - Setting the color of the horizontal line: 
 ```python
-md.set_color_hline(r: int, g: int, b: int)
-md.set_color_hline(44, 44, 44)  # default values
+md.set_color_hline(r=44, g=44, b=44)  # default values
 ```
 
 
@@ -212,29 +210,13 @@ screen = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption("Pygame")
 pygame.display.get_surface().fill((200, 200, 200))  # background coloring
 
-# parameters
-surface = pygame.display.get_surface()  # get existing pygame window/screen
-offset_X = 50  # offset from the left border of the pygame window
-offset_Y = 20  # offset from the top border of the pygame window
-textAreaHeight = 500
-textAreaWidth = 500
-mdfile_path = "X:\\my_markdown_file.md"
-
-
+# Creating and configuring the MarkdownRenderer.
 md = MarkdownRenderer()
-md.set_markdown(mdfile_path)
-md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
-# OPTIONAL
-#md.set_line_gaps(5, 35)
-#md.set_scroll_step(25)
-#md.set_font_sizes(20, 18, 15, 15, 15, 15)
-#md.set_color_font(204, 204, 204)
-#md.set_font('Arial', 'CourierNew')
+md.set_markdown(mdfile_path="X:\\my_markdown_file.md")
+# md.set_markdown_from_string(md_string)  # Alternatively directly from a string.
+surface = pygame.display.get_surface()  # get existing pygame window/screen
+md.set_area(surface=surface, offset_X=50, offset_Y=20, width=500, height=500)
 
-#md.set_color_background(60, 63, 65)
-#md.set_color_code_background(44, 44, 44)
-#md.set_color_quote(98, 102, 103)
-#md.set_color_hline(44, 44, 44)
 
 while True:
     pygame.draw.rect(screen, (255,255,255), (0, 0, screenWidth, screenHeight))
@@ -253,5 +235,4 @@ while True:
     md.display(pygame_events, mouse_x, mouse_y, mouse_pressed) 
 
     pygame.display.flip()  # updates pygame window
-
 ```

@@ -1,14 +1,14 @@
 import pygame
 
 
-def get_surface(self, word: str, t_type: str, strong=False, italic=False) -> pygame.Surface:
+def get_surface(self, word: str, t_type: str, strong: bool = False, italic: bool = False) -> pygame.Surface:
     """ Returns rendered surface of a string (word) based on Markdown text types.
 
     :param self: MarkdownRenderer
-    :param word: word to get a surface from
-    :param t_type: the type of the text
-    :param strong: boolean to signal strong/bold text
-    :param italic: boolean to signal italicized text
+    :param str word: word to get a surface from
+    :param str t_type: the type of the text
+    :param bool strong: boolean to signal strong/bold text
+    :param bool italic: boolean to signal italicized text
     :return:  pygame.Surface
     """
 

@@ -1,5 +1,10 @@
 # Changelog for 'pygame-markdown' package 
 
+#### 1.1.5 + 1.1.6
+
+- Added a method to pass the markdown content as a string (previous option of passing a filepath still exists)
+- Documentation update (docstrings & README)
+
 #### 1.1.4
 
 - Changed requirements concerning pygame to `>= 1.9.6` as version `2.0.1` has backwards compatibility.

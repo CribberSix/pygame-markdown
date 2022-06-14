@@ -1,11 +1,11 @@
 import pygame
 
 
-def draw_horizontal_line(self, y):
+def draw_horizontal_line(self, y: int) -> int:
     """ Draws a horizontal line if visible.
 
     :param self: MarkdownRenderer
-    :param y: y-coordinate
+    :param int y: y-coordinate
     :return:  y-coordinate
     """
     y_offset = 3
@@ -19,12 +19,12 @@ def draw_horizontal_line(self, y):
     return y
 
 
-def draw_subheader_line(self, y):
+def draw_subheader_line(self, y: int) -> int:
     """ Draws a horizontal thin line (below headers) if visible.
 
     :param self: MarkdownRenderer
-    :param y: y-coordinate
-    :return:  y-coordinate
+    :param int y: y-coordinate
+    :return: int - y-coordinate
     """
     y_offset = 3
     x_offset = 4

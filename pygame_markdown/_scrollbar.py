@@ -2,6 +2,7 @@ import pygame
 
 
 def draw_scrollbar(self):
+    """Draws the scrollbar on the right side of the assigned area."""
 
     if self.pixels_showable_at_once >= self.pixels_entire_length:
         self.scrollbar = None
@@ -23,13 +24,16 @@ def draw_scrollbar(self):
 
 
 def scroll_up(self):
-    # scrolling up
+    """Scrolling upwards."""
     self.pixel_first_showable -= self.pixel_scroll_step
-    if self.pixel_first_showable < 0:  # reset to min
+    if self.pixel_first_showable < 0:
+        # reset to min
         self.pixel_first_showable = 0
 
 
 def scroll_down(self):
+    """Scrolling downwards."""
     self.pixel_first_showable += self.pixel_scroll_step
-    if self.pixel_first_showable > self.pixels_entire_length - self.pixels_showable_at_once: # reset to max
+    if self.pixel_first_showable > self.pixels_entire_length - self.pixels_showable_at_once:
+        # reset to max
         self.pixel_first_showable = self.pixels_entire_length - self.pixels_showable_at_once

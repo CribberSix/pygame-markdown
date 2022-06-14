@@ -18,15 +18,18 @@ textAreaHeight = 800
 textAreaWidth = 500
 mdfile_path = "README_test.md"
 
-
 md = MarkdownRenderer()
 md.set_markdown(mdfile_path)
+# ALTERNATIVELY, load directly from a string:
+# with open(mdfile_path, "r") as f:
+#    md_string = ''.join(list(f))
+# md.set_markdown_from_string(md_string)
 md.set_area(surface, offset_X, offset_Y, textAreaWidth, textAreaHeight)
 
 # OPTIONAL
-#md.set_scroll_step(25)
-#md.set_line_gaps(8, 35)
-#md.set_font_sizes(28, 24, 20, 16, 16, 16)
+# md.set_scroll_step(25)
+# md.set_line_gaps(8, 35)
+# md.set_font_sizes(28, 24, 20, 16, 16, 16)
 
 
 md.set_font('Arial', 'CourierNew')
@@ -34,7 +37,7 @@ md.set_color_background(204, 204, 204)
 md.set_color_code_background(42, 157, 143)
 md.set_color_font(41, 50, 65)
 md.set_color_hline(41, 50, 65)
-#md.set_color_quote(41, 50, 65)
+md.set_color_quote(41, 50, 65)
 
 while True:
     pygame.draw.rect(screen, (255,255, 255), (0, 0, screenWidth, screenHeight))

@@ -1,15 +1,15 @@
 
 
-def render_list(self, block: str, block_type: str, y: int, ordered) -> int:
+def render_list(self, block: str, block_type: str, y: int, ordered: bool) -> int:
     """ Renders the items of a list (ordered and unordered). Replaces the supplied numbers / hyphen with the correctly
     ordered numbers / unicode character for display.
 
     :param self: MarkdownRenderer
-    :param block: string of text
-    :param block_type: type of the text (e.g. headers, ordered/unordered lists, blockquotes, code etc)
-    :param y:  y-coordinate to start rendering on
-    :param ordered: boolean to signal whether we have an ordered or unordered list at hand
-    :return: y-coordinate after rendering is finished
+    :param str block: string of text
+    :param str block_type: type of the text (e.g. headers, ordered/unordered lists, blockquotes, code etc)
+    :param int y:  y-coordinate to start rendering on
+    :param bool ordered: boolean to signal whether we have an ordered or unordered list at hand
+    :returns: int y-coordinate after rendering is finished
     """
 
     start_of_line_x = self.x

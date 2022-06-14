@@ -1,4 +1,5 @@
 import pygame
+from typing import List, Tuple
 
 
 def mouse_within_md_area(self, mouse_x, mouse_y) -> bool:
@@ -10,17 +11,19 @@ def mouse_within_md_area(self, mouse_x, mouse_y) -> bool:
     :return: boolean
     """
 
-    return self.x - self.margin < mouse_x < (self.x + self.w + (2* self.margin)) and self.y - self.margin < mouse_y < (self.h + self.y + 2 * self.margin)
+    return self.x - self.margin < mouse_x < (self.x + self.w + 2 * self.margin) and \
+           self.y - self.margin < mouse_y < (self.h + self.y + 2 * self.margin)
 
 
-def handle_mouse_input(self, pygame_events, mouse_x, mouse_y, mouse_pressed):
+def handle_mouse_input(self, pygame_events: List[pygame.event.Event], mouse_x: int, mouse_y: int,
+                       mouse_pressed: Tuple[bool, ...]):
     """
 
     :param self: MarkdownRenderer
-    :param pygame_events: return value of 'pygame.event.get()'
-    :param mouse_x: x-coordinate of mouse position
-    :param mouse_y: y-coordinate of mouse position
-    :param mouse_pressed: return value of 'pygame.mouse.get_pressed()'
+    :param List[pygame.event.Event] pygame_events: return value of 'pygame.event.get()'
+    :param int mouse_x: x-coordinate of mouse position
+    :param int mouse_y: y-coordinate of mouse position
+    :param Tuple[bool, ...] mouse_pressed: return value of 'pygame.mouse.get_pressed()'
     :return: None
     """
     for event in pygame_events:

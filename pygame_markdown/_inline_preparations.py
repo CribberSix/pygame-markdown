@@ -1,5 +1,5 @@
 
-def inline_formatting_preparation(self, word, position, code_flag, bold_flag, italic_flag):
+def inline_formatting_preparation(self, word: str, position: str, code_flag: bool, bold_flag: bool, italic_flag: bool):
     """Recognizes HTML formatting substrings at the start / end of a given word.
     Sets and returns all necessary flags.
 
@@ -9,11 +9,11 @@ def inline_formatting_preparation(self, word, position, code_flag, bold_flag, it
     Setting the variable 'position' to 'last' is used to reset the current formatting after the word has been rendered.
 
     :param self: MarkdownRenderer
-    :param word: word to be checked for formatting HTML markers
-    :param position: string, current position keyword
-    :param code_flag: boolean to signal inline-code text
-    :param bold_flag: boolean to signal strong/bold text
-    :param italic_flag: boolean to signal italicized text
+    :param str word: word to be checked for formatting HTML markers
+    :param str position: string, current position keyword
+    :param bool code_flag: boolean to signal inline-code text
+    :param bool bold_flag: boolean to signal strong/bold text
+    :param bool italic_flag: boolean to signal italicized text
     :return: word, position, code_flag, bold_flag, italic_flag
     """
 

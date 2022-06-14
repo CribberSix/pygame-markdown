@@ -1,16 +1,16 @@
 import pygame
 import pygame.gfxdraw
+from typing import Tuple
 
-
-def draw_code_background(self, code_flag, word, x, y, position):
+def draw_code_background(self, code_flag: bool, word: str, x: int, y: int, position: str):
     """ Draws a background rectangle behind inline-code.
 
     :param self: MarkdownRenderer
-    :param code_flag: inline-code flag
-    :param word: the word for which the background will be rendered.
-    :param x: x-coordinate
-    :param y: y-coordinate
-    :param position: position of the word in the context of a multi-word inline-code subtext.
+    :param bool code_flag: inline-code flag
+    :param str word: the word for which the background will be rendered.
+    :param int x: x-coordinate
+    :param int y: y-coordinate
+    :param str position: position of the word in the context of a multi-word inline-code subtext.
     :return: None
     """
     if code_flag:
@@ -28,7 +28,7 @@ def draw_code_background(self, code_flag, word, x, y, position):
                           self.color_code_background, 3)
 
 
-def draw_codeblock_background(self, y):
+def draw_codeblock_background(self, y: int) -> None:
     """ Draws the background for an entire line of a codeblock
 
     :param self: MarkdownRenderer
@@ -47,12 +47,19 @@ def draw_codeblock_background(self, y):
                       self.color_code_background, 5)
 
 
-def draw_rounded_rect(surface, rect, color, corner_radius):
+def draw_rounded_rect(surface: pygame.Surface, rect: pygame.rect.Rect, color: Tuple[int, int, int], corner_radius: int):
     """ Draw a rectangle with rounded corners.
     We use anti-aliased circles to make the corners smoother
+
+    :param pygame.Surface surface:
+    :param pygame.rect.Rect rect:
+    :param  Tuple(int, int, int) color:
+    :param int corner_radius:
+    :returns: None
     """
     if rect.width < 2 * corner_radius or rect.height < 2 * corner_radius:
-        raise ValueError(f"Both height (rect.height) and width (rect.width) must be > 2 * corner radius ({corner_radius})")
+        raise ValueError(f"Both height (rect.height) and width (rect.width) must be > 2 * corner "
+                         f"radius ({corner_radius})")
 
     # need to use anti aliasing circle drawing routines to smooth the corners
     pygame.gfxdraw.aacircle(surface, rect.left+corner_radius, rect.top+corner_radius, corner_radius, color)

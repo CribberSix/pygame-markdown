@@ -3,10 +3,10 @@ def render_text(self, block: str, block_type: str, y: int) -> int:
     """
 
     :param self: MarkdownRenderer
-    :param block: string of text
-    :param block_type: type of the text (e.g. headers, ordered/unordered lists, blockquotes, code etc)
-    :param y:  y-coordinate to start rendering on
-    :return:  y-coordinate after rendering is finished
+    :param str block: string of text
+    :param str block_type: type of the text (e.g. headers, ordered/unordered lists, blockquotes, code etc)
+    :param int y:  y-coordinate to start rendering on
+    :returns: int - y-coordinate after rendering is finished
     """
 
     start_of_line_x = self.x

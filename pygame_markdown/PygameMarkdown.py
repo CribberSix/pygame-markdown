@@ -1,6 +1,7 @@
 import markdown
 import pygame
 import re
+from typing import List, Tuple
 
 
 class MarkdownRenderer:
@@ -82,16 +83,21 @@ class MarkdownRenderer:
         self.blocks = []
         self.background_rendering = True
 
-    def set_markdown(self, mdfile_path):
-        # load md file and parse to HTML
+    def set_markdown(self, mdfile_path: str) -> None:
+        """Loads a markdown file as string and passes it on to be parsed."""
         with open(mdfile_path, "r") as f:
-            l = ''.join(list(f))
-        self.html = markdown.markdown(l)
+            md_string = ''.join(list(f))
+        self.set_markdown_from_string(md_string)
+
+    def set_markdown_from_string(self, md_string):
+        """Parses a markdown string to HTML from where it is parsed into blocks."""
+        self.html = markdown.markdown(md_string)
         self.html = self.html.replace('&amp;', '&')  # '&' symbol is parsed by HTML to '&amp;', has to be reversed.
         self.blocks = []
         self.parse_markdown_file()
 
     def parse_markdown_file(self):
+        """Parses an HTML-string and divides it up into blocks of different types (e.g. code or paragraph)."""
         while True:
             if self.html[:7] == '\n<hr />':  # horizonal line -> special case.
                 self.blocks.append(('placeholder', 'horizontal_line'))
@@ -119,15 +125,15 @@ class MarkdownRenderer:
                 self.html = self.html[end.span()[1]:]
                 self.blocks.append((block, block_type))
 
-    def set_area(self, surface, offset_x, offset_y, width=-1, height=-1, margin=10) -> None:
+    def set_area(self, surface: pygame.Surface, offset_x: int, offset_y: int, width: int = -1, height: int = -1,
+                 margin: int = 10) -> None:
         """
-        TODO: missing docstring
-        :param surface:
-        :param offset_x:
-        :param offset_y:
-        :param width:
-        :param height:
-        :param margin:
+        :param pygame.Surface surface:
+        :param int offset_x:
+        :param int offset_y:
+        :param int width:
+        :param int height:
+        :param int margin:
         :return:
         """
         self.margin = margin
@@ -143,12 +149,13 @@ class MarkdownRenderer:
         self.pixels_showable_at_once = self.h
         self.screen = surface
 
-    def display(self, pygame_events, mouse_x, mouse_y, mouse_pressed):
+    def display(self, pygame_events: List[pygame.event.Event], mouse_x: int, mouse_y: int,
+                mouse_pressed: Tuple[bool, ...]):
         """
-        :param pygame_events:
-        :param mouse_x:
-        :param mouse_y:
-        :param mouse_pressed:
+        :param List[pygame.event.Event] pygame_events:
+        :param int mouse_x:
+        :param int mouse_y:
+        :param Tuple[bool, ...] mouse_pressed:
         :return:
         """
         # Background
