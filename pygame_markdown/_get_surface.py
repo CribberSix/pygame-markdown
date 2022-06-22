@@ -1,8 +1,10 @@
 import pygame
 
 
-def get_surface(self, word: str, t_type: str, strong: bool = False, italic: bool = False) -> pygame.Surface:
-    """ Returns rendered surface of a string (word) based on Markdown text types.
+def get_surface(
+    self, word: str, t_type: str, strong: bool = False, italic: bool = False
+) -> pygame.Surface:
+    """Returns rendered surface of a string (word) based on Markdown text types.
 
     :param self: MarkdownRenderer
     :param str word: word to get a surface from
@@ -20,21 +22,21 @@ def get_surface(self, word: str, t_type: str, strong: bool = False, italic: bool
         self.font_text.set_italic(True)
         self.font_quote.set_italic(True)
 
-    if t_type == 'h1':
+    if t_type == "h1":
         surface = self.font_header.render(word, True, self.color_font)
-    elif t_type == 'h2':
+    elif t_type == "h2":
         surface = self.font_header2.render(word, True, self.color_font)
-    elif t_type == 'h3':
+    elif t_type == "h3":
         surface = self.font_header3.render(word, True, self.color_font)
-    elif t_type == 'code':
+    elif t_type == "code":
         surface = self.font_code.render(word, True, self.color_font)
-    elif t_type == 'codeblock':
+    elif t_type == "codeblock":
         surface = self.font_code.render(word, True, self.color_font)
-    elif t_type == 'blockquote':
+    elif t_type == "blockquote":
         surface = self.font_quote.render(word, True, self.color_quote)
-    elif t_type in ('ol', 'ul'):  # un-/ordered lists
+    elif t_type in ("ol", "ul"):  # un-/ordered lists
         surface = self.font_text.render(word, True, self.color_font)
-    elif t_type == 'p':  # normal text paragraph
+    elif t_type == "p":  # normal text paragraph
         surface = self.font_text.render(word, True, self.color_font)
     else:
         surface = self.font_text.render(word, True, self.color_font)

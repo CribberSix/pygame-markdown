@@ -1,4 +1,3 @@
-
 def render_block(self, block: str, block_type: str, y: int) -> int:
     """
 
@@ -10,22 +9,22 @@ def render_block(self, block: str, block_type: str, y: int) -> int:
     """
 
     # Same background functionality
-    if block_type == 'p':
+    if block_type == "p":
         y = self.render_text(block, block_type, y)
-    elif block_type == 'blockquote':
+    elif block_type == "blockquote":
         y = self.render_text(block, block_type, y)
 
     # specific functionalities
-    elif block_type == 'codeblock':
+    elif block_type == "codeblock":
         y = self.render_codeblock(block, block_type, y)
-    elif block_type == 'ol':
+    elif block_type == "ol":
         y = self.render_list(block, block_type, y, ordered=True)
-    elif block_type == 'ul':
+    elif block_type == "ul":
         y = self.render_list(block, block_type, y, ordered=False)
-    elif block_type in ('h1', 'h2', 'h3'):
+    elif block_type in ("h1", "h2", "h3"):
         y = self.render_text(block, block_type, y)
 
-    elif block_type == 'horizontal_line':
+    elif block_type == "horizontal_line":
         y = self.draw_horizontal_line(y)
 
     else:

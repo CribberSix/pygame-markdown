@@ -1,5 +1,6 @@
-
-def inline_formatting_preparation(self, word: str, position: str, code_flag: bool, bold_flag: bool, italic_flag: bool):
+def inline_formatting_preparation(
+    self, word: str, position: str, code_flag: bool, bold_flag: bool, italic_flag: bool
+):
     """Recognizes HTML formatting substrings at the start / end of a given word.
     Sets and returns all necessary flags.
 
@@ -17,34 +18,34 @@ def inline_formatting_preparation(self, word: str, position: str, code_flag: boo
     :return: word, position, code_flag, bold_flag, italic_flag
     """
 
-    if word[:6] == '<code>' and word[-7:] == '</code>':
+    if word[:6] == "<code>" and word[-7:] == "</code>":
         code_flag = True
-        position = 'single'
+        position = "single"
         word = word[6:-7]
-    if word[:6] == '<code>':
+    if word[:6] == "<code>":
         code_flag = True
-        position = 'first'
+        position = "first"
         word = word[6:]
-    if word[-7:] == '</code>':
-        position = 'last'
+    if word[-7:] == "</code>":
+        position = "last"
         word = word[:-7]
 
     # bold / strong (one-word 'strong' is included)
-    if word[:8] == '<strong>':
+    if word[:8] == "<strong>":
         bold_flag = True
-        position = 'first'
+        position = "first"
         word = word[8:]
-    if word[-9:] == '</strong>':
-        position = 'last'
+    if word[-9:] == "</strong>":
+        position = "last"
         word = word[:-9]
 
     # italic (one-word 'italic' is included)
-    if word[:4] == '<em>':
+    if word[:4] == "<em>":
         italic_flag = True
-        position = 'first'
+        position = "first"
         word = word[4:]
-    if word[-5:] == '</em>':
-        position = 'last'
+    if word[-5:] == "</em>":
+        position = "last"
         word = word[:-5]
 
     return word, position, code_flag, bold_flag, italic_flag

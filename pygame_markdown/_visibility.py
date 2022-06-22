@@ -1,4 +1,3 @@
-
 def is_visible(self, y: int):
     """Checks whether a given point is within the currently visible area of the markdown area.
     The function is used to handle text which is longer than the specified height of the markdown area and
@@ -12,7 +11,7 @@ def is_visible(self, y: int):
 
 
 def is_above_area(self, y: int):
-    """ Checks whether a given point is above the markdown area.
+    """Checks whether a given point is above the markdown area.
 
     :param self: MarkdownRenderer
     :param int y: y-coordinate
@@ -22,7 +21,7 @@ def is_above_area(self, y: int):
 
 
 def is_below_area(self, y: int):
-    """ Checks whether a given point is below the markdown area.
+    """Checks whether a given point is below the markdown area.
 
     :param self: MarkdownRenderer
     :param int y: y-coordinate

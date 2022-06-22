@@ -3,7 +3,7 @@ from typing import List, Tuple
 
 
 def mouse_within_md_area(self, mouse_x, mouse_y) -> bool:
-    """ Returns True if the given coordinates are within the console area of the pygame window, otherwise False.
+    """Returns True if the given coordinates are within the console area of the pygame window, otherwise False.
 
     :param self: MarkdownRenderer
     :param mouse_x: x-coordinate of mouse position
@@ -11,12 +11,18 @@ def mouse_within_md_area(self, mouse_x, mouse_y) -> bool:
     :return: boolean
     """
 
-    return self.x - self.margin < mouse_x < (self.x + self.w + 2 * self.margin) and \
-           self.y - self.margin < mouse_y < (self.h + self.y + 2 * self.margin)
+    return self.x - self.margin < mouse_x < (
+        self.x + self.w + 2 * self.margin
+    ) and self.y - self.margin < mouse_y < (self.h + self.y + 2 * self.margin)
 
 
-def handle_mouse_input(self, pygame_events: List[pygame.event.Event], mouse_x: int, mouse_y: int,
-                       mouse_pressed: Tuple[bool, ...]):
+def handle_mouse_input(
+    self,
+    pygame_events: List[pygame.event.Event],
+    mouse_x: int,
+    mouse_y: int,
+    mouse_pressed: Tuple[bool, ...],
+):
     """
 
     :param self: MarkdownRenderer
@@ -28,10 +34,16 @@ def handle_mouse_input(self, pygame_events: List[pygame.event.Event], mouse_x: i
     """
     for event in pygame_events:
         # Mouse scrolling wheel should only work if it is within the coding area.
-        if event.type == pygame.MOUSEBUTTONDOWN and self.mouse_within_md_area(mouse_x, mouse_y):
+        if event.type == pygame.MOUSEBUTTONDOWN and self.mouse_within_md_area(
+            mouse_x, mouse_y
+        ):
             if event.button == 4 and self.pixel_first_showable > 0:
                 self.scroll_up()
-            elif event.button == 5 and self.pixel_first_showable + self.pixels_showable_at_once < self.pixels_entire_length:
+            elif (
+                event.button == 5
+                and self.pixel_first_showable + self.pixels_showable_at_once
+                < self.pixels_entire_length
+            ):
                 self.scroll_down()
 
             if event.button == 1 and self.scrollbar is not None:
@@ -49,4 +61,3 @@ def handle_mouse_input(self, pygame_events: List[pygame.event.Event], mouse_x: i
             self.scroll_down()
         elif mouse_y < self.scroll_start_y:  # dragged higher
             self.scroll_up()
-

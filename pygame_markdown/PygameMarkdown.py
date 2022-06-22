@@ -24,9 +24,19 @@ class MarkdownRenderer:
     from ._draw_lines import draw_horizontal_line, draw_subheader_line
 
     # CUSTOMIZATION
-    from ._customization import set_font_sizes, set_font, reload_fonts, set_line_gaps, set_color_hline, \
-        set_color_code_background, set_color_font, set_color_quote, set_color_background, set_scroll_step, \
-        render_background
+    from ._customization import (
+        set_font_sizes,
+        set_font,
+        reload_fonts,
+        set_line_gaps,
+        set_color_hline,
+        set_color_code_background,
+        set_color_font,
+        set_color_quote,
+        set_color_background,
+        set_scroll_step,
+        render_background,
+    )
 
     def __init__(self):
         self.x: int = None
@@ -51,20 +61,32 @@ class MarkdownRenderer:
 
         # Fonts
         pygame.font.init()
-        self.font_normal_str = 'Arial'
-        self.font_code_str = 'Courier'
+        self.font_normal_str = "Arial"
+        self.font_code_str = "Courier"
         self.font_header_size = 28
-        self.font_header = pygame.font.SysFont(self.font_normal_str, self.font_header_size, bold=True)
+        self.font_header = pygame.font.SysFont(
+            self.font_normal_str, self.font_header_size, bold=True
+        )
         self.font_header2_size = 24
-        self.font_header2 = pygame.font.SysFont(self.font_normal_str, self.font_header2_size, bold=True)
+        self.font_header2 = pygame.font.SysFont(
+            self.font_normal_str, self.font_header2_size, bold=True
+        )
         self.font_header3_size = 20
-        self.font_header3 = pygame.font.SysFont(self.font_normal_str, self.font_header3_size, bold=True)
+        self.font_header3 = pygame.font.SysFont(
+            self.font_normal_str, self.font_header3_size, bold=True
+        )
         self.font_text_size = 16
-        self.font_text = pygame.font.SysFont(self.font_normal_str, self.font_text_size, bold=False)
+        self.font_text = pygame.font.SysFont(
+            self.font_normal_str, self.font_text_size, bold=False
+        )
         self.font_code_size = 16
-        self.font_code = pygame.font.SysFont(self.font_code_str, self.font_text_size, bold=False)
+        self.font_code = pygame.font.SysFont(
+            self.font_code_str, self.font_text_size, bold=False
+        )
         self.font_quote_size = 16
-        self.font_quote = pygame.font.SysFont(self.font_normal_str, self.font_quote_size, bold=False)
+        self.font_quote = pygame.font.SysFont(
+            self.font_normal_str, self.font_quote_size, bold=False
+        )
 
         # Text-rendering variables
         self.gap_line = 8
@@ -86,47 +108,58 @@ class MarkdownRenderer:
     def set_markdown(self, mdfile_path: str) -> None:
         """Loads a markdown file as string and passes it on to be parsed."""
         with open(mdfile_path, "r") as f:
-            md_string = ''.join(list(f))
+            md_string = "".join(list(f))
         self.set_markdown_from_string(md_string)
 
     def set_markdown_from_string(self, md_string):
         """Parses a markdown string to HTML from where it is parsed into blocks."""
         self.html = markdown.markdown(md_string)
-        self.html = self.html.replace('&amp;', '&')  # '&' symbol is parsed by HTML to '&amp;', has to be reversed.
+        self.html = self.html.replace(
+            "&amp;", "&"
+        )  # '&' symbol is parsed by HTML to '&amp;', has to be reversed.
         self.blocks = []
         self.parse_markdown_file()
 
     def parse_markdown_file(self):
         """Parses an HTML-string and divides it up into blocks of different types (e.g. code or paragraph)."""
         while True:
-            if self.html[:7] == '\n<hr />':  # horizonal line -> special case.
-                self.blocks.append(('placeholder', 'horizontal_line'))
+            if self.html[:7] == "\n<hr />":  # horizonal line -> special case.
+                self.blocks.append(("placeholder", "horizontal_line"))
 
             # find the start of the next block:
-            pattern_start = r'<\w+>'
+            pattern_start = r"<\w+>"
             start = re.search(pattern_start, self.html)
             if start is None:
                 break  # no new block -> stop working.
 
             # find the matching end:
             block_type = start.group()[1:-1]
-            pattern_end = r'<\/' + block_type + '>'
+            pattern_end = r"<\/" + block_type + ">"
             end = re.search(pattern_end, self.html)
 
             if start is not None and end is not None:
-                block = self.html[start.span()[1]:  end.span()[0]]
+                block = self.html[start.span()[1] : end.span()[0]]
 
-                if block_type == 'p':  # test whether the paragraph is actually a nested code block
-                    rex = re.search(r'^<code>[\s\S]+<\/code>$', block.strip(' '))
+                if (
+                    block_type == "p"
+                ):  # test whether the paragraph is actually a nested code block
+                    rex = re.search(r"^<code>[\s\S]+<\/code>$", block.strip(" "))
                     if rex is not None:
-                        block_type = 'codeblock'
-                        block = block.strip(' ')[6:-7]
+                        block_type = "codeblock"
+                        block = block.strip(" ")[6:-7]
 
-                self.html = self.html[end.span()[1]:]
+                self.html = self.html[end.span()[1] :]
                 self.blocks.append((block, block_type))
 
-    def set_area(self, surface: pygame.Surface, offset_x: int, offset_y: int, width: int = -1, height: int = -1,
-                 margin: int = 10) -> None:
+    def set_area(
+        self,
+        surface: pygame.Surface,
+        offset_x: int,
+        offset_y: int,
+        width: int = -1,
+        height: int = -1,
+        margin: int = 10,
+    ) -> None:
         """
         :param pygame.Surface surface:
         :param int offset_x:
@@ -144,13 +177,26 @@ class MarkdownRenderer:
         self.x = offset_x + margin
         self.y = offset_y + margin
         # if no values are given, we take the end of the screen as limit.
-        self.w = width - (2 * self.margin) if width > 0 else surface.get_width() - offset_x - (2 * self.margin)
-        self.h = height - (2 * self.margin) if height > 0 else surface.get_height() - offset_y - (2 * self.margin)
+        self.w = (
+            width - (2 * self.margin)
+            if width > 0
+            else surface.get_width() - offset_x - (2 * self.margin)
+        )
+        self.h = (
+            height - (2 * self.margin)
+            if height > 0
+            else surface.get_height() - offset_y - (2 * self.margin)
+        )
         self.pixels_showable_at_once = self.h
         self.screen = surface
 
-    def display(self, pygame_events: List[pygame.event.Event], mouse_x: int, mouse_y: int,
-                mouse_pressed: Tuple[bool, ...]):
+    def display(
+        self,
+        pygame_events: List[pygame.event.Event],
+        mouse_x: int,
+        mouse_y: int,
+        mouse_pressed: Tuple[bool, ...],
+    ):
         """
         :param List[pygame.event.Event] pygame_events:
         :param int mouse_x:
@@ -161,9 +207,16 @@ class MarkdownRenderer:
         # Background
         if self.background_rendering:
             # with reversed margins
-            pygame.draw.rect(self.screen, self.color_area_background,
-                             (self.x - self.margin, self.y - self.margin, self.w + (2 * self.margin),
-                              self.h + (2 * self.margin)))
+            pygame.draw.rect(
+                self.screen,
+                self.color_area_background,
+                (
+                    self.x - self.margin,
+                    self.y - self.margin,
+                    self.w + (2 * self.margin),
+                    self.h + (2 * self.margin),
+                ),
+            )
 
         # Set start position with scroll taken into account
         line_position_y = self.y - self.pixel_first_showable
