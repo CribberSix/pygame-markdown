@@ -18,6 +18,10 @@
 
 The package's class parses and renders the contents of a markdown file onto a pygame surface. 
 
+### Installing the package
+
+The package is published on [pypi](https://pypi.org/project/pygame-markdown/) so you can install it by running `pip install pygame-markdown` in your command line.
+
 ### Usage
 
 ##### 1. Instantiation and setting the markdown content
